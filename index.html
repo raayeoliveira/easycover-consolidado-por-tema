@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>EasyCover · Consolidado por tema · Fase 1B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: oklch(0.985 0.005 250);
+    --surface: oklch(1 0 0);
+    --ink: oklch(0.20 0.02 250);
+    --ink-soft: oklch(0.38 0.015 250);
+    --muted: oklch(0.55 0.01 250);
+    --rule: oklch(0.88 0.008 250);
+    --seazone: oklch(0.42 0.14 250);
+    --seazone-dark: oklch(0.28 0.12 250);
+    --seazone-soft: oklch(0.96 0.02 250);
+    --brick: oklch(0.48 0.16 28);
+    --brick-soft: oklch(0.96 0.03 30);
+    --sage: oklch(0.48 0.07 155);
+    --sage-soft: oklch(0.95 0.02 155);
+    --amber: oklch(0.62 0.14 75);
+    --amber-soft: oklch(0.96 0.03 85);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "tnum" on, "lnum" on;
+  }
+
+  .app { max-width: 1180px; margin: 0 auto; padding: 0 40px 80px; }
+
+  /* ============ HERO ============ */
+  .hero {
+    background: var(--seazone);
+    color: var(--surface);
+    margin: 0 -40px 0;
+    padding: 72px 80px 56px;
+  }
+
+  .hero-inner { max-width: 1100px; margin: 0 auto; }
+
+  .hero-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: oklch(0.85 0.04 250);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 42px;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    max-width: 860px;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.55;
+    color: oklch(0.90 0.02 250);
+    max-width: 740px;
+    margin-bottom: 40px;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 56px;
+    padding-top: 28px;
+    border-top: 1px solid oklch(0.55 0.10 250);
+    flex-wrap: wrap;
+  }
+
+  .hero-meta dt {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: oklch(0.75 0.05 250);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .hero-meta dd { font-size: 14px; color: var(--surface); font-weight: 500; }
+
+  /* ============ SECTION ============ */
+  section { margin-top: 56px; }
+
+  .sect-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--seazone);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .sect-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .sect-sub {
+    font-size: 15px;
+    color: var(--ink-soft);
+    max-width: 780px;
+    margin-bottom: 28px;
+  }
+
+  /* ============ STATS ============ */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    margin-bottom: 28px;
+  }
+
+  .stat {
+    padding: 28px 24px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+  }
+
+  .stat:nth-child(4n) { border-right: none; }
+  .stat:nth-last-child(-n+4) { border-bottom: none; }
+
+  .stat::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--muted);
+  }
+  .stat.f::before { background: var(--brick); }
+  .stat.p::before { background: var(--amber); }
+  .stat.s::before { background: var(--seazone); }
+  .stat.ok::before { background: var(--sage); }
+
+  .stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .stat-value {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-value small {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    margin-left: 4px;
+    letter-spacing: normal;
+  }
+
+  .stat-note {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+
+  /* ============ VOLUME BARS ============ */
+  .bars {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 8px 0;
+  }
+
+  .bar-row {
+    display: grid;
+    grid-template-columns: 260px 1fr 80px 60px;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .bar-row:last-child { border-bottom: none; }
+
+  .bar-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .bar-track {
+    background: var(--paper);
+    height: 10px;
+    position: relative;
+  }
+
+  .bar-fill {
+    background: var(--seazone);
+    height: 100%;
+  }
+
+  .bar-count {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .bar-pct {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  /* ============ IMPACT TAGS ============ */
+  .impact-tags {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .impact-card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 22px 24px;
+    border-top: 3px solid var(--muted);
+  }
+  .impact-card.f { border-top-color: var(--brick); }
+  .impact-card.p { border-top-color: var(--amber); }
+  .impact-card.s { border-top-color: var(--seazone); }
+
+  .impact-card-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .impact-card-value {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 8px;
+    font-variant-numeric: tabular-nums;
+  }
+  .impact-card-desc {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+
+  /* ============ THEMES (accordion) ============ */
+  .theme {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    margin-bottom: 20px;
+  }
+
+  .theme-head {
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  .theme-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .theme-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .case { border-bottom: 1px solid var(--rule); }
+  .case:last-child { border-bottom: none; }
+
+  .case-toggle {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 18px 28px;
+    display: grid;
+    grid-template-columns: 42px 1fr auto 24px;
+    align-items: center;
+    gap: 18px;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    transition: background 0.15s ease;
+  }
+  .case-toggle:hover { background: var(--paper); }
+
+  .case-code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .case-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1.35;
+    color: var(--ink);
+  }
+
+  .case-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .case-badge.f { background: var(--brick-soft); color: var(--brick); }
+  .case-badge.p { background: var(--amber-soft); color: var(--amber); }
+  .case-badge.s { background: var(--seazone-soft); color: var(--seazone); }
+  .case-badge.ok { background: var(--sage-soft); color: var(--sage); }
+
+  .case-chevron {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    color: var(--muted);
+    font-weight: 400;
+    transition: transform 0.2s ease;
+    justify-self: end;
+    line-height: 1;
+  }
+  .case.open .case-chevron { transform: rotate(45deg); }
+  .case.open .case-toggle { background: var(--paper); }
+
+  .case-body {
+    display: none;
+    padding: 4px 28px 28px 88px;
+    background: var(--paper);
+  }
+  .case.open .case-body { display: block; }
+
+  .case-block {
+    margin-bottom: 14px;
+  }
+  .case-block:last-child { margin-bottom: 0; }
+
+  .case-block-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .case-block-text {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .case-quote {
+    background: var(--surface);
+    padding: 12px 16px;
+    border-left: 3px solid var(--seazone);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink);
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+
+  .case-source {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    padding-top: 8px;
+    border-top: 1px dashed var(--rule);
+  }
+  .case-source strong { color: var(--ink); font-weight: 500; }
+
+  /* ============ POSITIVES ============ */
+  .positives {
+    background: var(--sage-soft);
+    padding: 32px 36px;
+    margin: 0 -40px;
+    border-top: 1px solid oklch(0.85 0.05 155);
+    border-bottom: 1px solid oklch(0.85 0.05 155);
+  }
+  .positives-inner { max-width: 1100px; margin: 0 auto; }
+  .positives h2 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .positives p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+    max-width: 700px;
+  }
+  .positive-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .positive {
+    background: var(--surface);
+    padding: 18px 22px;
+    border-left: 3px solid var(--sage);
+  }
+  .positive-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .positive-desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .positive-source {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    padding: 24px 0 0;
+    margin-top: 56px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .app { padding: 0 20px 60px; }
+    .hero { margin: 0 -20px; padding: 48px 24px; }
+    .hero h1 { font-size: 28px; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+    .stat:nth-last-child(-n+4) { border-bottom: 1px solid var(--rule); }
+    .stat:nth-last-child(-n+2) { border-bottom: none; }
+    .stat-value { font-size: 32px; }
+    .bar-row { grid-template-columns: 1fr 60px 50px; gap: 12px; padding: 12px 16px; }
+    .bar-row .bar-track { display: none; }
+    .bar-name { font-size: 13px; }
+    .impact-tags { grid-template-columns: 1fr; }
+    .case-toggle { grid-template-columns: 36px 1fr auto; padding: 16px 18px; gap: 12px; }
+    .case-chevron { display: none; }
+    .case-title { font-size: 14px; }
+    .case-body { padding: 4px 18px 22px 66px; }
+    .positives { margin: 0 -20px; padding: 28px 20px; }
+    .positive-list { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">EasyCover · Consolidado por tema · Fase 1B</div>
+    <h1>Todos os relatos sobre EasyCover no grupo Geral Franquias, agrupados por tema.</h1>
+    <p class="hero-sub">Varredura de 7.811 mensagens do grupo entre 12/06 e 28/09/2026. Filtragem contextual (não só palavra-chave) para separar EasyCover de menções a "seguro" que tratavam de outros assuntos. Casos consolidados — mensagens repetidas sobre a mesma dor viram um único caso.</p>
+    <dl class="hero-meta">
+      <div><dt>Período</dt><dd>12/06 → 28/09/2026</dd></div>
+      <div><dt>Elaborado por</dt><dd>Rayanne Oliveira</dd></div>
+      <div><dt>Emissão</dt><dd>29/09/2026</dd></div>
+      <div><dt>Fonte</dt><dd>WhatsApp · Geral Franquias</dd></div>
+    </dl>
+  </div>
+</div>
+
+<div class="app">
+
+  <!-- ============ BLOCO EXECUTIVO ============ -->
+  <section>
+    <div class="sect-kicker">Bloco executivo</div>
+    <div class="sect-title">Consolidado</div>
+    <p class="sect-sub">Dos 7.811 posts do trimestre, 35 mensagens tratam efetivamente do EasyCover. Depois de consolidar mensagens da mesma thread, sobram 12 casos-problema distintos e 2 sinais positivos (correções entregues pela Seazone).</p>
+
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-label">Mensagens<br>analisadas</div>
+        <div class="stat-value">7.811</div>
+        <div class="stat-note">Todo o grupo Geral Franquias no trimestre 12/06→28/09.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Mensagens<br>sobre EasyCover</div>
+        <div class="stat-value">35</div>
+        <div class="stat-note">0,45% do volume total. Falsos positivos (Porto Seguro cidade, seguro-viagem, taxa de franquia) descartados manualmente.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Casos<br>distintos</div>
+        <div class="stat-value">12<small>+2 ok</small></div>
+        <div class="stat-note">12 casos-problema + 2 sinais positivos. Mensagens de reforço agrupadas.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Subcategorias<br>identificadas</div>
+        <div class="stat-value">8</div>
+        <div class="stat-note">Emergiram dos dados — não vieram de lista pré-definida.</div>
+      </div>
+      <div class="stat f">
+        <div class="stat-label">Impacto<br>principal · Franquia</div>
+        <div class="stat-value">7</div>
+        <div class="stat-note">Elo mais atingido — quem opera o produto no dia a dia (paga do bolso, procura o telefone, assume o risco).</div>
+      </div>
+      <div class="stat p">
+        <div class="stat-label">Impacto<br>principal · Proprietário</div>
+        <div class="stat-value">2</div>
+        <div class="stat-note">Manutenção que ele paga (fora do escopo) e conserto que ele adia — ativo depreciado.</div>
+      </div>
+      <div class="stat s">
+        <div class="stat-label">Impacto<br>principal · Seazone</div>
+        <div class="stat-value">3</div>
+        <div class="stat-note">Marca aparece direto: 0800 sem retorno, comunicação de release, falta de trilha oficial.</div>
+      </div>
+      <div class="stat ok">
+        <div class="stat-label">Correções<br>entregues no período</div>
+        <div class="stat-value">2</div>
+        <div class="stat-note">Visibilidade no Host (06/08) + Contatos Úteis no Franqueado 360º (16/09).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VOLUME POR SUBCATEGORIA ============ -->
+  <section>
+    <div class="sect-kicker">Volume por tema</div>
+    <div class="sect-title">Quais são os temas do EasyCover no grupo</div>
+    <p class="sect-sub">Ordenado por quantidade de mensagens que sustentam cada tema. "Escopo da cobertura" e "Como acionar" concentram quase metade do volume — sinal de que falta material oficial sobre o produto.</p>
+
+    <div class="bars">
+      <div class="bar-row"><div class="bar-name">Escopo da cobertura</div><div class="bar-track"><div class="bar-fill" style="width: 100%"></div></div><div class="bar-count">9 msgs</div><div class="bar-pct">27%</div></div>
+      <div class="bar-row"><div class="bar-name">Como acionar (processo)</div><div class="bar-track"><div class="bar-fill" style="width: 78%"></div></div><div class="bar-count">7 msgs</div><div class="bar-pct">21%</div></div>
+      <div class="bar-row"><div class="bar-name">Visibilidade da apólice no sistema</div><div class="bar-track"><div class="bar-fill" style="width: 78%"></div></div><div class="bar-count">7 msgs</div><div class="bar-pct">21%</div></div>
+      <div class="bar-row"><div class="bar-name">Laudo / prova de dano</div><div class="bar-track"><div class="bar-fill" style="width: 44%"></div></div><div class="bar-count">4 msgs</div><div class="bar-pct">12%</div></div>
+      <div class="bar-row"><div class="bar-name">Contato do EasyCover</div><div class="bar-track"><div class="bar-fill" style="width: 33%"></div></div><div class="bar-count">3 msgs</div><div class="bar-pct">9%</div></div>
+      <div class="bar-row"><div class="bar-name">SLA do 0800</div><div class="bar-track"><div class="bar-fill" style="width: 11%"></div></div><div class="bar-count">1 msg</div><div class="bar-pct">3%</div></div>
+      <div class="bar-row"><div class="bar-name">Custo absorvido pela franqueada</div><div class="bar-track"><div class="bar-fill" style="width: 11%"></div></div><div class="bar-count">1 msg</div><div class="bar-pct">3%</div></div>
+      <div class="bar-row"><div class="bar-name">Imóvel sem apólice</div><div class="bar-track"><div class="bar-fill" style="width: 11%"></div></div><div class="bar-count">1 msg</div><div class="bar-pct">3%</div></div>
+    </div>
+  </section>
+
+  <!-- ============ IMPACT DISTRIBUTION ============ -->
+  <section>
+    <div class="sect-kicker">Distribuição de impacto</div>
+    <div class="sect-title">Quem sente a dor</div>
+    <p class="sect-sub">Classificação baseada em quem é diretamente afetado pelo relato. Casos que impactam mais de uma parte foram classificados pelo elo principal — os secundários aparecem no detalhamento do caso.</p>
+
+    <div class="impact-tags">
+      <div class="impact-card f">
+        <div class="impact-card-label">Franquia</div>
+        <div class="impact-card-value">7 casos</div>
+        <div class="impact-card-desc">É quem opera o produto no dia a dia — paga do bolso, trava na fila do 0800, procura o telefone e assume o risco quando o imóvel não tem apólice.</div>
+      </div>
+      <div class="impact-card p">
+        <div class="impact-card-label">Proprietário</div>
+        <div class="impact-card-value">2 casos</div>
+        <div class="impact-card-desc">Manutenção que ele paga (gás do ar) porque não é escopo do EasyCover, e conserto adiado que faz perder a janela de acionamento.</div>
+      </div>
+      <div class="impact-card s">
+        <div class="impact-card-label">Seazone</div>
+        <div class="impact-card-value">3 casos</div>
+        <div class="impact-card-desc">Marca aparece direta: 0800 sem retorno em emergência, release entregue mas onboarding não pega, e falta de trilha oficial de acionamento.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ POSITIVES ============ -->
+  <div class="positives" style="margin-top: 56px;">
+    <div class="positives-inner">
+      <h2>Sinais positivos no período</h2>
+      <p>Duas correções entregues pela Seazone dentro do trimestre analisado. Não fecham a lacuna toda, mas atacam duas das dores mais recorrentes (visibilidade e contato).</p>
+      <div class="positive-list">
+        <div class="positive">
+          <div class="positive-title">Visibilidade do EasyCover voltou ao Host</div>
+          <div class="positive-desc">Após ~50 dias sem, A Líder de Franquias anunciou no grupo que o Host passou a mostrar se o imóvel possui EasyCover — no módulo Imóveis e na tela de acompanhamento das reservas.</div>
+          <div class="positive-source">Líder Franquias · Seazone · 06/08/2026 · linha 5677</div>
+        </div>
+        <div class="positive">
+          <div class="positive-title">Contatos Úteis no Franqueado 360º</div>
+          <div class="positive-desc">A Diretora de Franquias anunciou seção "Contatos Úteis" no rodapé do F360º com o contato do EasyCover fixo, o que resolve o "alguém tem o telefone?" recorrente.</div>
+          <div class="positive-source">Diretora Franquias · Seazone · 16/09/2026 · linha 10295</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ THEMES DETAIL ============ -->
+  <section>
+    <div class="sect-kicker">Detalhamento por tema</div>
+    <div class="sect-title">14 casos-problema, agrupados</div>
+    <p class="sect-sub">Cada título abaixo é clicável. Expande para mostrar resumo, o que a franquia informou, impacto, frequência, evidência textual e a fonte com data, autor e linha do chat.txt para rastreabilidade.</p>
+
+    <!-- TEMA 1 · ESCOPO -->
+    <div class="theme">
+      <div class="theme-head">
+        <div class="theme-title">1 · Escopo da cobertura</div>
+        <div class="theme-meta">3 casos · 9 mensagens</div>
+      </div>
+
+      <div class="case">
+        <button class="case-toggle" type="button">
+          <span class="case-code">E.1</span>
+          <span class="case-title">Dúvida caso a caso sobre dano em item específico do imóvel</span>
+          <span class="case-badge f">Franquia</span>
+          <span class="case-chevron">+</span>
+        </button>
+        <div class="case-body">
+          <div class="case-block">
+            <div class="case-block-label">Resumo</div>
+            <div class="case-block-text">Toda dor de item quebrado no imóvel vira uma consulta no grupo: "o seguro cobre isso?". Sem uma matriz oficial, a resposta é sempre "abre chamado, aí a Seazone vê" ou "tem que ver se cobre".</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">O que a franquia informou</div>
+            <div class="case-block-text">Três itens diferentes em três dúvidas distintas no trimestre: porta de armário que caiu e quebrou espelho (28/07), lixeira quebrada por hóspede (10/08), fechadura eletrônica com defeito (04/09).</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Impacto</div>
+            <div class="case-block-text"><strong>Principal:</strong> Franquia (perde tempo perguntando, não tem autoridade técnica pro proprietário). <strong>Secundário:</strong> Proprietário (dúvida vira negociação caso a caso).</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Frequência</div>
+            <div class="case-block-text">3 franqueadas distintas em 3 meses — média de 1 por mês. Padrão claro de dor recorrente.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Evidência</div>
+            <div class="case-quote">"A porta do armário caiu do trilho e quebrou o espelho. O seguro cobre esse tipo de dano, que não necessariamente pode ter sido um dano de hóspede?"</div>
+            <div class="case-quote">"O hóspede quebrou uma lixeira e proprietário tem seguro, posso acionar seguro ou só lanço o Dano?"</div>
+            <div class="case-quote">"fechaduras eletronicas que estragam o seguro cobre?"</div>
+          </div>
+          <div class="case-source">
+            <strong>Fonte:</strong> Geral Franquias · Franqueada · PB (28/07/2026, L4713) · Franqueada · MS (10/08/2026, L6166) · Franqueada · MG (04/09/2026, L8522)
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <button class="case-toggle" type="button">
+          <span class="case-code">E.2</span>
+          <span class="case-title">Ar-condicionado / manutenção de desgaste — proprietário paga, franqueada acha que é seguro</span>
+          <span class="case-badge p">Proprietário</span>
+          <span class="case-chevron">+</span>
+        </button>
+        <div class="case-body">
+          <div class="case-block">
+            <div class="case-block-label">Resumo</div>
+            <div class="case-block-text">Franqueada estava com imóvel sem gás no ar-condicionado. Proprietário argumentou que paga a Seazone "para resolver todos os problemas". Franqueada não sabia se acionava o seguro. A resposta do grupo esclareceu que gás de ar é manutenção — não é escopo do EasyCover.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">O que a franquia informou</div>
+            <div class="case-block-text">Confusão dupla: (a) proprietário achando que o percentual pago à Seazone cobre tudo; (b) franqueada sem clareza sobre o limite do EasyCover vs. manutenção de desgaste.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Impacto</div>
+            <div class="case-block-text"><strong>Principal:</strong> Proprietário (paga a manutenção porque não é seguro). <strong>Secundário:</strong> Franquia (mediar essa conversa sem material oficial é desgaste).</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Frequência</div>
+            <div class="case-block-text">1 caso completo com 5 mensagens de troca até chegar à resposta.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Evidência</div>
+            <div class="case-quote">"Sabe me dizer se o seguro da cobertura para manutenção do ar condicionado? Estou com um imovel que o gás do ar acabou e o proprietário disse que paga a seazone para resolver todos os problemas do imovel. Eu desconheço isto mas sei do seguro."</div>
+            <div class="case-quote">"Gás do ar condicionado é manutenção. O seguro não vai cobrir. Vai precisar sanar o vazamento e recarregar o gás e mandar toda conta pra ele." — resposta de outra franqueada</div>
+          </div>
+          <div class="case-source">
+            <strong>Fonte:</strong> Geral Franquias · Franqueada · SP (02/08/2026, L5400) · Franqueada · SC (03/08/2026, L5420)
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <button class="case-toggle" type="button">
+          <span class="case-code">E.3</span>
+          <span class="case-title">Franquia de R$ 150 desmotiva acionamento em dano pequeno</span>
+          <span class="case-badge f">Franquia</span>
+          <span class="case-chevron">+</span>
+        </button>
+        <div class="case-body">
+          <div class="case-block">
+            <div class="case-block-label">Resumo</div>
+            <div class="case-block-text">Regra do EasyCover: qualquer sinistro tem franquia de R$ 150. Danos pequenos (maioria) ficam abaixo desse valor — franqueadas concluem que "não vale acionar", cai em cima de quem?</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">O que a franquia informou</div>
+            <div class="case-block-text">Duas menções à franquia dos R$ 150 como fator de decisão pra não acionar. Ninguém questiona o valor — questionam o fluxo de "e agora, quem paga?".</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Impacto</div>
+            <div class="case-block-text"><strong>Principal:</strong> Franquia (absorve o dano < R$ 150 na conversa com o hóspede/proprietário).</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Frequência</div>
+            <div class="case-block-text">2 menções em 2 semanas (28/07 e 10/08).</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Evidência</div>
+            <div class="case-quote">"Se o dano for maior que a franquia acho que sim. Senão não vale a pena acionar."</div>
+            <div class="case-quote">"Tem a franquia de 150,00" — em resposta a dúvida sobre acionar por lixeira quebrada</div>
+          </div>
+          <div class="case-source">
+            <strong>Fonte:</strong> Geral Franquias · Franqueada · SC (28/07/2026, L4715) · Franqueada · PR (10/08/2026, L6168)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMA 2 · COMO ACIONAR -->
+    <div class="theme">
+      <div class="theme-head">
+        <div class="theme-title">2 · Como acionar (processo)</div>
+        <div class="theme-meta">1 caso · 7 mensagens</div>
+      </div>
+
+      <div class="case">
+        <button class="case-toggle" type="button">
+          <span class="case-code">A.1</span>
+          <span class="case-title">Franqueadas nunca acionaram e não sabem o caminho</span>
+          <span class="case-badge s">Seazone</span>
+          <span class="case-chevron">+</span>
+        </button>
+        <div class="case-body">
+          <div class="case-block">
+            <div class="case-block-label">Resumo</div>
+            <div class="case-block-text">Duas franqueadas diferentes, em datas diferentes, pediram direcionamento no grupo sobre como acionar o EasyCover. A resposta emergiu no boca a boca: "0800", "faz lançamento de dano normal que a Seazone aciona", "coloca na descrição que possui seguro". Não há trilha oficial no fluxo natural.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">O que a franquia informou</div>
+            <div class="case-block-text">A franqueada de RS (03/08) — "nunca acionei seguro, alguém me passa direcionamento?". o franqueado de SP (10/09) — depois de finalmente achar a visibilidade no Host — "eu achei, valeu. E como aciona mesmo?".</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Impacto</div>
+            <div class="case-block-text"><strong>Principal:</strong> Seazone (não existe trilha oficial no F360º ou no Host que direcione o "como acionar"). <strong>Secundário:</strong> Franquia (aprende no grupo — se ninguém responder, paga do bolso ou não usa).</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Frequência</div>
+            <div class="case-block-text">2 franqueadas em ~5 semanas. Se são as que perguntam, é razoável assumir que muitas outras estão silenciosamente sem saber.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Evidência</div>
+            <div class="case-quote">"Gente, nunca acionei seguro. Alguem consegue me passar um direcionamento? De como solicitar e etc"</div>
+            <div class="case-quote">"Eu achei, valeu. E como aciona mesmo?"</div>
+            <div class="case-quote">"Faz lançamento de danos de hóspedes normal, que a Seazone aciona. Coloca na descrição para facilitar que possui seguro." — resposta padrão emergindo do grupo</div>
+          </div>
+          <div class="case-source">
+            <strong>Fonte:</strong> Geral Franquias · Franqueada · RS (03/08/2026, L5524) · Franqueada · SP (10/09/2026, L9354) · Franqueada · RS (10/09/2026, L9363-9364)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMA 3 · VISIBILIDADE -->
+    <div class="theme">
+      <div class="theme-head">
+        <div class="theme-title">3 · Visibilidade da apólice no sistema</div>
+        <div class="theme-meta">2 casos · 7 mensagens</div>
+      </div>
+
+      <div class="case">
+        <button class="case-toggle" type="button">
+          <span class="case-code">V.1</span>
+          <span class="case-title">Migração Sapron → Host tirou a informação "esse imóvel tem EasyCover?" da tela</span>
+          <span class="case-badge f">Franquia</span>
+          <span class="case-chevron">+</span>
+        </button>
+        <div class="case-body">
+          <div class="case-block">
+            <div class="case-block-label">Resumo</div>
+            <div class="case-block-text">Antes da migração, a flag "tem EasyCover?" era visível no Sapron. No Host, sumiu por ~50 dias (12/06 até 06/08). Três franqueadas trouxeram a dor ao grupo antes do release entregar a correção.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">O que a franquia informou</div>
+            <div class="case-block-text">Franqueadas de SC (16/06 e 10/07) e PB (28/07) reportaram a mesma perda de visibilidade em datas distintas — foram três franqueadas que pararam pra escrever, deve haver outras que só absorveram.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Impacto</div>
+            <div class="case-block-text"><strong>Principal:</strong> Franquia (não localiza a apólice no fluxo). <strong>Secundários:</strong> Proprietário (paga apólice não usada), Seazone (produto ficou invisível numa migração).</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Frequência</div>
+            <div class="case-block-text">3 franqueadas em 6 semanas antes do fix. Dor recorrente até 06/08.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Evidência</div>
+            <div class="case-quote">"Antes no Sapron estava bem visivel se o imovel tem ou nao EasyCover, no Host nao encontrei a informaçao, sabe onde esta?"</div>
+            <div class="case-quote">"Aonde vejo se o Prop tem seguro e gestão de contas? Alguém me ajuda please 🥴"</div>
+            <div class="case-quote">"No Sapron era possível ver se o imóvel tinha seguro ou não. Mas no Seazone Host ainda não descobri onde tem essa informação. Alguém sabe?"</div>
+          </div>
+          <div class="case-source">
+            <strong>Fonte:</strong> Geral Franquias · Franqueada · SC (16/06/2026, L404) · Franqueada · SC (10/07/2026, L2651) · Franqueada · PB (28/07/2026, L4717)
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <button class="case-toggle" type="button">
+          <span class="case-code">V.2</span>
+          <span class="case-title">Release da visibilidade foi entregue, mas franqueada não acha onde clicar</span>
+          <span class="case-badge s">Seazone</span>
+          <span class="case-chevron">+</span>
+        </button>
+        <div class="case-body">
+          <div class="case-block">
+            <div class="case-block-label">Resumo</div>
+            <div class="case-block-text">Depois de 06/08, quando a visibilidade voltou ao Host, franqueadas continuaram perguntando o caminho — sinal de que o release chegou mas o onboarding do release não pegou.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">O que a franquia informou</div>
+            <div class="case-block-text">Uma franqueada perguntou "onde vejo o proprietário que tem seguro" em 12/08 (6 dias após o fix). Outra, em 10/09, perguntou "onde a gente vê se tem easy cover?" — mais de 1 mês depois. A Líder de Franquias respondeu no mesmo dia com o caminho ("dentro do Host em Imóveis ou Controle").</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Impacto</div>
+            <div class="case-block-text"><strong>Principal:</strong> Seazone (comunicação de release ficou só no anúncio do grupo — quem entrou depois não teve treinamento).</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Frequência</div>
+            <div class="case-block-text">2 dúvidas pós-release em 5 semanas.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Evidência</div>
+            <div class="case-quote">"Onde vejo o proprietário que tem seguro"</div>
+            <div class="case-quote">"Boa tarde, onde a gente ve se tem easy cover?"</div>
+          </div>
+          <div class="case-source">
+            <strong>Fonte:</strong> Geral Franquias · Franqueada · PR (12/08/2026, L6381) · Franqueada · SP (10/09/2026, L9350)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMA 4 · LAUDO -->
+    <div class="theme">
+      <div class="theme-head">
+        <div class="theme-title">4 · Laudo / prova de dano</div>
+        <div class="theme-meta">2 casos · 4 mensagens</div>
+      </div>
+
+      <div class="case">
+        <button class="case-toggle" type="button">
+          <span class="case-code">L.1</span>
+          <span class="case-title">Laudo de técnico custa a partir de R$ 300 em SP e inibe o acionamento</span>
+          <span class="case-badge f">Franquia</span>
+          <span class="case-chevron">+</span>
+        </button>
+        <div class="case-body">
+          <div class="case-block">
+            <div class="case-block-label">Resumo</div>
+            <div class="case-block-text">Pra acionar o EasyCover, precisa de laudo. Em SP, laudo custa mínimo R$ 300. Se o dano é pequeno, o laudo custa mais que o próprio dano — franqueada evita acionar. Sem fluxo de reembolso do laudo, o seguro perde utilidade prática.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">O que a franquia informou</div>
+            <div class="case-block-text">A franqueada de SP trouxe o cenário concreto: micro-ondas que parou de esquentar, precisaria laudo, e a proprietária não lembrava se tinha seguro. A pergunta ficou sem resposta oficial: "esse valor será reembolsado pelo seguro?".</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Impacto</div>
+            <div class="case-block-text"><strong>Principal:</strong> Franquia (custo do laudo inibe acionamento). <strong>Secundário:</strong> Proprietário (paga apólice que na prática não roda pra dano pequeno).</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Frequência</div>
+            <div class="case-block-text">1 caso levantado — mas o problema é estrutural: qualquer sinistro pequeno em SP tem o mesmo dilema.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Evidência</div>
+            <div class="case-quote">"Como ficou resolvido aquela questão de ter que chamar um técnico para dar um laudo, esse valor será reembolsado pelo seguro? Os técnicos em SP para dar laudo e sair de casa não cobram menos de 300 reais."</div>
+          </div>
+          <div class="case-source">
+            <strong>Fonte:</strong> Geral Franquias · Franqueada · SP (19/06/2026, L638)
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <button class="case-toggle" type="button">
+          <span class="case-code">L.2</span>
+          <span class="case-title">Conserto adiado pelo proprietário faz perder janela de acionamento</span>
+          <span class="case-badge p">Proprietário</span>
+          <span class="case-chevron">+</span>
+        </button>
+        <div class="case-body">
+          <div class="case-block">
+            <div class="case-block-label">Resumo</div>
+            <div class="case-block-text">Piso rachado pelo hóspede. Pra cobrar o EasyCover, franqueada precisa comprovar o conserto (nota fiscal). Proprietário decidiu adiar até "ter que trocar tudo". Sem conserto imediato, não tem como acionar — a janela de cobrança fica em aberto.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">O que a franquia informou</div>
+            <div class="case-block-text">Franqueada perguntou explicitamente ao grupo: "como vcs fariam pra não deixar de cobrar?". Ninguém tinha resposta clara.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Impacto</div>
+            <div class="case-block-text"><strong>Principal:</strong> Proprietário (ativo depreciado por dano não reparado). <strong>Secundário:</strong> Franquia (não tem como fechar a cobrança do hóspede sem nota).</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Frequência</div>
+            <div class="case-block-text">1 caso concreto, mas padrão estrutural do produto (exige nota → depende do timing do proprietário).</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Evidência</div>
+            <div class="case-quote">"Piso rachado, hóspede vai arcar com custos, mas pra cobrar tenho que comprovar o conserto. Conserto não será realizado agora. Possivelmente proprietário vai deixar assim até ter que trocar tudo. Nesse caso como vcs fariam pra não deixar de cobrar?"</div>
+          </div>
+          <div class="case-source">
+            <strong>Fonte:</strong> Geral Franquias · Franqueada · SC (27/07/2026, L4525-L4531)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMA 5 · CONTATO -->
+    <div class="theme">
+      <div class="theme-head">
+        <div class="theme-title">5 · Contato do EasyCover</div>
+        <div class="theme-meta">1 caso · 3 mensagens</div>
+      </div>
+
+      <div class="case">
+        <button class="case-toggle" type="button">
+          <span class="case-code">C.1</span>
+          <span class="case-title">"Alguém tem o telefone do EasyCover?" — recorrente e não resolvido no fluxo</span>
+          <span class="case-badge f">Franquia</span>
+          <span class="case-chevron">+</span>
+        </button>
+        <div class="case-body">
+          <div class="case-block">
+            <div class="case-block-label">Resumo</div>
+            <div class="case-block-text">3 vezes no trimestre uma franqueada precisou pedir o telefone do EasyCover no grupo. Duas vezes recebeu de volta um vCard compartilhado por outra franqueada. Comportamento consistente com "contato não está onde a franqueada procura na hora".</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">O que a franquia informou</div>
+            <div class="case-block-text">16/06, 16/08 e 01/09 — três perguntas literais pedindo o número. Cadência aproximada de 1 pedido a cada 6 semanas. Foi um dos motivadores do release da Carol em 16/09 (Contatos Úteis no F360º).</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Impacto</div>
+            <div class="case-block-text"><strong>Principal:</strong> Franquia (perde tempo em emergência procurando um telefone). <strong>Secundário:</strong> Seazone (falta de material oficial no fluxo).</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Frequência</div>
+            <div class="case-block-text">3 pedidos em 3 meses — parcialmente mitigado pelo release do F360º em 16/09.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Evidência</div>
+            <div class="case-quote">"Pessoal, qual o numero da easy cover?"</div>
+            <div class="case-quote">"Qual o telefone da Easycover?"</div>
+            <div class="case-quote">"Bom dia alguém tem o contato do seguro?"</div>
+          </div>
+          <div class="case-source">
+            <strong>Fonte:</strong> Geral Franquias · Franqueada · SP (16/06/2026, L395) · Franqueada · SC (16/08/2026, L6675) · Franqueada · SP (01/09/2026, L8251)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMA 6 · 0800 -->
+    <div class="theme">
+      <div class="theme-head">
+        <div class="theme-title">6 · SLA do 0800</div>
+        <div class="theme-meta">1 caso · 1 mensagem</div>
+      </div>
+
+      <div class="case">
+        <button class="case-toggle" type="button">
+          <span class="case-code">S.1</span>
+          <span class="case-title">Franqueada · SC: 3 ligações no 0800 sem protocolo, com hóspede sem chuveiro</span>
+          <span class="case-badge s">Seazone</span>
+          <span class="case-chevron">+</span>
+        </button>
+        <div class="case-body">
+          <div class="case-block">
+            <div class="case-block-label">Resumo</div>
+            <div class="case-block-text">Emergência real com hóspede sem chuveiro esperando pra ir a uma reunião. A franqueada ligou 3 vezes no 0800, foi pedida a informar o CNPJ, deixada esperando, e não recebeu protocolo em nenhuma das tentativas. Marcou a Líder de Franquias, o BackOffice e o Suporte no grupo pedindo ajuda.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">O que a franquia informou</div>
+            <div class="case-block-text">Trecho literal, sem interpretação: as 3 ligações, o pedido de CNPJ, a espera na linha, a ausência de protocolo. Marcou pra pedir apoio da Seazone porque o produto contratado falhou.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Impacto</div>
+            <div class="case-block-text"><strong>Principal:</strong> Seazone (do lado do hóspede, EasyCover e Seazone são a mesma coisa — falha de SLA vira review público ruim). <strong>Secundários:</strong> Franquia (trava na fila, absorve desgaste do hóspede), Proprietário (paga apólice cujo SLA de emergência falha).</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Frequência</div>
+            <div class="case-block-text">1 caso registrado no trimestre. Contratualmente é um caso — de acordo com o próprio SLA prometido, deveria ser zero.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Evidência</div>
+            <div class="case-quote">"@Líder Franquias, @BackOffice, @Suporte, alguém por favor me ajudar. Estou com uma hóspede sem chuveiro, quer tomar banho para ir a um reunião. E já liguei 3 vezes no 0800 da easy cover, me pedem o CNPJ e me deixam esperando na linha, por alguns minutos, e ninguém volta a falar comigo e já entra a solicitação dele avaliação e não me dão nenhum protocolo."</div>
+          </div>
+          <div class="case-source">
+            <strong>Fonte:</strong> Geral Franquias · Franqueada · SC (20/08/2026, L7043)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMA 7 · CUSTO ABSORVIDO -->
+    <div class="theme">
+      <div class="theme-head">
+        <div class="theme-title">7 · Custo absorvido pela franqueada</div>
+        <div class="theme-meta">1 caso · 1 mensagem</div>
+      </div>
+
+      <div class="case">
+        <button class="case-toggle" type="button">
+          <span class="case-code">B.1</span>
+          <span class="case-title">Franqueada pagou do próprio bolso manutenção que era coberta</span>
+          <span class="case-badge f">Franquia</span>
+          <span class="case-chevron">+</span>
+        </button>
+        <div class="case-body">
+          <div class="case-block">
+            <div class="case-block-label">Resumo</div>
+            <div class="case-block-text">Confissão pública no grupo: Franqueado veterano disse ter pagado do próprio bolso uma manutenção que depois descobriu ser coberta pela assistência do seguro. É a evidência direta de dinheiro que sai do resultado da franquia por falha de comunicação/visibilidade.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">O que a franquia informou</div>
+            <div class="case-block-text">Uma única frase, mas explícita. Não veio como reclamação — veio como comentário de veterano numa thread onde outras franqueadas discutiam se o seguro cobre.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Impacto</div>
+            <div class="case-block-text"><strong>Principal:</strong> Franquia (dinheiro direto do resultado). <strong>Secundário:</strong> Proprietário (poderia ter usado a apólice que ele paga).</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Frequência</div>
+            <div class="case-block-text">1 confissão pública. É razoável assumir que o real seja maior — quem paga do bolso raramente conta ao grupo. Cruzar Sapron × apólices ativas na Fase 2 pra dimensionar.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Evidência</div>
+            <div class="case-quote">"Eu já me quebrei com uma manutenção que fiz a parte e depois fui ver que a assistência do seguro cobria.."</div>
+          </div>
+          <div class="case-source">
+            <strong>Fonte:</strong> Geral Franquias · Franqueada · SC (28/07/2026, L4720)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMA 8 · IMÓVEL SEM APÓLICE -->
+    <div class="theme">
+      <div class="theme-head">
+        <div class="theme-title">8 · Imóvel sem apólice</div>
+        <div class="theme-meta">1 caso · 1 mensagem</div>
+      </div>
+
+      <div class="case">
+        <button class="case-toggle" type="button">
+          <span class="case-code">I.1</span>
+          <span class="case-title">"O ruim é que essa casa não tem seguro" — franqueada exposta em dano estrutural</span>
+          <span class="case-badge f">Franquia</span>
+          <span class="case-chevron">+</span>
+        </button>
+        <div class="case-body">
+          <div class="case-block">
+            <div class="case-block-label">Resumo</div>
+            <div class="case-block-text">Em thread sobre dano em imóvel (mão-francesa quebrada), franqueada comentou que aquele imóvel específico não tinha EasyCover. Sem cobertura, ela vai ter que cobrar direto do hóspede — com risco de disputa, avaliação ruim e não recebimento.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">O que a franquia informou</div>
+            <div class="case-block-text">Frase curta no meio de uma thread mais longa. Deixa implícito que o proprietário optou por não contratar — e a franqueada herda o risco.</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Impacto</div>
+            <div class="case-block-text"><strong>Principal:</strong> Franquia (assume o risco patrimonial que o proprietário decidiu não segurar). <strong>Secundário:</strong> Proprietário (optou fora, agora depende de cobrança direta pra recompor).</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Frequência</div>
+            <div class="case-block-text">1 menção. Vale medir na Fase 2: qual % do portfólio de cada franquia está sem EasyCover?</div>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Evidência</div>
+            <div class="case-quote">"O ruim q essa casa n tem seguro"</div>
+          </div>
+          <div class="case-source">
+            <strong>Fonte:</strong> Geral Franquias · Franqueada · RJ (19/09/2026, L10815)
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>RB-EC-2026-01B · Confidencial · Uso interno</span>
+    <span>BackOffice Franquias · Seazone · 29/09/2026</span>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.case-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.parentElement.classList.toggle('open');
+    });
+  });
+</script>
+
+</body>
+</html>
