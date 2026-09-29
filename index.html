@@ -276,6 +276,33 @@
 
   .front-panel { display: none; }
   .front-panel.active { display: block; }
+  .front-panel.show-all { display: block; }
+
+  .sub-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: 24px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .sub-label {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .sub-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
 
   .front-lede {
     font-family: 'IBM Plex Serif', Georgia, serif;
@@ -649,22 +676,25 @@
       </div>
     </div>
 
-    <div class="impact-tabs" role="tablist">
-      <button class="impact-tab active" data-filter="all" role="tab"><span class="impact-tab-val">12</span><span class="impact-tab-lbl">Todos</span></button>
-      <button class="impact-tab" data-filter="f" role="tab"><span class="impact-tab-val">7</span><span class="impact-tab-lbl"><span class="dot f"></span>Franquia</span></button>
-      <button class="impact-tab" data-filter="p" role="tab"><span class="impact-tab-val">2</span><span class="impact-tab-lbl"><span class="dot p"></span>Proprietário</span></button>
-      <button class="impact-tab" data-filter="s" role="tab"><span class="impact-tab-val">3</span><span class="impact-tab-lbl"><span class="dot s"></span>Seazone</span></button>
-    </div>
-    <div class="filter-note" id="filterNote">
-      Mostrando casos com impacto principal em <strong id="filterLabel"></strong>. <a onclick="resetFilter()">Ver todos</a>
-    </div>
   </section>
 
-  <!-- SEC 2 · TEMAS EM DETALHE -->
+  <!-- SEC 2 · DIAGNÓSTICO POR ELO -->
   <section class="sec">
-    <span class="sec-num">§ 02 · Os temas em detalhe</span>
-    <h2>12 casos-problema, agrupados.</h2>
-    <p class="prose">Cada linha abaixo é clicável. Expande com resumo, o que a franquia informou, impacto, frequência, evidência textual e a fonte com data, autor e linha do <code style="font-family: 'IBM Plex Mono', monospace; font-size: 14px;">chat.txt</code>.</p>
+    <span class="sec-num">§ 02 · Diagnóstico por elo · 4 fontes</span>
+    <h2>37 itens, filtráveis por quem sente a dor.</h2>
+    <p class="prose">Cruzamento de 4 fontes: o WhatsApp <em>Geral Franquias</em> (12 casos consolidados em 8 temas) e três canais dedicados à EasyCover (25 problemáticas operacionais). Clique numa aba pra ver só os itens de um elo — os temas sem caso relevante somem, e o painel de problemáticas mostra apenas o do elo escolhido.</p>
+
+    <div class="front-tabs" role="tablist">
+      <button class="front-tab active" data-front="all" role="tab"><span class="front-tab-lbl">Todos</span><span class="front-tab-val">37 itens</span></button>
+      <button class="front-tab" data-front="franquias" role="tab"><span class="front-tab-lbl">Franquia</span><span class="front-tab-val">17 · <span class="dot f" style="margin-left:2px"></span></span></button>
+      <button class="front-tab" data-front="proprietarios" role="tab"><span class="front-tab-lbl">Proprietário</span><span class="front-tab-val">9 · <span class="dot p" style="margin-left:2px"></span></span></button>
+      <button class="front-tab" data-front="seazone" role="tab"><span class="front-tab-lbl">Seazone</span><span class="front-tab-val">11 · <span class="dot s" style="margin-left:2px"></span></span></button>
+    </div>
+
+    <div class="sub-heading">
+      <span class="sub-label">Casos do grupo Geral Franquias</span>
+      <span class="sub-meta">agrupados por tema</span>
+    </div>
 
     <!-- 01 · ESCOPO -->
     <article class="theme">
@@ -993,22 +1023,13 @@
       </div>
     </article>
 
-  </section>
-
-  <!-- SEC 3 · AS 3 FRENTES -->
-  <section class="sec">
-    <span class="sec-num">§ 03 · As 3 frentes na parceria com a EasyCover</span>
-    <h2>O que cada elo está sofrendo, além do que apareceu no Geral Franquias.</h2>
-    <p class="prose">Análise cruza mais 3 canais dedicados: o grupo tech <em>Seazone × EasyCover · Fechamento + Tech</em>, o grupo executivo <em>EasyCover × Seazone</em> e o grupo oficial de suporte <em>EasyCover × Franqueados</em> (encerrado unilateralmente pela EasyCover em 18/09/2026). Cada elo carrega dores próprias — e algumas se retroalimentam.</p>
-
-    <div class="front-tabs" role="tablist">
-      <button class="front-tab active" data-front="seazone" role="tab"><span class="front-tab-lbl">Seazone</span><span class="front-tab-val">8 problemáticas</span></button>
-      <button class="front-tab" data-front="franquias" role="tab"><span class="front-tab-lbl">Franquias</span><span class="front-tab-val">10 problemáticas</span></button>
-      <button class="front-tab" data-front="proprietarios" role="tab"><span class="front-tab-lbl">Proprietários</span><span class="front-tab-val">7 problemáticas</span></button>
+    <div class="sub-heading" style="margin-top: 64px;">
+      <span class="sub-label">Problemáticas dos 3 canais dedicados</span>
+      <span class="sub-meta">operacional · tech · suporte</span>
     </div>
 
     <!-- ========== PAINEL SEAZONE ========== -->
-    <div class="front-panel active" id="front-seazone">
+    <div class="front-panel show-all" id="front-seazone">
       <p class="front-lede">A Seazone opera a integração técnica e o fechamento mensal com a EasyCover. É onde a falha aparece antes da franqueada perceber — API instável, releases sem comunicação, apólices subidas manualmente pra fechar o mês.</p>
 
       <div class="prob">
@@ -1118,7 +1139,7 @@
     </div>
 
     <!-- ========== PAINEL FRANQUIAS ========== -->
-    <div class="front-panel" id="front-franquias">
+    <div class="front-panel show-all" id="front-franquias">
       <p class="front-lede">A franquia é onde a parceria fura em campo. É ela que enfrenta central que não localiza CNPJ, prestador que não aparece, reembolso de R$ 150 que não cobre um eletricista de emergência — e no meio disso, precisa manter a experiência do hóspede.</p>
 
       <div class="prob">
@@ -1260,7 +1281,7 @@
     </div>
 
     <!-- ========== PAINEL PROPRIETÁRIOS ========== -->
-    <div class="front-panel" id="front-proprietarios">
+    <div class="front-panel show-all" id="front-proprietarios">
       <p class="front-lede">O proprietário paga o prêmio mensal (2%) e é quem carrega o custo final quando o produto não entrega. Os problemas aqui costumam chegar via franqueada — mas o descontentamento é dele, e vira churn.</p>
 
       <div class="prob">
@@ -1366,41 +1387,38 @@
     });
   });
 
-  const labels = { f: 'Franquia', p: 'Proprietário', s: 'Seazone' };
-  const tabs = document.querySelectorAll('.impact-tab');
-  const note = document.getElementById('filterNote');
-  const noteLbl = document.getElementById('filterLabel');
+  const FRONT_TO_IMPACT = { franquias: 'f', proprietarios: 'p', seazone: 's' };
 
-  function applyFilter(target) {
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.filter === target));
+  const frontTabs = document.querySelectorAll('.front-tab');
+  const frontPanels = document.querySelectorAll('.front-panel');
+
+  function applyFront(key) {
+    frontTabs.forEach(t => t.classList.toggle('active', t.dataset.front === key));
+
+    // Filter cases in themes by principal impact
+    const impact = FRONT_TO_IMPACT[key];
     document.querySelectorAll('.case').forEach(c => {
-      c.style.display = (target === 'all' || c.dataset.impact === target) ? '' : 'none';
+      c.style.display = (key === 'all' || c.dataset.impact === impact) ? '' : 'none';
     });
+    // Hide themes with no visible cases
     document.querySelectorAll('.theme').forEach(t => {
       const visible = Array.from(t.querySelectorAll('.case')).some(c => c.style.display !== 'none');
       t.style.display = visible ? '' : 'none';
     });
-    if (target === 'all') {
-      note.classList.remove('show');
-    } else {
-      noteLbl.textContent = labels[target];
-      note.classList.add('show');
-    }
+
+    // Show/hide front panels
+    frontPanels.forEach(p => {
+      if (key === 'all') {
+        p.classList.add('show-all');
+        p.classList.remove('active');
+      } else {
+        p.classList.remove('show-all');
+        p.classList.toggle('active', p.id === 'front-' + key);
+      }
+    });
   }
 
-  function resetFilter() { applyFilter('all'); }
-
-  tabs.forEach(tab => tab.addEventListener('click', () => applyFilter(tab.dataset.filter)));
-
-  const frontTabs = document.querySelectorAll('.front-tab');
-  const frontPanels = document.querySelectorAll('.front-panel');
-  frontTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const key = tab.dataset.front;
-      frontTabs.forEach(t => t.classList.toggle('active', t === tab));
-      frontPanels.forEach(p => p.classList.toggle('active', p.id === 'front-' + key));
-    });
-  });
+  frontTabs.forEach(tab => tab.addEventListener('click', () => applyFront(tab.dataset.front)));
 
   document.querySelectorAll('.prob-toggle').forEach(btn => {
     btn.addEventListener('click', () => btn.parentElement.classList.toggle('open'));
