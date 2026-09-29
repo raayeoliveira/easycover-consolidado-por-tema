@@ -86,6 +86,50 @@ h3{ font-size:18px; font-weight:600; line-height:1.25 }
   .strip > div + div{ border-top:1px solid var(--line); border-right:none }
 }
 
+/* OPS ANALYSIS (diagnostico operacional) */
+.ops{ margin:var(--space-xl) 0 var(--space-lg); }
+.ops-head{ display:flex; flex-direction:column; gap:6px; margin-bottom:var(--space-lg); }
+.ops-head .eyebrow{ color:var(--amber) }
+.ops-head h3{ font-size:22px; font-weight:600; font-family:"Schibsted Grotesk", sans-serif; letter-spacing:-.015em; color:var(--text); }
+.ops-head p{ font-size:14.5px; line-height:1.55; color:var(--muted); max-width:70ch; margin:6px 0 0; }
+
+.ops-viz{ margin:var(--space-lg) 0; padding:var(--space-lg) var(--space-xl); border:1px solid var(--line-soft); border-radius:6px; background:var(--surface); }
+.ops-viz h4{ font:600 13px "Schibsted Grotesk", sans-serif; letter-spacing:.02em; color:var(--text); margin:0 0 var(--space-md); }
+.ops-bars{ display:grid; grid-template-columns:260px 1fr 40px; gap:8px 14px; align-items:center; }
+.ops-bars .obm{ font:600 12.5px "Schibsted Grotesk", sans-serif; color:var(--text); letter-spacing:.01em; }
+.ops-bars .obm span{ display:block; font-size:11px; color:var(--faint); font-weight:400; margin-top:2px; letter-spacing:0 }
+.ops-bars .obt{ height:14px; background:var(--surface-2); border-radius:2px; overflow:hidden; border:1px solid var(--line-soft); }
+.ops-bars .obt > span{ display:block; height:100%; background:var(--amber); opacity:.9; border-radius:1px; }
+.ops-bars .obv{ font:600 14px "Schibsted Grotesk", sans-serif; color:var(--amber); text-align:right; }
+
+.ops-table{ margin:var(--space-lg) 0; overflow-x:auto; border:1px solid var(--line-soft); border-radius:6px; }
+.ops-table table{ min-width:900px; font-size:13px; }
+.ops-table thead th{ background:var(--surface); }
+.ops-table tbody td{ vertical-align:top; padding:14px 12px; }
+.ops-table .t-tema{ font:600 13px "Schibsted Grotesk", sans-serif; color:var(--text); letter-spacing:.01em; width:180px; }
+.ops-table .t-tema small{ display:block; font-weight:400; font-family:"Figtree", sans-serif; color:var(--faint); font-size:11.5px; margin-top:4px; letter-spacing:0 }
+.ops-table .t-num{ font:700 20px "Schibsted Grotesk", sans-serif; color:var(--amber); text-align:center; width:70px; }
+.ops-table .t-tag{ display:inline-block; padding:2px 7px; margin:1px 2px 1px 0; border-radius:3px; font:500 11px "Figtree", sans-serif; }
+.ops-table .t-tag.f{ background:var(--blue-soft); color:var(--blue) }
+.ops-table .t-tag.p{ background:var(--amber-soft); color:var(--amber) }
+.ops-table .t-tag.s{ background:var(--red-soft); color:var(--red) }
+.ops-table .t-tag.ec{ background:oklch(72% .17 25 / .14); color:var(--red) }
+.ops-table .t-tag.sz{ background:oklch(70% .17 260 / .14); color:var(--blue) }
+.ops-table .t-tag.pr{ background:oklch(81% .13 78 / .14); color:var(--amber) }
+.ops-table .t-tag.fr{ background:oklch(78% .14 155 / .12); color:var(--green) }
+.ops-table .t-tag.sh{ background:var(--surface-2); color:var(--muted) }
+.ops-table .t-tipo{ font-size:11.5px; color:var(--muted); font-style:italic; margin-top:6px; display:block; }
+.ops-table .t-src{ font-size:11px; color:var(--faint); font-family:"Schibsted Grotesk", sans-serif; letter-spacing:.02em; margin-top:6px; display:block; }
+.ops-method{ margin-top:var(--space-md); padding:var(--space-md) var(--space-lg); border:1px dashed var(--line); border-radius:4px; font-size:12.5px; color:var(--muted); line-height:1.55; }
+.ops-method b{ color:var(--text); font-family:"Schibsted Grotesk", sans-serif; font-weight:600; font-size:11px; letter-spacing:.06em; text-transform:uppercase; margin-right:6px; }
+.ops-divider{ margin:var(--space-2xl) 0 var(--space-lg); padding-top:var(--space-lg); border-top:1px solid var(--line-soft); }
+.ops-divider .eyebrow{ margin-bottom:6px }
+.ops-divider p{ color:var(--muted); font-size:14px; margin:0; line-height:1.5; max-width:70ch; }
+@media (max-width: 720px){
+  .ops-bars{ grid-template-columns:1fr; }
+  .ops-bars .obv{ text-align:left }
+}
+
 /* WATERFALL (composicao saldo) */
 .waterfall{ margin:var(--space-xl) 0 var(--space-lg); padding:var(--space-lg) var(--space-xl); border:1px solid var(--line-soft); border-radius:6px; background:var(--surface); }
 .wf-head{ margin-bottom:var(--space-lg); display:flex; flex-direction:column; gap:6px; }
@@ -564,7 +608,141 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
   <section class="section" id="diagnostico" aria-label="Diagnóstico por elo">
     <div class="eyebrow">§ 06 · Diagnóstico por elo · 4 fontes qualitativas</div>
     <h2>31 itens, filtráveis por quem sente a dor.</h2>
-    <p class="lede">Cruzamento de 4 fontes qualitativas: o WhatsApp <em>Geral Franquias</em> (6 casos consolidados em 5 temas) e três canais dedicados à EasyCover (25 problemáticas operacionais — o executivo, o tech e o de suporte às franquias, encerrado unilateralmente pela EasyCover em 18/09). Escolha um elo pra ver os itens que atingem esse stakeholder.</p>
+    <p class="lede">Cruzamento de 4 fontes qualitativas: o WhatsApp <em>Geral Franquias</em> (6 casos consolidados em 5 temas) e três canais dedicados à EasyCover (25 problemáticas operacionais — o executivo, o tech e o de suporte às franquias, encerrado unilateralmente pela EasyCover em 18/09).</p>
+
+    <!-- Análise operacional cruzada -->
+    <div class="ops">
+      <div class="ops-head">
+        <div class="eyebrow">Análise operacional · classificação cruzada</div>
+        <h3>De onde vêm as 31 manifestações</h3>
+        <p>Cada uma das 31 manifestações foi reagrupada em 8 temas transversais, com base na evidência textual do próprio item. Para cada tema, distinguimos <b>quem foi impactado</b>, <b>onde a origem foi identificada</b> e <b>quem precisa tratar</b> — três eixos independentes (não se presume que quem relatou é quem causou).</p>
+      </div>
+
+      <div class="ops-viz">
+        <h4>Concentração por tema</h4>
+        <div class="ops-bars">
+          <span class="obm">Escopo de cobertura<span>Cobre / não cobre · matriz · expectativa</span></span>
+          <div class="obt"><span style="width:100%"></span></div><span class="obv">7</span>
+
+          <span class="obm">SLA e canais de emergência<span>0800 · prestadores · retorno de sinistro</span></span>
+          <div class="obt"><span style="width:100%"></span></div><span class="obv">7</span>
+
+          <span class="obm">Integração técnica<span>API Now · autenticação · endpoints</span></span>
+          <div class="obt"><span style="width:71.4%"></span></div><span class="obv">5</span>
+
+          <span class="obm">Reembolso R$ 150 / política<span>Teto de reembolso · percepção de valor</span></span>
+          <div class="obt"><span style="width:57.1%"></span></div><span class="obv">4</span>
+
+          <span class="obm">Divergência de informação<span>FAQ público × central × manual</span></span>
+          <div class="obt"><span style="width:28.6%"></span></div><span class="obv">2</span>
+
+          <span class="obm">Onboarding do fluxo de acionamento<span>Franqueada não sabe o caminho</span></span>
+          <div class="obt"><span style="width:28.6%"></span></div><span class="obv">2</span>
+
+          <span class="obm">Fechamento mensal<span>Atraso recorrente · bypass manual</span></span>
+          <div class="obt"><span style="width:28.6%"></span></div><span class="obv">2</span>
+
+          <span class="obm">Governança do relacionamento<span>Canal direto encerrado</span></span>
+          <div class="obt"><span style="width:28.6%"></span></div><span class="obv">2</span>
+        </div>
+      </div>
+
+      <div class="ops-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Tema · subtema</th>
+              <th style="text-align:center">Manif.</th>
+              <th>Franquias afetadas</th>
+              <th>Impactado</th>
+              <th>Origem</th>
+              <th>Tratativa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="t-tema">T1 · Escopo de cobertura<small>Matriz cobre / não cobre · expectativa desalinhada</small><span class="t-tipo">Tipo predominante: dúvida recorrente + problema de processo</span><span class="t-src">WhatsApp #1, #2, #4 · FR.9 · PR.3, PR.4, PR.7</span></td>
+              <td class="t-num">7</td>
+              <td>SP · SC · PR · RJ + várias (FR.9)</td>
+              <td><span class="t-tag fr">Franquia</span> <span class="t-tag pr">Proprietário</span></td>
+              <td><span class="t-tag ec">EasyCover</span> <span class="t-tag sz">Seazone</span><br><small style="color:var(--faint);font-size:11px">Regra do produto + comunicação de venda</small></td>
+              <td><span class="t-tag sh">Compartilhado</span><br><small style="color:var(--faint);font-size:11px">Matriz oficial (EasyCover) + material de venda (Seazone)</small></td>
+            </tr>
+            <tr>
+              <td class="t-tema">T2 · SLA e canais de emergência<small>0800, prestadores, retorno de sinistro</small><span class="t-tipo">Tipo predominante: problema operacional</span><span class="t-src">WhatsApp #5 · FR.1, FR.4, FR.5, FR.6, FR.7, FR.8</span></td>
+              <td class="t-num">7</td>
+              <td>SC · SP · MT (2×) · Colaboradora Seazone</td>
+              <td><span class="t-tag fr">Franquia</span> <span class="t-tag pr">Proprietário</span><br><small style="color:var(--faint);font-size:11px">Indireto (hóspede / proprietário aguardando)</small></td>
+              <td><span class="t-tag ec">EasyCover / Now</span><br><small style="color:var(--faint);font-size:11px">Central 0800 + rede de prestadores</small></td>
+              <td><span class="t-tag ec">EasyCover</span></td>
+            </tr>
+            <tr>
+              <td class="t-tema">T3 · Integração técnica<small>API Now · autenticação · endpoints</small><span class="t-tipo">Tipo predominante: problema operacional (tech)</span><span class="t-src">SZ.2, SZ.3, SZ.4, SZ.5, SZ.6</span></td>
+              <td class="t-num">5</td>
+              <td><em>Nenhuma diretamente</em><br><small style="color:var(--faint);font-size:11px">Impacto na rede é indireto (integração parada)</small></td>
+              <td><span class="t-tag sz">Seazone Tech</span></td>
+              <td><span class="t-tag ec">EasyCover / Now Tech</span></td>
+              <td><span class="t-tag ec">EasyCover</span></td>
+            </tr>
+            <tr>
+              <td class="t-tema">T4 · Reembolso R$ 150 / política de assistência<small>Teto de reembolso · percepção de valor</small><span class="t-tipo">Tipo predominante: problema sistêmico + risco de churn</span><span class="t-src">FR.2 · PR.1, PR.2, PR.6</span></td>
+              <td class="t-num">4</td>
+              <td>SP (1 franquia, mesmo evento)</td>
+              <td><span class="t-tag pr">Proprietário</span> <span class="t-tag fr">Franquia</span></td>
+              <td><span class="t-tag ec">EasyCover</span><br><small style="color:var(--faint);font-size:11px">Política de reembolso</small></td>
+              <td><span class="t-tag sh">Compartilhado</span><br><small style="color:var(--faint);font-size:11px">Repactuar teto (EasyCover) + comunicar limite na venda (Seazone)</small></td>
+            </tr>
+            <tr>
+              <td class="t-tema">T5 · Divergência de informação<small>FAQ público × central × manual</small><span class="t-tipo">Tipo predominante: problema operacional</span><span class="t-src">FR.3 · PR.5</span></td>
+              <td class="t-num">2</td>
+              <td>SP (1 franquia, mesmo evento)</td>
+              <td><span class="t-tag fr">Franquia</span> <span class="t-tag pr">Proprietário</span></td>
+              <td><span class="t-tag ec">EasyCover</span><br><small style="color:var(--faint);font-size:11px">Inconsistência interna FAQ × prestador</small></td>
+              <td><span class="t-tag ec">EasyCover</span></td>
+            </tr>
+            <tr>
+              <td class="t-tema">T6 · Onboarding do fluxo de acionamento<small>Franqueada não sabe o caminho</small><span class="t-tipo">Tipo predominante: dúvida + problema de processo</span><span class="t-src">WhatsApp #3, #6</span></td>
+              <td class="t-num">2</td>
+              <td>RS · SP · SC (4 franqueadas em 4 estados)</td>
+              <td><span class="t-tag fr">Franquia</span></td>
+              <td><span class="t-tag sz">Seazone</span><br><small style="color:var(--faint);font-size:11px">Falta trilha oficial de acionamento</small></td>
+              <td><span class="t-tag sz">Seazone</span></td>
+            </tr>
+            <tr>
+              <td class="t-tema">T7 · Fechamento mensal<small>Atraso recorrente · bypass manual</small><span class="t-tipo">Tipo predominante: problema sistêmico</span><span class="t-src">SZ.1, SZ.7</span></td>
+              <td class="t-num">2</td>
+              <td><em>Nenhuma diretamente</em><br><small style="color:var(--faint);font-size:11px">Impacta financeiro Seazone × Now</small></td>
+              <td><span class="t-tag sz">Seazone (Coord/Ops)</span></td>
+              <td><span class="t-tag ec">EasyCover / Now</span><br><small style="color:var(--faint);font-size:11px">Processo de fechamento sem automação</small></td>
+              <td><span class="t-tag sh">Compartilhado</span></td>
+            </tr>
+            <tr>
+              <td class="t-tema">T8 · Governança do relacionamento<small>Canal direto encerrado</small><span class="t-tipo">Tipo predominante: problema sistêmico</span><span class="t-src">FR.10 · SZ.8</span></td>
+              <td class="t-num">2</td>
+              <td>Rede toda<br><small style="color:var(--faint);font-size:11px">Impacto sobre todas as franquias que usavam o grupo</small></td>
+              <td><span class="t-tag fr">Franquia</span> <span class="t-tag sz">Seazone</span></td>
+              <td><span class="t-tag ec">EasyCover</span><br><small style="color:var(--faint);font-size:11px">Decisão unilateral de encerrar o grupo</small></td>
+              <td><span class="t-tag sz">Seazone</span><br><small style="color:var(--faint);font-size:11px">Buscar canal alternativo</small></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Total</td>
+              <td style="text-align:center;color:var(--amber);font-weight:700">31</td>
+              <td colspan="4"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <p class="ops-method"><b>Metodologia</b> Cada manifestação foi reclassificada em um tema transversal com base na evidência textual do item original (evidências e fontes preservadas nos cards da seção detalhada abaixo). "Franquias afetadas" conta apenas franquias identificadas explicitamente por estado ou usuária na evidência; onde a fonte usa "várias franqueadas" (FR.9), reportamos como "várias". "Origem" e "Tratativa" foram derivadas do conteúdo da evidência — nunca da autoria do relato (quem relatou não é presumido como quem causou). Onde a tratativa depende de duas partes, marcamos <span class="t-tag sh">Compartilhado</span>.</p>
+    </div>
+
+    <!-- Divider para as tabs detalhadas -->
+    <div class="ops-divider">
+      <div class="eyebrow">Detalhamento · escolha um elo</div>
+      <p>Abaixo, as 31 manifestações estão organizadas por elo (franquia, proprietário, Seazone) com evidência textual completa e fonte de cada item.</p>
+    </div>
 
     <div class="front-tabs" role="tablist">
       <button class="front-tab active" data-front="franquias" role="tab"><span class="front-tab-lbl">Franquia</span><span class="front-tab-val">13 · <span class="dot f"></span></span></button>
