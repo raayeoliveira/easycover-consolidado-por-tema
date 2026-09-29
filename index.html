@@ -86,6 +86,39 @@ h3{ font-size:18px; font-weight:600; line-height:1.25 }
   .strip > div + div{ border-top:1px solid var(--line); border-right:none }
 }
 
+/* FECHAMENTO DIAGNOSTICO */
+.achados{ display:grid; grid-template-columns:1fr; gap:var(--space-md); margin:var(--space-lg) 0; }
+.achado{ border:1px solid var(--line-soft); border-left:3px solid var(--amber); border-radius:6px; background:var(--surface); padding:var(--space-lg) var(--space-xl); }
+.achado-head{ display:flex; justify-content:space-between; align-items:baseline; gap:var(--space-md); margin-bottom:var(--space-md); flex-wrap:wrap; }
+.achado-num{ font:600 11px "Schibsted Grotesk", sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--amber); }
+.achado-title{ font:600 18px/1.3 "Schibsted Grotesk", sans-serif; color:var(--text); letter-spacing:-.01em; margin:6px 0 var(--space-md); }
+.achado-grid{ display:grid; grid-template-columns:1fr 1fr; gap:var(--space-lg); }
+.achado-grid .col h5{ font:600 10.5px "Schibsted Grotesk", sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); margin:0 0 6px; }
+.achado-grid .col ul{ margin:0; padding:0 0 0 14px; }
+.achado-grid .col ul li{ font-size:13px; line-height:1.55; color:var(--muted); margin-bottom:4px; }
+.achado-grid .col ul li b{ color:var(--text); font-weight:600 }
+.achado-grid .col p{ font-size:13px; line-height:1.55; color:var(--muted); margin:0; }
+.achado-quem{ margin-top:var(--space-md); padding-top:var(--space-md); border-top:1px solid var(--line-soft); font-size:12.5px; color:var(--muted); }
+.achado-quem b{ font:600 10.5px "Schibsted Grotesk", sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); margin-right:8px; }
+.achado-quem .t-tag{ display:inline-block; padding:2px 7px; margin:1px 2px 1px 0; border-radius:3px; font:500 11px "Figtree", sans-serif; }
+.achado-quem .t-tag.f{ background:oklch(78% .14 155 / .12); color:var(--green) }
+.achado-quem .t-tag.p{ background:var(--amber-soft); color:var(--amber) }
+.achado-quem .t-tag.s{ background:var(--blue-soft); color:var(--blue) }
+.achado-quem .t-tag.ec{ background:oklch(72% .17 25 / .14); color:var(--red) }
+@media (max-width:720px){ .achado-grid{ grid-template-columns:1fr } }
+
+.atencao{ margin:var(--space-xl) 0 var(--space-lg); overflow-x:auto; border:1px solid var(--line-soft); border-radius:6px; }
+.atencao table{ min-width:880px; font-size:13px; }
+.atencao thead th{ background:var(--surface); }
+.atencao tbody td{ vertical-align:top; padding:14px 14px; }
+.atencao .a-achado{ font:600 13px "Schibsted Grotesk", sans-serif; color:var(--text); letter-spacing:.01em; width:240px; }
+.atencao .a-evid, .atencao .a-imp{ color:var(--muted); font-size:12.5px; line-height:1.5; }
+.atencao .a-trat{ font-size:12px; }
+.atencao .a-trat .t-tag{ display:inline-block; padding:2px 7px; margin:1px 2px; border-radius:3px; font:500 11px "Figtree", sans-serif; }
+.atencao .a-trat .t-tag.ec{ background:oklch(72% .17 25 / .14); color:var(--red) }
+.atencao .a-trat .t-tag.sz{ background:oklch(70% .17 260 / .14); color:var(--blue) }
+.atencao .a-trat .t-tag.sh{ background:var(--surface-2); color:var(--muted) }
+
 /* VOZ (analise SIA proprietario) */
 .voz{ margin:var(--space-xl) 0 var(--space-lg); }
 .voz-head h3{ font-size:20px; font-weight:600; font-family:"Schibsted Grotesk", sans-serif; color:var(--text); letter-spacing:-.015em; margin:0 0 8px; }
@@ -385,6 +418,7 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
     <a href="#fechamento">Fechamento</a>
     <a href="#diagnostico">Diagnóstico</a>
     <a href="#voz-prop">Voz do proprietário</a>
+    <a href="#conclusao">Fechamento</a>
   </div>
 </nav>
 
@@ -1211,6 +1245,203 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
       </div>
     </details>
     <p class="ideal">Busca nas mensagens de clientes da SIA (espelho na Nekt) por EasyCover, seguro, seguradora, apólice, sinistro e plano Safe/Premium. Entraram só as reclamações sobre cobertura, sinistro, reembolso e assistência do EasyCover. Ficaram de fora dúvidas, pedidos, AirCover do Airbnb, objeções de preço na venda e tudo que depende de processo interno da Seazone: cobrança, cancelamento, plano, ativação, envio de apólice e condução do sinistro pelo time. Quem reclamou foi identificado pelo cadastro vinculado na SIA e pelo telefone no Sapron. Citações em trechos, com erros de digitação corrigidos.</p>
+  </section>
+
+  <!-- §08 · FECHAMENTO · DIAGNÓSTICO FACTUAL -->
+  <section class="section" id="conclusao" aria-label="Fechamento — diagnóstico factual">
+    <div class="eyebrow">§ 08 · Fechamento · diagnóstico factual</div>
+    <h2>O que o consolidado mostra</h2>
+    <p class="lede">Cinco achados objetivos, cada um lastreado em evidência já apresentada nas seções §02 → §07. A leitura é factual: descrição do que os dados mostram, o impacto observado no período analisado e a quem afeta. Não contém recomendação estratégica.</p>
+
+    <div class="achados">
+
+      <article class="achado">
+        <div class="achado-head">
+          <span class="achado-num">Achado 01 · Financeiro</span>
+        </div>
+        <div class="achado-title">O saldo acumulado da parceria no período fecha em − R$ 15.007,77.</div>
+        <div class="achado-grid">
+          <div class="col">
+            <h5>Evidência</h5>
+            <ul>
+              <li>Pagamentos à EasyCover: <b>R$ 388.806,06</b> em 10 meses (nov/25 → ago/26).</li>
+              <li>Reembolsos de danos registrados: <b>R$ 13.730,86</b> (19 casos).</li>
+              <li>Faturamento dos imóveis com EasyCover no período: <b>R$ 18.003.371,61</b>; comissão 2% = <b>R$ 360.067,43</b>.</li>
+              <li>Fórmula: 360.067,43 + 13.730,86 − 388.806,06 = <b>− R$ 15.007,77</b>.</li>
+              <li>7 de 10 meses fecharam com saldo mensal negativo.</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h5>Impacto observado</h5>
+            <ul>
+              <li>Reembolsos correspondem a <b>3,5%</b> dos pagamentos realizados no período.</li>
+              <li>96,1% do custo é coberto pela combinação comissão + danos; <b>3,9% do custo</b> permanece descoberto no acumulado.</li>
+              <li>R$ 375.075,20 pagos no período não retornaram como reembolso de dano.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="achado-quem"><b>Quem é afetado</b> <span class="t-tag s">Seazone</span> (resultado da parceria) <span class="t-tag p">Proprietário</span> (paga o prêmio de 2%)</div>
+      </article>
+
+      <article class="achado">
+        <div class="achado-head">
+          <span class="achado-num">Achado 02 · Diagnóstico operacional</span>
+        </div>
+        <div class="achado-title">Escopo de cobertura e SLA de emergência concentram 45% das 31 manifestações identificadas.</div>
+        <div class="achado-grid">
+          <div class="col">
+            <h5>Evidência</h5>
+            <ul>
+              <li>T1 · Escopo de cobertura: <b>7 manifestações</b> (WhatsApp #1, #2, #4 · FR.9 · PR.3, PR.4, PR.7).</li>
+              <li>T2 · SLA e canais de emergência: <b>7 manifestações</b> (WhatsApp #5 · FR.1, FR.4, FR.5, FR.6, FR.7, FR.8).</li>
+              <li>Total: <b>14 de 31 (45,2%)</b>.</li>
+              <li>Estados com registro nos dois temas: SP, SC, MT, PB, PR, RS, RJ + várias franqueadas em FR.9.</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h5>Impacto observado</h5>
+            <ul>
+              <li>Recorrência de dúvidas sobre matriz "cobre / não cobre" ao longo do período.</li>
+              <li>Falha operacional na assistência 24h documentada em 4 relatos (0800 sem protocolo, prestador não aparece, prestador vai sem peça, CPF exigido incorretamente).</li>
+              <li>Teto de reembolso de R$ 150 registrado como insuficiente em emergência real (episódio SP, 15/09 — eletricista R$ 500).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="achado-quem"><b>Quem é afetado</b> <span class="t-tag f">Franquia</span> (direto — 6+ estados) <span class="t-tag p">Proprietário</span> (indireto — ameaça de cancelamento em 15/09)</div>
+      </article>
+
+      <article class="achado">
+        <div class="achado-head">
+          <span class="achado-num">Achado 03 · Processo</span>
+        </div>
+        <div class="achado-title">O fechamento mensal excedeu o prazo interno em 8 de 10 meses.</div>
+        <div class="achado-grid">
+          <div class="col">
+            <h5>Evidência</h5>
+            <ul>
+              <li>Prazo interno declarado: <b>boleto até o dia 10</b>.</li>
+              <li>Dentro do prazo: <b>jan/26 e jun/26</b> (2 de 10).</li>
+              <li>Média: <b>17 dias</b> após o fim do mês até o boleto final; <b>13 dias</b> até o 1º relatório.</li>
+              <li>Pior caso: <b>mar/26 (29 dias)</b>.</li>
+              <li>SZ.7 registra que a Now recorreu a "ação paliativa" para subir emissões forçadamente e fechar julho.</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h5>Impacto observado</h5>
+            <ul>
+              <li>Reconciliação manual do lado Seazone em múltiplas ocasiões (SZ.6: emissão duplicada e emissão perdida).</li>
+              <li>Bypass manual do fluxo automatizado documentado em julho/26.</li>
+              <li>Dependência de comunicação por PDF individual após bypass.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="achado-quem"><b>Quem é afetado</b> <span class="t-tag s">Seazone</span> (Coord Franquias + Tech) <span class="t-tag ec">EasyCover / Now</span> (Ops)</div>
+      </article>
+
+      <article class="achado">
+        <div class="achado-head">
+          <span class="achado-num">Achado 04 · Voz do proprietário</span>
+        </div>
+        <div class="achado-title">16 reclamações de proprietários na SIA, com 2 pedidos explícitos de cancelamento.</div>
+        <div class="achado-grid">
+          <div class="col">
+            <h5>Evidência</h5>
+            <ul>
+              <li>16 conversas SIA distintas entre abr e set/26 (UUIDs únicos).</li>
+              <li>Distribuição: <b>9</b> "não cobre o que esperavam" (56,3%) · <b>4</b> "sinistro demorado" · <b>2</b> "manual sem limites" · <b>1</b> "assistência 24h não resolve".</li>
+              <li>Pedidos explícitos de cancelamento: <b>01/08</b> ("excluir esse seguro… não vale a pena pra mim") e <b>16/09</b> ("vamos preferir cancelar o Easycover. Está tendo muita barreira").</li>
+              <li>Reincidência interna: protocolo 71917554 cobrado <b>3× dentro de uma mesma conversa</b> (26/08 → 22/09).</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h5>Impacto observado</h5>
+            <ul>
+              <li>Motivo "não cobre" reincide em 5 meses seguidos do período analisado.</li>
+              <li>Manifestação explícita de intenção de cancelamento do produto por 2 proprietários.</li>
+              <li>Prejuízo financeiro citado em conversas: R$ 250 elétrica + R$ 180 microondas (02/07); conserto de chuveiro (27/04); máquina de lavar roupa (15/05).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="achado-quem"><b>Quem é afetado</b> <span class="t-tag p">Proprietário</span> (percepção de valor, churn declarado) <span class="t-tag s">Seazone</span> (comissão de 2% depende da manutenção da apólice)</div>
+      </article>
+
+      <article class="achado">
+        <div class="achado-head">
+          <span class="achado-num">Achado 05 · Governança</span>
+        </div>
+        <div class="achado-title">O canal direto de suporte às franquias foi encerrado unilateralmente em 18/09/26.</div>
+        <div class="achado-grid">
+          <div class="col">
+            <h5>Evidência</h5>
+            <ul>
+              <li>Grupo WhatsApp <em>EasyCover × Franqueados Seazone</em> criado em <b>05/08/26</b>, encerrado em <b>18/09/26</b> (6 semanas de existência).</li>
+              <li>Encerramento anunciado <b>3 dias após</b> o episódio de 15/09 (franqueado SP, disjuntor, reembolso R$ 150 × custo real R$ 500).</li>
+              <li>Justificativa oficial registrada: "mudança de estratégia" para "reuniões periódicas".</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h5>Impacto observado</h5>
+            <ul>
+              <li>Rede perde o único canal direto e público com a EasyCover para tira-dúvidas.</li>
+              <li>Suporte passa a depender de reuniões periódicas + intermediação Seazone BackOffice.</li>
+              <li>Latência maior entre problema em campo e resposta do parceiro.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="achado-quem"><b>Quem é afetado</b> <span class="t-tag f">Franquia</span> (toda a rede) <span class="t-tag s">Seazone</span> (BackOffice como intermediário)</div>
+      </article>
+
+    </div>
+
+    <h3 style="font-size:20px;font-weight:600;font-family:'Schibsted Grotesk',sans-serif;letter-spacing:-.015em;color:var(--text);margin:var(--space-2xl) 0 var(--space-md)">Principais pontos de atenção</h3>
+    <p class="sub">Consolidação dos 5 achados em formato tabular. A coluna "Tratativa necessária" indica os elos que precisam agir para tratar o achado — não descreve a ação em si.</p>
+
+    <div class="atencao">
+      <table>
+        <thead>
+          <tr>
+            <th>Achado</th>
+            <th>Evidência</th>
+            <th>Impacto</th>
+            <th>Tratativa necessária</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="a-achado">Saldo acumulado da parceria: − R$ 15.007,77</td>
+            <td class="a-evid">Comissão R$ 360.067,43 + danos R$ 13.730,86 − custo R$ 388.806,06 · 7 de 10 meses negativos</td>
+            <td class="a-imp">96,5% do valor pago não retornou como reembolso · 3,9% do custo descoberto no acumulado</td>
+            <td class="a-trat"><span class="t-tag sh">Compartilhado</span> EasyCover + Seazone</td>
+          </tr>
+          <tr>
+            <td class="a-achado">14 de 31 manifestações em Escopo + SLA (45,2%)</td>
+            <td class="a-evid">7 + 7 manifestações em SP, SC, MT, PB, PR, RS, RJ + várias em FR.9</td>
+            <td class="a-imp">Recorrência de dúvidas sobre cobertura e falhas em emergência (0800, prestador, reembolso R$ 150)</td>
+            <td class="a-trat"><span class="t-tag ec">EasyCover</span> matriz + central · <span class="t-tag sz">Seazone</span> comunicação</td>
+          </tr>
+          <tr>
+            <td class="a-achado">Fechamento mensal fora do prazo em 8 de 10 meses</td>
+            <td class="a-evid">Média 17 dias; pior 29 dias (mar/26); bypass manual documentado (SZ.7)</td>
+            <td class="a-imp">Reconciliação manual + dependência de "ação paliativa" para fechar o mês</td>
+            <td class="a-trat"><span class="t-tag ec">EasyCover / Now</span> processo · <span class="t-tag sz">Seazone</span> validação</td>
+          </tr>
+          <tr>
+            <td class="a-achado">16 reclamações SIA, 2 pedidos de cancelamento</td>
+            <td class="a-evid">9 sobre não-cobertura, 4 sobre demora · protocolo 71917554 cobrado 3× · churn pedido em 01/08 e 16/09</td>
+            <td class="a-imp">Motivo recorrente ao longo de 5 meses · risco à manutenção da apólice (base da comissão 2%)</td>
+            <td class="a-trat"><span class="t-tag sz">Seazone</span> retenção · <span class="t-tag ec">EasyCover</span> produto/comunicação</td>
+          </tr>
+          <tr>
+            <td class="a-achado">Canal direto encerrado em 18/09</td>
+            <td class="a-evid">Grupo com 6 semanas, encerrado 3 dias após incidente SP · justificativa: mudança de estratégia</td>
+            <td class="a-imp">Rede perde canal direto · suporte migra para reuniões periódicas + intermediação BackOffice</td>
+            <td class="a-trat"><span class="t-tag sz">Seazone</span> definir canal alternativo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="ideal">Todos os achados e evidências desta seção são extraídos das seções §02 → §07 deste mesmo relatório. Nenhum dado novo foi introduzido. Percentuais foram recalculados a partir dos totais originais (14/31 = 45,2%; 9/16 = 56,3%; 8/10 meses fora do prazo).</p>
   </section>
 
 </main>
