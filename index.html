@@ -162,45 +162,75 @@
     margin-top: 6px;
   }
 
-  /* ============ IMPACT ONE-LINER ============ */
-  .impact-line {
-    margin-top: 32px;
-    padding: 24px 0;
-    border-top: 1px solid var(--hairline);
-    border-bottom: 1px solid var(--hairline);
+  /* ============ IMPACT TABS ============ */
+  .impact-tabs {
     display: flex;
-    gap: 56px;
+    gap: 0;
+    margin-top: 40px;
+    border-bottom: 1px solid var(--hairline);
     flex-wrap: wrap;
   }
-  .impact-item {
-    display: flex;
+  .impact-tab {
+    padding: 20px 28px 20px 0;
+    margin-right: 32px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--muted);
+    display: inline-flex;
     align-items: baseline;
     gap: 14px;
+    transition: color 0.15s, border-color 0.15s;
+    margin-bottom: -1px;
   }
-  .impact-item-val {
+  .impact-tab:hover { color: var(--ink); }
+  .impact-tab.active {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+  }
+  .impact-tab-val {
     font-family: 'IBM Plex Sans', sans-serif;
     font-weight: 500;
-    font-size: 32px;
+    font-size: 28px;
     letter-spacing: -0.02em;
-    color: var(--ink);
     font-variant-numeric: tabular-nums;
+    line-height: 1;
   }
-  .impact-item-lbl {
+  .impact-tab-lbl {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
-  .impact-item .dot {
+  .impact-tab .dot {
     display: inline-block;
     width: 8px; height: 8px;
     border-radius: 50%;
-    margin-right: 2px;
   }
   .dot.f { background: var(--brick); }
   .dot.p { background: var(--amber); }
   .dot.s { background: var(--seazone); }
+
+  .filter-note {
+    margin-top: 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    display: none;
+  }
+  .filter-note.show { display: block; }
+  .filter-note a {
+    color: var(--seazone);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    cursor: pointer;
+  }
 
   /* ============ VOLUME LIST ============ */
   .volume { margin-top: 20px; }
@@ -518,10 +548,14 @@
       </div>
     </div>
 
-    <div class="impact-line">
-      <div class="impact-item"><span class="impact-item-val">7</span><span class="impact-item-lbl"><span class="dot f"></span> Franquia</span></div>
-      <div class="impact-item"><span class="impact-item-val">2</span><span class="impact-item-lbl"><span class="dot p"></span> Proprietário</span></div>
-      <div class="impact-item"><span class="impact-item-val">3</span><span class="impact-item-lbl"><span class="dot s"></span> Seazone</span></div>
+    <div class="impact-tabs" role="tablist">
+      <button class="impact-tab active" data-filter="all" role="tab"><span class="impact-tab-val">12</span><span class="impact-tab-lbl">Todos</span></button>
+      <button class="impact-tab" data-filter="f" role="tab"><span class="impact-tab-val">7</span><span class="impact-tab-lbl"><span class="dot f"></span>Franquia</span></button>
+      <button class="impact-tab" data-filter="p" role="tab"><span class="impact-tab-val">2</span><span class="impact-tab-lbl"><span class="dot p"></span>Proprietário</span></button>
+      <button class="impact-tab" data-filter="s" role="tab"><span class="impact-tab-val">3</span><span class="impact-tab-lbl"><span class="dot s"></span>Seazone</span></button>
+    </div>
+    <div class="filter-note" id="filterNote">
+      Mostrando casos com impacto principal em <strong id="filterLabel"></strong>. <a onclick="resetFilter()">Ver todos</a>
     </div>
   </section>
 
@@ -562,7 +596,7 @@
           <div class="theme-meta">3 casos · 9 mensagens</div>
         </div>
 
-        <div class="case">
+        <div class="case" data-impact="f">
           <button class="case-toggle" type="button">
             <span class="case-title">Dúvida caso a caso sobre dano em item específico do imóvel</span>
             <span class="case-tag"><span class="dot f"></span> Franquia</span>
@@ -583,7 +617,7 @@
           </div>
         </div>
 
-        <div class="case">
+        <div class="case" data-impact="p">
           <button class="case-toggle" type="button">
             <span class="case-title">Ar-condicionado / manutenção de desgaste — proprietário paga, franqueada acha que é seguro</span>
             <span class="case-tag"><span class="dot p"></span> Proprietário</span>
@@ -603,7 +637,7 @@
           </div>
         </div>
 
-        <div class="case">
+        <div class="case" data-impact="f">
           <button class="case-toggle" type="button">
             <span class="case-title">Franquia de R$ 150 desmotiva acionamento em dano pequeno</span>
             <span class="case-tag"><span class="dot f"></span> Franquia</span>
@@ -634,7 +668,7 @@
           <div class="theme-meta">1 caso · 7 mensagens</div>
         </div>
 
-        <div class="case">
+        <div class="case" data-impact="s">
           <button class="case-toggle" type="button">
             <span class="case-title">Franqueadas nunca acionaram e não sabem o caminho</span>
             <span class="case-tag"><span class="dot s"></span> Seazone</span>
@@ -666,7 +700,7 @@
           <div class="theme-meta">2 casos · 7 mensagens</div>
         </div>
 
-        <div class="case">
+        <div class="case" data-impact="f">
           <button class="case-toggle" type="button">
             <span class="case-title">Migração Sapron → Host tirou a informação "esse imóvel tem EasyCover?" da tela</span>
             <span class="case-tag"><span class="dot f"></span> Franquia</span>
@@ -687,7 +721,7 @@
           </div>
         </div>
 
-        <div class="case">
+        <div class="case" data-impact="s">
           <button class="case-toggle" type="button">
             <span class="case-title">Release da visibilidade foi entregue, mas franqueada não acha onde clicar</span>
             <span class="case-tag"><span class="dot s"></span> Seazone</span>
@@ -718,7 +752,7 @@
           <div class="theme-meta">2 casos · 4 mensagens</div>
         </div>
 
-        <div class="case">
+        <div class="case" data-impact="f">
           <button class="case-toggle" type="button">
             <span class="case-title">Laudo de técnico custa a partir de R$ 300 em SP e inibe o acionamento</span>
             <span class="case-tag"><span class="dot f"></span> Franquia</span>
@@ -737,7 +771,7 @@
           </div>
         </div>
 
-        <div class="case">
+        <div class="case" data-impact="p">
           <button class="case-toggle" type="button">
             <span class="case-title">Conserto adiado pelo proprietário faz perder janela de acionamento</span>
             <span class="case-tag"><span class="dot p"></span> Proprietário</span>
@@ -767,7 +801,7 @@
           <div class="theme-meta">1 caso · 3 mensagens</div>
         </div>
 
-        <div class="case">
+        <div class="case" data-impact="f">
           <button class="case-toggle" type="button">
             <span class="case-title">"Alguém tem o telefone do EasyCover?" — recorrente e não resolvido no fluxo</span>
             <span class="case-tag"><span class="dot f"></span> Franquia</span>
@@ -799,7 +833,7 @@
           <div class="theme-meta">1 caso · 1 mensagem</div>
         </div>
 
-        <div class="case">
+        <div class="case" data-impact="s">
           <button class="case-toggle" type="button">
             <span class="case-title">3 ligações no 0800 sem protocolo, com hóspede sem chuveiro esperando</span>
             <span class="case-tag"><span class="dot s"></span> Seazone</span>
@@ -829,7 +863,7 @@
           <div class="theme-meta">1 caso · 1 mensagem</div>
         </div>
 
-        <div class="case">
+        <div class="case" data-impact="f">
           <button class="case-toggle" type="button">
             <span class="case-title">Franqueada pagou do próprio bolso manutenção que era coberta</span>
             <span class="case-tag"><span class="dot f"></span> Franquia</span>
@@ -859,7 +893,7 @@
           <div class="theme-meta">1 caso · 1 mensagem</div>
         </div>
 
-        <div class="case">
+        <div class="case" data-impact="f">
           <button class="case-toggle" type="button">
             <span class="case-title">"O ruim é que essa casa não tem seguro" — franqueada exposta em dano estrutural</span>
             <span class="case-tag"><span class="dot f"></span> Franquia</span>
@@ -894,6 +928,32 @@
       btn.parentElement.classList.toggle('open');
     });
   });
+
+  const labels = { f: 'Franquia', p: 'Proprietário', s: 'Seazone' };
+  const tabs = document.querySelectorAll('.impact-tab');
+  const note = document.getElementById('filterNote');
+  const noteLbl = document.getElementById('filterLabel');
+
+  function applyFilter(target) {
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.filter === target));
+    document.querySelectorAll('.case').forEach(c => {
+      c.style.display = (target === 'all' || c.dataset.impact === target) ? '' : 'none';
+    });
+    document.querySelectorAll('.theme').forEach(t => {
+      const visible = Array.from(t.querySelectorAll('.case')).some(c => c.style.display !== 'none');
+      t.style.display = visible ? '' : 'none';
+    });
+    if (target === 'all') {
+      note.classList.remove('show');
+    } else {
+      noteLbl.textContent = labels[target];
+      note.classList.add('show');
+    }
+  }
+
+  function resetFilter() { applyFilter('all'); }
+
+  tabs.forEach(tab => tab.addEventListener('click', () => applyFilter(tab.dataset.filter)));
 </script>
 
 </body>
