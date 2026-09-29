@@ -86,6 +86,38 @@ h3{ font-size:18px; font-weight:600; line-height:1.25 }
   .strip > div + div{ border-top:1px solid var(--line); border-right:none }
 }
 
+/* VOZ (analise SIA proprietario) */
+.voz{ margin:var(--space-xl) 0 var(--space-lg); }
+.voz-head h3{ font-size:20px; font-weight:600; font-family:"Schibsted Grotesk", sans-serif; color:var(--text); letter-spacing:-.015em; margin:0 0 8px; }
+.voz-head p.voz-sub{ color:var(--muted); font-size:14px; line-height:1.55; margin:0 0 var(--space-md); max-width:70ch; }
+.voz-block{ margin:var(--space-lg) 0; }
+.voz-block h4{ font:600 12px "Schibsted Grotesk", sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--amber); margin:0 0 var(--space-sm); }
+.voz-motivos{ overflow-x:auto; border:1px solid var(--line-soft); border-radius:6px; }
+.voz-motivos table{ min-width:640px; font-size:13.5px; }
+.voz-motivos tbody td{ padding:14px 14px; vertical-align:top; }
+.voz-motivos .m-tema{ font:600 14px "Schibsted Grotesk", sans-serif; color:var(--text); letter-spacing:.01em; }
+.voz-motivos .m-tema small{ display:block; font-family:"Figtree", sans-serif; font-weight:400; color:var(--faint); font-size:11.5px; margin-top:4px; letter-spacing:0 }
+.voz-motivos .m-num{ font:700 22px "Schibsted Grotesk", sans-serif; color:var(--amber); text-align:center; width:70px; }
+.voz-motivos .m-pct{ font:600 14px "Schibsted Grotesk", sans-serif; color:var(--muted); text-align:right; width:90px; }
+.voz-motivos .m-bar{ height:10px; background:var(--surface-2); border-radius:2px; overflow:hidden; border:1px solid var(--line-soft); min-width:140px; }
+.voz-motivos .m-bar > span{ display:block; height:100%; background:var(--amber); opacity:.85; border-radius:1px; }
+.voz-motivos .m-rec{ font-size:12px; color:var(--muted); font-family:"Figtree", sans-serif; line-height:1.5; }
+.voz-motivos .m-rec b{ font-family:"Schibsted Grotesk", sans-serif; font-weight:600; color:var(--text); font-size:11px; letter-spacing:.02em }
+
+.voz-evid{ display:grid; grid-template-columns:1fr; gap:var(--space-md); }
+.voz-ev{ border:1px solid var(--line-soft); border-left:3px solid var(--amber); border-radius:6px; background:var(--surface); padding:var(--space-md) var(--space-lg); }
+.voz-ev .ev-head{ display:flex; justify-content:space-between; align-items:baseline; gap:var(--space-md); flex-wrap:wrap; margin-bottom:8px; }
+.voz-ev .ev-tema{ font:600 12px "Schibsted Grotesk", sans-serif; color:var(--amber); letter-spacing:.06em; text-transform:uppercase; }
+.voz-ev .ev-meta{ font-size:11.5px; color:var(--faint); font-family:"Schibsted Grotesk", sans-serif; letter-spacing:.02em; }
+.voz-ev .ev-quote{ font-style:italic; color:var(--text); font-size:14px; line-height:1.55; margin:6px 0 8px; }
+.voz-ev .ev-impact{ font-size:12px; color:var(--muted); line-height:1.5; }
+.voz-ev .ev-impact b{ font-family:"Schibsted Grotesk", sans-serif; font-weight:600; color:var(--muted); font-size:11px; letter-spacing:.04em; text-transform:uppercase; margin-right:6px }
+
+.voz-count{ margin:var(--space-lg) 0; padding:var(--space-md) var(--space-lg); border:1px dashed var(--line); border-radius:4px; background:transparent; }
+.voz-count h4{ margin:0 0 8px }
+.voz-count p{ font-size:13px; color:var(--muted); line-height:1.55; margin:6px 0; }
+.voz-count b{ color:var(--text); font-family:"Schibsted Grotesk", sans-serif; font-weight:600 }
+
 /* OPS ANALYSIS (diagnostico operacional) */
 .ops{ margin:var(--space-xl) 0 var(--space-lg); }
 .ops-head{ display:flex; flex-direction:column; gap:6px; margin-bottom:var(--space-lg); }
@@ -1040,12 +1072,117 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
       <div><div class="n pay">4</div><div class="l">por demora no sinistro ou no reembolso</div></div>
     </section>
 
-    <ul class="themes">
-      <li><div class="tn">9</div><div><b>Não cobre o que esperavam</b><p>Chuveiro, entupimento, elétrica, microondas e desgaste ficam de fora. O proprietário esperava que o seguro cobrisse pequenos danos, e quando cobre, cobre só parte. Dois pediram para cancelar.</p></div></li>
-      <li><div class="tn">4</div><div><b>Sinistro demorado</b><p>Reembolso que leva semanas ou mais de um mês. Um mesmo protocolo foi cobrado 3 vezes em um mês sem resposta.</p></div></li>
-      <li><div class="tn">2</div><div><b>Manual sem limites de cobertura</b><p>O manual do segurado não traz o limite de cobertura por sinistro nem descreve as coberturas.</p></div></li>
-      <li><div class="tn">1</div><div><b>Assistência 24h não resolve</b><p>O técnico da EasyCover foi ao imóvel duas vezes e não resolveu.</p></div></li>
-    </ul>
+    <div class="voz">
+      <div class="voz-head">
+        <h3>O que o proprietário está relatando</h3>
+        <p class="voz-sub">16 reclamações identificadas em conversas distintas na SIA (abr → set/26), classificadas em 4 motivos. Ordenados por volume, do maior para o menor.</p>
+      </div>
+
+      <div class="voz-block">
+        <h4>Principais motivos</h4>
+        <div class="voz-motivos">
+          <table>
+            <thead>
+              <tr>
+                <th>Tema</th>
+                <th style="text-align:center">Casos</th>
+                <th>Frequência</th>
+                <th style="text-align:right">%</th>
+                <th>Recorrência</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="m-tema">Não cobre o que esperavam<small>Chuveiro, elétrica, microondas, desgaste, entupimento</small></td>
+                <td class="m-num">9</td>
+                <td><div class="m-bar"><span style="width:100%"></span></div></td>
+                <td class="m-pct">56,3%</td>
+                <td class="m-rec"><b>Recorrente</b> 9 conversas ao longo de 5 meses (27/04 → 16/09). Praticamente todo mês do período.</td>
+              </tr>
+              <tr>
+                <td class="m-tema">Sinistro demorado<small>Reembolso de semanas ou mais de um mês</small></td>
+                <td class="m-num">4</td>
+                <td><div class="m-bar"><span style="width:44.4%"></span></div></td>
+                <td class="m-pct">25,0%</td>
+                <td class="m-rec"><b>Recorrente</b> 4 conversas distribuídas em mai, jul, ago e set/26. Um mesmo protocolo foi cobrado 3× dentro de uma mesma conversa (26/08 → 22/09) sem resposta.</td>
+              </tr>
+              <tr>
+                <td class="m-tema">Manual sem limites de cobertura<small>Manual do segurado não traz limite por sinistro nem descreve as coberturas</small></td>
+                <td class="m-num">2</td>
+                <td><div class="m-bar"><span style="width:22.2%"></span></div></td>
+                <td class="m-pct">12,5%</td>
+                <td class="m-rec"><b>Concentrado em set/26</b> 02/09 e 23/09 — dois proprietários diferentes questionando o mesmo problema documental.</td>
+              </tr>
+              <tr>
+                <td class="m-tema">Assistência 24h não resolve<small>Técnico EasyCover foi ao imóvel e não resolveu</small></td>
+                <td class="m-num">1</td>
+                <td><div class="m-bar"><span style="width:11.1%"></span></div></td>
+                <td class="m-pct">6,3%</td>
+                <td class="m-rec"><b>Pontual</b> 16/09 — único registro no período. Relato veio da franquia, em nome do proprietário.</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>Total</td>
+                <td style="text-align:center;color:var(--amber);font-weight:700">16</td>
+                <td></td>
+                <td style="text-align:right;color:var(--muted);font-weight:600">100%</td>
+                <td></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <div class="voz-block">
+        <h4>Evidências</h4>
+        <div class="voz-evid">
+
+          <div class="voz-ev">
+            <div class="ev-head">
+              <span class="ev-tema">Não cobre o que esperavam · 9 casos</span>
+              <span class="ev-meta">01/08/26 · Proprietário · SIA</span>
+            </div>
+            <p class="ev-quote">"o anfitrião disse que o desgaste deve-se ao uso por muitos hóspedes … excluir esse seguro … Não vale a pena pra mim"</p>
+            <p class="ev-impact"><b>Impacto</b> Pedido explícito de cancelamento. Um segundo pedido de cancelamento aparece em 16/09: "vamos preferir cancelar o Easycover. Está tendo muita barreira. Quando me venderam não falaram nada disso".</p>
+          </div>
+
+          <div class="voz-ev">
+            <div class="ev-head">
+              <span class="ev-tema">Sinistro demorado · 4 casos</span>
+              <span class="ev-meta">22/09/26 · Proprietário · SIA</span>
+            </div>
+            <p class="ev-quote">"Quero atualização do Protocolo Reembolso Seguro 71917554 … Ainda aguardando resposta... (mesmo protocolo cobrado 3 vezes desde 26/08)"</p>
+            <p class="ev-impact"><b>Impacto</b> Reincidência do mesmo protocolo dentro da mesma conversa — sinal de que a resposta não chega mesmo depois de repetidas cobranças. Outros relatos falam em "quase 1 mês do sinistro" (02/07) e "achando demorado o retorno" (07/08).</p>
+          </div>
+
+          <div class="voz-ev">
+            <div class="ev-head">
+              <span class="ev-tema">Manual sem limites de cobertura · 2 casos</span>
+              <span class="ev-meta">02/09/26 · Proprietário · SIA</span>
+            </div>
+            <p class="ev-quote">"Vocês me mandaram o manual do segurado, mas nele não consta o limite máximo de cobertura para cada sinistro"</p>
+            <p class="ev-impact"><b>Impacto</b> Segundo caso em 23/09 reforça o mesmo problema documental: "Esse manual não descreve as coberturas.. o certo é enviar a apólice".</p>
+          </div>
+
+          <div class="voz-ev">
+            <div class="ev-head">
+              <span class="ev-tema">Assistência 24h não resolve · 1 caso</span>
+              <span class="ev-meta">16/09/26 · Franquia falando pelo proprietário · SIA</span>
+            </div>
+            <p class="ev-quote">"o profissional da Easy Cover foi lá no imóvel, não fez nada novamente … não trocou o adjuntor"</p>
+            <p class="ev-impact"><b>Impacto</b> Segunda visita do prestador sem resolução. Único caso do período em que a queixa é sobre a execução técnica no local (e não sobre escopo, tempo ou documento).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="voz-count">
+        <h4>Quantos proprietários?</h4>
+        <p>Os 16 registros correspondem a <b>16 conversas SIA distintas</b> (UUIDs únicos). Não é possível determinar apenas com os dados publicados aqui quantos proprietários únicos isso representa — poderia haver reincidência do mesmo proprietário em conversas distintas, mas nenhuma evidência textual mostra o mesmo nome/telefone repetido nas linhas atuais. Para uma contagem definitiva, seria necessário cruzar cada conversa com o cadastro SIA/Sapron. A metodologia da seção já registra que a identificação foi feita por cadastro na SIA e por telefone no Sapron — a informação existe na fonte, só não está exposta neste consolidado.</p>
+        <p><b>Sinal de recorrência dentro de uma mesma conversa</b> o item de 22/09 (Protocolo 71917554) registra que o mesmo protocolo foi cobrado 3 vezes desde 26/08 sem resposta — recorrência interna dentro de um único caso, não um caso novo.</p>
+        <p><b>Contagem alternativa por perfil de autor</b> lede da seção informa <b>15 conversas de proprietário</b> e <b>1 conversa de franquia falando pelo proprietário</b> — total 16. Todas contam para os motivos.</p>
+      </div>
+    </div>
 
     <details>
       <summary>Ver as 16 reclamações ›</summary>
