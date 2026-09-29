@@ -65,6 +65,8 @@ h3{ font-size:18px; font-weight:600; line-height:1.25 }
   border-top:1px solid var(--line); border-bottom:1px solid var(--line);
   margin:var(--space-xl) 0 var(--space-2xl);
 }
+.strip.four{ grid-template-columns:repeat(4, 1fr) }
+.strip.two{ grid-template-columns:repeat(2, 1fr) }
 .strip > div{ padding:var(--space-lg) var(--space-md); border-right:1px solid var(--line); }
 .strip > div:last-child{ border-right:none }
 .strip .n{ font:600 34px/1 "Schibsted Grotesk", sans-serif; letter-spacing:-.02em; }
@@ -76,10 +78,20 @@ h3{ font-size:18px; font-weight:600; line-height:1.25 }
 .strip .n.pos{ color:var(--green) }
 .strip .n.bad{ color:var(--amber) }
 .strip .l{ margin-top:var(--space-sm); color:var(--muted); font-size:13px; line-height:1.4 }
+.strip .l small{ display:block; margin-top:4px; color:var(--faint); font-size:11.5px; font-weight:400 }
+.strip-label{ display:block; font:600 11.5px/1 "Schibsted Grotesk", sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); margin:0 0 var(--space-sm); }
+.strip + .strip-label{ margin-top:calc(-1 * var(--space-xl)) }
 @media (max-width: 720px){
-  .strip{ grid-template-columns:1fr }
+  .strip, .strip.four, .strip.two{ grid-template-columns:1fr }
   .strip > div + div{ border-top:1px solid var(--line); border-right:none }
 }
+
+/* ONELINE + METHOD NOTE */
+.oneline{ margin:var(--space-xl) 0 var(--space-lg); padding:var(--space-lg) var(--space-xl); border:1px solid var(--line-soft); border-left:3px solid var(--blue); border-radius:6px; background:var(--surface); }
+.oneline .lbl{ display:block; font:600 11px "Schibsted Grotesk", sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--blue); margin-bottom:var(--space-sm); }
+.oneline p{ margin:0; font-size:16px; line-height:1.55; color:var(--text); max-width:72ch; }
+.method-note{ margin-top:var(--space-lg); padding:var(--space-md) var(--space-lg); border:1px dashed var(--line); border-radius:4px; color:var(--muted); font-size:13px; line-height:1.55; }
+.method-note b{ color:var(--text); font-family:"Schibsted Grotesk", sans-serif; font-weight:600; font-size:12px; letter-spacing:.06em; text-transform:uppercase; margin-right:6px; }
 
 /* SECTION spacer */
 .section{ padding-top:var(--space-2xl); scroll-margin-top:72px; }
@@ -246,27 +258,37 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
 
 <main class="wrap">
   <div class="eyebrow">EasyCover · Relatório consolidado · Fase 1B</div>
-  <h1>Quanto pagamos, o que voltou e onde o produto trava.</h1>
+  <h1>Quanto investimos, quanto retornou e quais problemas apareceram na operação.</h1>
   <p class="lede">
-    Cruzamento de <b>7 fontes</b>: 10 meses de boletos e reembolsos (Now Seguros · Sapron),
-    o WhatsApp <b>Geral Franquias</b> (7.811 mensagens no trimestre), <b>três canais dedicados</b> à EasyCover
-    e as <b>reclamações de proprietários</b> na SIA. De nov/25 a ago/26 a Seazone pagou <b>R$ 388,8 mil</b> em boletos
-    à EasyCover — voltaram <b class="g">R$ 13,7 mil</b> em reembolsos de dano (<b class="a">3,5%</b>) e o balanço
-    da parceria fecha <b class="r">− R$ 15 mil</b>.
+    Cruzamento de <b>7 fontes</b>, considerando <b>pagamentos e reembolsos</b> entre nov/25 e ago/26 (Now Seguros · Sapron),
+    <b>manifestações operacionais</b> nos canais de franquias (WhatsApp <em>Geral Franquias</em> e três canais dedicados
+    à EasyCover) e <b>reclamações de proprietários</b> na SIA. No período, foram registrados <b>R$ 388,8 mil</b> em pagamentos
+    à EasyCover e <b class="g">R$ 13,7 mil</b> em reembolsos de danos, equivalentes a <b class="a">3,5%</b> dos pagamentos
+    realizados.
   </p>
 
   <!-- §01 · RESUMO EXECUTIVO -->
   <section class="section" id="resumo" aria-label="Resumo">
-    <section class="strip">
-      <div><div class="n pay">R$ 388.806<small>,06</small></div><div class="l">pago à EasyCover em 10 meses (nov/25 → ago/26)</div></div>
-      <div><div class="n back">R$ 13.730<small>,86</small></div><div class="l">em reembolsos de dano pagos pela EasyCover no mesmo período (19 casos)</div></div>
-      <div><div class="n ratio">3,5%</div><div class="l">do valor pago voltou como reembolso de dano</div></div>
+    <span class="strip-label">Financeiro · nov/25 → ago/26</span>
+    <section class="strip four">
+      <div><div class="n pay">R$ 388.806<small>,06</small></div><div class="l">Pagamentos à EasyCover no período</div></div>
+      <div><div class="n back">R$ 13.730<small>,86</small></div><div class="l">Reembolsos de danos registrados no período <small>19 casos no Sapron</small></div></div>
+      <div><div class="n ratio">3,5%</div><div class="l">Dos pagamentos realizados no período correspondem a reembolsos de danos registrados</div></div>
+      <div><div class="n neg">− R$ 15.007<small>,77</small></div><div class="l">Saldo acumulado da parceria no período, considerando comissão de 2%, reembolsos de danos e custos considerados no cálculo</div></div>
     </section>
-    <section class="strip">
-      <div><div class="n neg">− R$ 15.007<small>,77</small></div><div class="l">saldo acumulado (comissão 2% + danos − custo), 10 meses</div></div>
-      <div><div class="n bad">31</div><div class="l">itens qualitativos: 6 casos-problema WhatsApp + 25 problemáticas dos canais dedicados</div></div>
-      <div><div class="n neg">16</div><div class="l">reclamações de proprietário sobre EasyCover na SIA (abr → set/26)</div></div>
+
+    <span class="strip-label">Experiência · Operação</span>
+    <section class="strip two">
+      <div><div class="n bad">31</div><div class="l">Manifestações problemáticas identificadas nos canais de franquias <small>6 no WhatsApp Geral + 25 nos canais dedicados</small></div></div>
+      <div><div class="n neg">16</div><div class="l">Reclamações de proprietários sobre EasyCover na SIA <small>abr → set/26</small></div></div>
     </section>
+
+    <div class="oneline">
+      <span class="lbl">Em uma frase</span>
+      <p>A parceria movimentou <b>R$ 388,8 mil</b> em 10 meses, registrou <b>R$ 13,7 mil</b> em reembolsos de danos e acumulou saldo de <b>− R$ 15 mil</b>, enquanto os canais operacionais registraram <b>31 manifestações problemáticas</b> e <b>16 reclamações</b> de proprietários na SIA.</p>
+    </div>
+
+    <p class="method-note"><b>Nota metodológica</b> Pagamento e reembolso não representam necessariamente o mesmo evento ou competência. O pagamento é atribuído ao mês de referência do fechamento; o reembolso é atribuído ao mês em que o dano foi registrado como pago no Sapron.</p>
   </section>
 
   <!-- §02 · PAGO × REEMBOLSO -->
