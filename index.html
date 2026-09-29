@@ -86,6 +86,21 @@ h3{ font-size:18px; font-weight:600; line-height:1.25 }
   .strip > div + div{ border-top:1px solid var(--line); border-right:none }
 }
 
+/* CHART (imoveis cobrados) */
+.chart{ margin:var(--space-xl) 0 var(--space-lg); padding:var(--space-lg) var(--space-xl); border:1px solid var(--line-soft); border-radius:6px; background:var(--surface); }
+.chart-head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:var(--space-lg); flex-wrap:wrap; gap:var(--space-md); }
+.chart-head h3{ font-size:15px; font-weight:600; font-family:"Schibsted Grotesk", sans-serif; color:var(--text); letter-spacing:-.01em; }
+.chart-head .delta{ font:600 13px "Schibsted Grotesk", sans-serif; color:var(--green); letter-spacing:.02em; }
+.chart-head .delta small{ color:var(--muted); font-weight:400; margin-left:6px; letter-spacing:0; }
+.bars{ display:grid; grid-template-columns:56px 1fr 100px; gap:10px 14px; align-items:center; }
+.bars .bm{ font:600 12px "Schibsted Grotesk", sans-serif; color:var(--muted); letter-spacing:.02em; }
+.bars .bt{ height:14px; background:var(--surface-2); border-radius:2px; overflow:hidden; position:relative; border:1px solid var(--line-soft); }
+.bars .bt > span{ display:block; height:100%; background:var(--blue); border-radius:1px; }
+.bars .bv{ font:600 13px "Schibsted Grotesk", sans-serif; color:var(--text); text-align:right; letter-spacing:-.005em; }
+.bars .bv small{ display:block; color:var(--amber); font-weight:500; font-size:10.5px; letter-spacing:.04em; margin-top:2px; }
+.chart-legend{ margin-top:var(--space-md); padding-top:var(--space-md); border-top:1px solid var(--line-soft); font-size:12.5px; color:var(--faint); line-height:1.5; }
+.chart-legend b{ color:var(--muted); font-weight:600; font-family:"Schibsted Grotesk", sans-serif; font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-right:6px; }
+
 /* ONELINE + METHOD NOTE */
 .oneline{ margin:var(--space-xl) 0 var(--space-lg); padding:var(--space-lg) var(--space-xl); border:1px solid var(--line-soft); border-left:3px solid var(--blue); border-radius:6px; background:var(--surface); }
 .oneline .lbl{ display:block; font:600 11px "Schibsted Grotesk", sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--blue); margin-bottom:var(--space-sm); }
@@ -295,7 +310,27 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
   <section class="section" id="pago-vs-back" aria-label="Pago × reembolso mês a mês">
     <div class="eyebrow">§ 02 · Financeiro · Now Seguros × Sapron</div>
     <h2>Mês a mês</h2>
-    <p class="sub">O pago está por mês de referência do fechamento. O reembolso está pelo mês em que o dano foi dado como pago no Sapron. Clique em um mês para ver os imóveis reembolsados.</p>
+    <p class="sub">O pagamento é contabilizado pelo mês de referência do fechamento. O reembolso é contabilizado pelo mês em que o dano foi registrado como pago no Sapron. Portanto, pagamento e reembolso não representam necessariamente o mesmo evento ou competência. Clique em um mês para ver os imóveis reembolsados.</p>
+
+    <div class="chart" aria-label="Evolução dos imóveis cobrados">
+      <div class="chart-head">
+        <h3>Evolução dos imóveis cobrados</h3>
+        <div class="delta">+210,9% <small>evolução da quantidade de imóveis cobrados · Nov/25 → Ago/26 (267 → 830, +563 imóveis)</small></div>
+      </div>
+      <div class="bars">
+        <span class="bm">Nov/25</span><div class="bt"><span style="width:32.2%"></span></div><span class="bv">267</span>
+        <span class="bm">Dez/25</span><div class="bt"><span style="width:36.1%"></span></div><span class="bv">300</span>
+        <span class="bm">Jan/26</span><div class="bt"><span style="width:62.5%"></span></div><span class="bv">519<small>+80 retroativos de dez</small></span>
+        <span class="bm">Fev/26</span><div class="bt"><span style="width:59.0%"></span></div><span class="bv">490</span>
+        <span class="bm">Mar/26</span><div class="bt"><span style="width:65.9%"></span></div><span class="bv">547</span>
+        <span class="bm">Abr/26</span><div class="bt"><span style="width:73.1%"></span></div><span class="bv">607</span>
+        <span class="bm">Mai/26</span><div class="bt"><span style="width:77.0%"></span></div><span class="bv">639</span>
+        <span class="bm">Jun/26</span><div class="bt"><span style="width:87.6%"></span></div><span class="bv">727</span>
+        <span class="bm">Jul/26</span><div class="bt"><span style="width:93.5%"></span></div><span class="bv">776</span>
+        <span class="bm">Ago/26</span><div class="bt"><span style="width:100%"></span></div><span class="bv">830</span>
+      </div>
+      <p class="chart-legend"><b>Ajuste jan/26</b> 80 imóveis referentes a dezembro/25 foram cobrados em janeiro/26 (retroativo). Set/26 fica de fora do gráfico — fechamento ainda em aberto.</p>
+    </div>
 
     <div class="table-scroll">
     <table>
@@ -307,7 +342,7 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
           <th>Pago à EasyCover</th>
           <th>Reembolso pago</th>
           <th>Casos</th>
-          <th>Voltou / pago</th>
+          <th>Reembolsos registrados / pagamentos realizados</th>
         </tr>
       </thead>
       <tbody id="rows"></tbody>
@@ -787,7 +822,7 @@ const brl = v => v == null ? null : 'R$ ' + v.toLocaleString('pt-BR', { minimumF
 const months = [
   { m: 'Nov/25', qty: 267, unit: 104.03, paid: 27776.01, back: 0, cases: [] },
   { m: 'Dez/25', qty: 300, unit: 104.03, paid: 31209.00, back: 410, cases: [['UPP0614', 410]] },
-  { m: 'Jan/26', qty: 519, unit: 64.23, paid: 33335.37, tag: '+80 de dez', back: 2995.72,
+  { m: 'Jan/26', qty: 519, unit: 64.23, paid: 33335.37, tag: '+80 retroativos', back: 2995.72,
     cases: [['EJO0305', 1178.72], ['PMC0400', 1015], ['ELU0211', 802]] },
   { m: 'Fev/26', qty: 490, unit: 64.23, paid: 31472.70, back: 489.99,
     cases: [['CFE0503', 337], ['IDB0701', 152.99]] },
