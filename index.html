@@ -13,23 +13,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  color-scheme: dark;
-  --bg: oklch(17% .02 262);
-  --surface: oklch(21% .024 262);
-  --surface-2: oklch(25% .028 262);
-  --line: oklch(31% .026 262);
-  --line-soft: oklch(26% .022 262);
-  --text: oklch(94% .008 262);
-  --muted: oklch(73% .02 262);
-  --faint: oklch(58% .022 262);
-  --blue: oklch(70% .17 260);
-  --blue-soft: oklch(70% .17 260 / .14);
-  --green: oklch(78% .14 155);
-  --green-soft: oklch(78% .14 155 / .12);
-  --amber: oklch(81% .13 78);
-  --amber-soft: oklch(81% .13 78 / .12);
-  --red: oklch(72% .17 25);
-  --red-soft: oklch(72% .17 25 / .14);
+  color-scheme: light;
+  --bg: oklch(98.5% .003 260);
+  --surface: oklch(100% 0 0);
+  --surface-2: oklch(96.5% .006 260);
+  --line: oklch(86% .012 260);
+  --line-soft: oklch(92% .008 260);
+  --text: oklch(20% .04 260);
+  --muted: oklch(42% .02 260);
+  --faint: oklch(60% .015 260);
+  --blue: oklch(45% .17 260);
+  --blue-soft: oklch(45% .17 260 / .10);
+  --green: oklch(45% .14 155);
+  --green-soft: oklch(45% .14 155 / .10);
+  --amber: oklch(55% .14 65);
+  --amber-soft: oklch(55% .14 65 / .10);
+  --red: oklch(52% .19 25);
+  --red-soft: oklch(52% .19 25 / .10);
+  --seazone-coral: #EB615E;
   --space-xs: 4px; --space-sm: 8px; --space-md: 16px; --space-lg: 24px; --space-xl: 48px; --space-2xl: 72px;
   --ease: cubic-bezier(.22,1,.36,1);
 }
@@ -53,11 +54,21 @@ h3{ font-size:18px; font-weight:600; line-height:1.25 }
 .lede .a{ color:var(--amber) }
 
 /* NAV */
-.nav{ position:sticky; top:0; z-index:20; background:oklch(17% .02 262 / .88); backdrop-filter:blur(12px); border-bottom:1px solid var(--line-soft); }
+.nav{ position:sticky; top:0; z-index:20; background:oklch(100% 0 0 / .88); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
 .nav-inner{ max-width:1120px; margin:0 auto; padding:12px var(--space-lg); display:flex; gap:var(--space-lg); align-items:center; overflow-x:auto; }
 .nav a{ color:var(--muted); text-decoration:none; font-size:13px; font-weight:500; white-space:nowrap; padding:6px 0; border-bottom:1px solid transparent; transition:color .18s var(--ease); }
 .nav a:hover{ color:var(--text) }
-.nav-brand{ font:600 13px "Schibsted Grotesk", sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); margin-right:auto; }
+.nav-brand{ font:600 13px "Schibsted Grotesk", sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); margin-right:auto; display:inline-flex; align-items:center; gap:10px; }
+.nav-brand svg{ width:20px; height:20px; flex-shrink:0; }
+.nav-brand svg path{ fill:var(--seazone-coral); }
+
+/* BRAND HEADER (topo institucional) */
+.brand-header{ display:flex; align-items:center; gap:14px; padding-bottom:var(--space-lg); border-bottom:1px solid var(--line-soft); margin-bottom:var(--space-xl); }
+.brand-mark{ width:38px; height:38px; flex-shrink:0; }
+.brand-mark path{ fill:var(--seazone-coral); }
+.brand-text{ display:flex; flex-direction:column; gap:2px; }
+.brand-name{ font:700 16px/1 "Schibsted Grotesk", sans-serif; color:var(--text); letter-spacing:-.005em; }
+.brand-sub{ font:600 10.5px "Schibsted Grotesk", sans-serif; color:var(--muted); letter-spacing:.12em; text-transform:uppercase; }
 
 /* STRIP */
 .strip{
@@ -410,7 +421,7 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
 
 <nav class="nav" aria-label="Seções">
   <div class="nav-inner">
-    <span class="nav-brand">EasyCover · Consolidado</span>
+    <span class="nav-brand"><svg viewBox="0 0 564 575" xmlns="http://www.w3.org/2000/svg" aria-label="Seazone"><path d="M543.226 178.172L442.93 119.392C443.194 117.952 443.72 116.643 443.72 115.203V26.5752C443.72 11.913 431.743 0 417.001 0H363.562C348.821 0 336.843 11.913 336.843 26.5752V57.6015L300.516 36.3936C285.774 27.6225 266.294 29.0626 252.605 39.1428C252.342 39.2737 252.079 39.2737 251.947 39.4046L20.951 172.543C1.73419 183.932 -6.29474 210.507 5.55122 230.406C17.9237 251.09 45.301 256.588 64.5178 245.199L78.3381 237.213C62.017 269.025 51.7505 305.026 51.7505 344.169C51.7505 406.221 75.7056 467.226 119.799 511.344C137.173 528.624 157.443 543.156 179.555 553.759C196.666 562.007 214.567 568.814 233.257 572.218C258.002 576.669 283.8 574.444 308.808 574.444C335.922 574.444 363.036 574.444 390.018 574.444C414.5 574.444 439.113 574.575 463.99 574.575C470.176 574.575 476.231 573.004 481.759 570.254C488.866 566.72 492.947 562.792 497.685 556.509C502.95 549.57 506.635 541.061 506.635 532.159V252.923C525.062 259.599 547.306 253.839 558.363 235.511C570.34 215.613 562.311 189.038 542.963 177.648L543.226 178.172ZM427.794 348.751C427.794 433.582 370.012 502.573 282.878 502.573C195.745 502.573 131.777 429.131 131.777 344.3C131.777 259.468 195.745 188.776 282.878 188.776C370.012 188.776 427.794 254.232 427.794 338.147V348.751Z"/></svg>Seazone · EasyCover</span>
     <a href="#resumo">Resumo</a>
     <a href="#pago-vs-back">Pago × reembolso</a>
     <a href="#sem-retorno">Sem retorno</a>
@@ -423,6 +434,13 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
 </nav>
 
 <main class="wrap">
+  <div class="brand-header">
+    <svg class="brand-mark" viewBox="0 0 564 575" xmlns="http://www.w3.org/2000/svg" aria-label="Seazone"><path d="M543.226 178.172L442.93 119.392C443.194 117.952 443.72 116.643 443.72 115.203V26.5752C443.72 11.913 431.743 0 417.001 0H363.562C348.821 0 336.843 11.913 336.843 26.5752V57.6015L300.516 36.3936C285.774 27.6225 266.294 29.0626 252.605 39.1428C252.342 39.2737 252.079 39.2737 251.947 39.4046L20.951 172.543C1.73419 183.932 -6.29474 210.507 5.55122 230.406C17.9237 251.09 45.301 256.588 64.5178 245.199L78.3381 237.213C62.017 269.025 51.7505 305.026 51.7505 344.169C51.7505 406.221 75.7056 467.226 119.799 511.344C137.173 528.624 157.443 543.156 179.555 553.759C196.666 562.007 214.567 568.814 233.257 572.218C258.002 576.669 283.8 574.444 308.808 574.444C335.922 574.444 363.036 574.444 390.018 574.444C414.5 574.444 439.113 574.575 463.99 574.575C470.176 574.575 476.231 573.004 481.759 570.254C488.866 566.72 492.947 562.792 497.685 556.509C502.95 549.57 506.635 541.061 506.635 532.159V252.923C525.062 259.599 547.306 253.839 558.363 235.511C570.34 215.613 562.311 189.038 542.963 177.648L543.226 178.172ZM427.794 348.751C427.794 433.582 370.012 502.573 282.878 502.573C195.745 502.573 131.777 429.131 131.777 344.3C131.777 259.468 195.745 188.776 282.878 188.776C370.012 188.776 427.794 254.232 427.794 338.147V348.751Z"/></svg>
+    <div class="brand-text">
+      <div class="brand-name">Seazone</div>
+      <div class="brand-sub">BackOffice Franquias</div>
+    </div>
+  </div>
   <div class="eyebrow">EasyCover · Relatório consolidado · Fase 1B</div>
   <h1>Quanto investimos, quanto retornou e quais problemas apareceram na operação.</h1>
   <p class="lede">
