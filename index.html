@@ -56,8 +56,9 @@ h3{ font-size:18px; font-weight:600; line-height:1.25 }
 /* NAV */
 .nav{ position:sticky; top:0; z-index:20; background:oklch(100% 0 0 / .88); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
 .nav-inner{ max-width:1120px; margin:0 auto; padding:12px var(--space-lg); display:flex; gap:var(--space-lg); align-items:center; overflow-x:auto; }
-.nav a{ color:var(--muted); text-decoration:none; font-size:13px; font-weight:500; white-space:nowrap; padding:6px 0; border-bottom:1px solid transparent; transition:color .18s var(--ease); }
+.nav a{ color:var(--muted); text-decoration:none; font-size:13px; font-weight:500; white-space:nowrap; padding:6px 0; border-bottom:2px solid transparent; transition:color .18s var(--ease), border-color .18s var(--ease); }
 .nav a:hover{ color:var(--text) }
+.nav a.active{ color:var(--blue); border-bottom-color:var(--blue); font-weight:600 }
 .nav-brand{ font:600 13px "Schibsted Grotesk", sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); margin-right:auto; display:inline-flex; align-items:center; gap:10px; }
 .nav-brand svg{ width:20px; height:20px; flex-shrink:0; }
 .nav-brand svg path{ fill:var(--seazone-coral); }
@@ -429,7 +430,7 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
     <a href="#fechamento">Fechamento</a>
     <a href="#diagnostico">Diagnóstico</a>
     <a href="#voz-prop">Voz do proprietário</a>
-    <a href="#conclusao">Fechamento</a>
+    <a href="#conclusao">Conclusão</a>
   </div>
 </nav>
 
@@ -1550,6 +1551,41 @@ function applyFront(key) {
 }
 frontTabs.forEach(tab => tab.addEventListener('click', () => applyFront(tab.dataset.front)));
 applyFront('franquias');
+
+// Scrollspy: destaca link do nav conforme a secao entra em vista
+(() => {
+  const navLinks = Array.from(document.querySelectorAll('.nav a[href^="#"]'));
+  const map = new Map();
+  navLinks.forEach(a => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) map.set(el, a);
+  });
+  if (!map.size) return;
+
+  let currentActive = null;
+  const setActive = link => {
+    if (currentActive === link) return;
+    navLinks.forEach(a => a.classList.toggle('active', a === link));
+    currentActive = link;
+  };
+
+  const observer = new IntersectionObserver(entries => {
+    // Pega a entrada com maior intersecao visivel
+    const visible = entries
+      .filter(e => e.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    if (visible.length) {
+      const link = map.get(visible[0].target);
+      if (link) setActive(link);
+    }
+  }, { rootMargin: '-80px 0px -60% 0px', threshold: [0, 0.1, 0.3, 0.5] });
+
+  map.forEach((_, el) => observer.observe(el));
+
+  // Clique tambem ativa imediatamente
+  navLinks.forEach(a => a.addEventListener('click', () => setActive(a)));
+})();
 </script>
 </body>
 </html>
