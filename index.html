@@ -86,6 +86,47 @@ h3{ font-size:18px; font-weight:600; line-height:1.25 }
   .strip > div + div{ border-top:1px solid var(--line); border-right:none }
 }
 
+/* WATERFALL (composicao saldo) */
+.waterfall{ margin:var(--space-xl) 0 var(--space-lg); padding:var(--space-lg) var(--space-xl); border:1px solid var(--line-soft); border-radius:6px; background:var(--surface); }
+.wf-head{ margin-bottom:var(--space-lg); display:flex; flex-direction:column; gap:6px; }
+.wf-head h3{ font-size:15px; font-weight:600; font-family:"Schibsted Grotesk", sans-serif; color:var(--text); letter-spacing:-.01em; }
+.wf-formula{ font-size:12.5px; color:var(--muted); font-family:"Figtree", sans-serif; line-height:1.55; }
+.wf-formula b{ color:var(--text); font-family:"Schibsted Grotesk", sans-serif; font-weight:600; letter-spacing:.01em; }
+.wf-rows{ display:grid; grid-template-columns:1fr; gap:0; }
+.wf-row{ display:grid; grid-template-columns:200px 20px 140px 1fr 70px; align-items:center; gap:12px; padding:12px 0; border-top:1px solid var(--line-soft); }
+.wf-row:first-child{ border-top:none }
+.wf-row.subtotal, .wf-row.result{ border-top:1px dashed var(--line); background:linear-gradient(90deg, var(--bg) 0%, transparent 60%); padding-left:6px; }
+.wf-row.result{ margin-top:6px; border-top:2px solid var(--line); padding-top:16px; }
+.wf-label{ font:600 13px "Schibsted Grotesk", sans-serif; color:var(--text); letter-spacing:.01em; }
+.wf-row.subtotal .wf-label, .wf-row.result .wf-label{ text-transform:uppercase; letter-spacing:.08em; font-size:11.5px; color:var(--muted); }
+.wf-row.result .wf-label{ color:var(--amber); font-size:12px; letter-spacing:.12em; }
+.wf-sign{ font:700 18px "Schibsted Grotesk", sans-serif; text-align:center; }
+.wf-row.plus .wf-sign{ color:var(--green) }
+.wf-row.minus .wf-sign{ color:var(--red) }
+.wf-row.subtotal .wf-sign, .wf-row.result .wf-sign{ color:var(--faint); font-weight:500 }
+.wf-val{ font:600 14px "Schibsted Grotesk", sans-serif; letter-spacing:-.01em; text-align:right; }
+.wf-row.plus .wf-val{ color:var(--green) }
+.wf-row.minus .wf-val{ color:var(--red) }
+.wf-row.subtotal .wf-val{ color:var(--text); font-size:15px }
+.wf-row.result .wf-val{ color:var(--amber); font-size:20px; font-weight:700 }
+.wf-bar{ height:12px; background:var(--surface-2); border-radius:2px; overflow:hidden; border:1px solid var(--line-soft); }
+.wf-bar > span{ display:block; height:100%; border-radius:1px; }
+.wf-bar > span.pos{ background:var(--green); opacity:.85 }
+.wf-bar > span.neg{ background:var(--red); opacity:.85 }
+.wf-bar > span.amb{ background:var(--amber); opacity:.9 }
+.wf-pct{ font:600 12.5px "Schibsted Grotesk", sans-serif; color:var(--muted); text-align:right; letter-spacing:.02em; }
+.wf-row.plus .wf-pct{ color:var(--green) }
+.wf-row.minus .wf-pct{ color:var(--red) }
+.wf-row.result .wf-pct{ color:var(--amber); font-weight:700 }
+.wf-note{ margin-top:var(--space-md); padding-top:var(--space-md); border-top:1px solid var(--line-soft); font-size:12px; color:var(--faint); line-height:1.5; }
+.wf-note b{ color:var(--muted); font-weight:600; font-family:"Schibsted Grotesk", sans-serif; font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-right:6px; }
+@media (max-width: 720px){
+  .wf-row{ grid-template-columns:1fr 20px 120px; gap:6px 10px; }
+  .wf-bar, .wf-pct{ grid-column:1 / -1; }
+  .wf-bar{ margin-top:4px }
+  .wf-pct{ text-align:left; font-size:11.5px }
+}
+
 /* CHART (imoveis cobrados) */
 .chart{ margin:var(--space-xl) 0 var(--space-lg); padding:var(--space-lg) var(--space-xl); border:1px solid var(--line-soft); border-radius:6px; background:var(--surface); }
 .chart-head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:var(--space-lg); flex-wrap:wrap; gap:var(--space-md); }
@@ -386,15 +427,62 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
 
   <!-- §04 · BALANÇO -->
   <section class="section" id="balanco" aria-label="Balanço EasyCover">
-    <div class="eyebrow">§ 04 · Balanço · comissão + danos − custo</div>
+    <div class="eyebrow">§ 04 · Balanço · nov/25 → ago/26</div>
     <h2>A EasyCover se paga?</h2>
-    <p class="lede">Cada imóvel com EasyCover gera <b>2% do faturamento</b> em comissão para a Seazone. Somando essa comissão aos reembolsos de dano e descontando o boleto do mês, o saldo de nov/25 a ago/26 fica <b class="r">negativo em R$ 15 mil</b>. Só jan, fev e mar/26 fecharam no azul, puxados pela alta temporada.</p>
+    <p class="lede">Cada imóvel com EasyCover gera <b>2% do faturamento</b> em comissão para a Seazone. Somando essa comissão aos reembolsos de dano e descontando o boleto do mês, o saldo acumulado de <b>nov/25 a ago/26</b> fica <b class="r">negativo em R$ 15 mil</b>. Só jan, fev e mar/26 fecharam no azul, puxados pela alta temporada. Setembro/26 fica de fora do saldo fechado — o fechamento do mês ainda está em aberto.</p>
 
     <section class="strip">
-      <div><div class="n neg">− R$ 15.007<small>,77</small></div><div class="l">saldo acumulado em 10 meses (nov/25 → ago/26)</div></div>
-      <div><div class="n pos">96,1%</div><div class="l">do custo coberto pela comissão (92,6%) e pelos danos (3,5%)</div></div>
-      <div><div class="n bad">3 de 10</div><div class="l">meses com saldo positivo. O custo é fixo por imóvel e a comissão varia com a temporada.</div></div>
+      <div><div class="n neg">− R$ 15.007<small>,77</small></div><div class="l">Saldo acumulado — nov/25 a ago/26</div></div>
+      <div><div class="n pos">96,1%</div><div class="l">Do custo coberto pela comissão (92,6%) e pelos danos (3,5%)</div></div>
+      <div><div class="n bad">3 de 10</div><div class="l">Meses com saldo positivo. O custo é fixo por imóvel e a comissão varia com a temporada.</div></div>
     </section>
+
+    <div class="waterfall" aria-label="Composição do saldo acumulado">
+      <div class="wf-head">
+        <h3>Composição do saldo acumulado</h3>
+        <div class="wf-formula">Fórmula: <b>Comissão 2% + Reembolsos de danos − Custo (boleto EasyCover) = Saldo acumulado</b> · Período: <b>nov/25 → ago/26</b> (setembro fora — fechamento em aberto)</div>
+      </div>
+
+      <div class="wf-rows">
+        <div class="wf-row plus">
+          <span class="wf-label">Comissão 2%</span>
+          <span class="wf-sign">+</span>
+          <span class="wf-val">R$ 360.067,43</span>
+          <div class="wf-bar"><span class="pos" style="width:92.6%"></span></div>
+          <span class="wf-pct">92,6%</span>
+        </div>
+        <div class="wf-row plus">
+          <span class="wf-label">Reembolsos de danos</span>
+          <span class="wf-sign">+</span>
+          <span class="wf-val">R$ 13.730,86</span>
+          <div class="wf-bar"><span class="pos" style="width:3.5%"></span></div>
+          <span class="wf-pct">3,5%</span>
+        </div>
+        <div class="wf-row subtotal">
+          <span class="wf-label">Entradas totais</span>
+          <span class="wf-sign">=</span>
+          <span class="wf-val">R$ 373.798,29</span>
+          <div class="wf-bar"><span class="pos" style="width:96.1%"></span></div>
+          <span class="wf-pct">96,1%</span>
+        </div>
+        <div class="wf-row minus">
+          <span class="wf-label">Custo (boleto EasyCover)</span>
+          <span class="wf-sign">−</span>
+          <span class="wf-val">R$ 388.806,06</span>
+          <div class="wf-bar"><span class="neg" style="width:100%"></span></div>
+          <span class="wf-pct">100%</span>
+        </div>
+        <div class="wf-row result">
+          <span class="wf-label">Saldo acumulado</span>
+          <span class="wf-sign">=</span>
+          <span class="wf-val">− R$ 15.007,77</span>
+          <div class="wf-bar"><span class="amb" style="width:3.86%"></span></div>
+          <span class="wf-pct">−3,9%</span>
+        </div>
+      </div>
+
+      <p class="wf-note"><b>Base das %</b> Todos os percentuais têm como referência o custo total do período (R$ 388.806,06 = 100%). Coerente com o indicador "96,1% do custo coberto" já apresentado acima. Faturamento total no período: R$ 18.003.371,61 — comissão 2% ≈ R$ 360.067,43 (bate à precisão de centavo).</p>
+    </div>
 
     <div class="table-scroll">
     <table class="t3">
