@@ -682,11 +682,10 @@
   <section class="sec">
     <span class="sec-num">§ 02 · Diagnóstico por elo · 4 fontes</span>
     <h2>37 itens, filtráveis por quem sente a dor.</h2>
-    <p class="prose">Cruzamento de 4 fontes: o WhatsApp <em>Geral Franquias</em> (12 casos consolidados em 8 temas) e três canais dedicados à EasyCover (25 problemáticas operacionais). Clique numa aba pra ver só os itens de um elo — os temas sem caso relevante somem, e o painel de problemáticas mostra apenas o do elo escolhido.</p>
+    <p class="prose">Cruzamento de 4 fontes: o WhatsApp <em>Geral Franquias</em> (12 casos consolidados em 8 temas) e três canais dedicados à EasyCover (25 problemáticas operacionais). Escolha um elo pra ver os itens que atingem esse stakeholder — temas sem caso relevante somem e o painel mostra as problemáticas específicas.</p>
 
     <div class="front-tabs" role="tablist">
-      <button class="front-tab active" data-front="all" role="tab"><span class="front-tab-lbl">Todos</span><span class="front-tab-val">37 itens</span></button>
-      <button class="front-tab" data-front="franquias" role="tab"><span class="front-tab-lbl">Franquia</span><span class="front-tab-val">17 · <span class="dot f" style="margin-left:2px"></span></span></button>
+      <button class="front-tab active" data-front="franquias" role="tab"><span class="front-tab-lbl">Franquia</span><span class="front-tab-val">17 · <span class="dot f" style="margin-left:2px"></span></span></button>
       <button class="front-tab" data-front="proprietarios" role="tab"><span class="front-tab-lbl">Proprietário</span><span class="front-tab-val">9 · <span class="dot p" style="margin-left:2px"></span></span></button>
       <button class="front-tab" data-front="seazone" role="tab"><span class="front-tab-lbl">Seazone</span><span class="front-tab-val">11 · <span class="dot s" style="margin-left:2px"></span></span></button>
     </div>
@@ -1394,31 +1393,22 @@
 
   function applyFront(key) {
     frontTabs.forEach(t => t.classList.toggle('active', t.dataset.front === key));
-
-    // Filter cases in themes by principal impact
     const impact = FRONT_TO_IMPACT[key];
     document.querySelectorAll('.case').forEach(c => {
-      c.style.display = (key === 'all' || c.dataset.impact === impact) ? '' : 'none';
+      c.style.display = (c.dataset.impact === impact) ? '' : 'none';
     });
-    // Hide themes with no visible cases
     document.querySelectorAll('.theme').forEach(t => {
       const visible = Array.from(t.querySelectorAll('.case')).some(c => c.style.display !== 'none');
       t.style.display = visible ? '' : 'none';
     });
-
-    // Show/hide front panels
     frontPanels.forEach(p => {
-      if (key === 'all') {
-        p.classList.add('show-all');
-        p.classList.remove('active');
-      } else {
-        p.classList.remove('show-all');
-        p.classList.toggle('active', p.id === 'front-' + key);
-      }
+      p.classList.remove('show-all');
+      p.classList.toggle('active', p.id === 'front-' + key);
     });
   }
 
   frontTabs.forEach(tab => tab.addEventListener('click', () => applyFront(tab.dataset.front)));
+  applyFront('franquias');
 
   document.querySelectorAll('.prob-toggle').forEach(btn => {
     btn.addEventListener('click', () => btn.parentElement.classList.toggle('open'));
