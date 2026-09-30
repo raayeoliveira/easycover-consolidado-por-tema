@@ -100,10 +100,17 @@ h3{ font-size:18px; font-weight:600; line-height:1.25 }
 
 /* FECHAMENTO DIAGNOSTICO */
 .achados{ display:grid; grid-template-columns:1fr; gap:var(--space-md); margin:var(--space-lg) 0; }
-.achado{ border:1px solid var(--line-soft); border-left:3px solid var(--amber); border-radius:6px; background:var(--surface); padding:var(--space-lg) var(--space-xl); }
-.achado-head{ display:flex; justify-content:space-between; align-items:baseline; gap:var(--space-md); margin-bottom:var(--space-md); flex-wrap:wrap; }
+.achado{ border:1px solid var(--line-soft); border-left:3px solid var(--amber); border-radius:6px; background:var(--surface); padding:var(--space-md) var(--space-xl); overflow:hidden; }
+.achado-toggle{ width:100%; display:block; padding:0; background:transparent; border:none; text-align:left; cursor:pointer; color:inherit; font:inherit; }
+.achado-head{ display:flex; justify-content:space-between; align-items:center; gap:var(--space-md); flex-wrap:wrap; }
 .achado-num{ font:600 11px "Schibsted Grotesk", sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--amber); }
-.achado-title{ font:600 18px/1.3 "Schibsted Grotesk", sans-serif; color:var(--text); letter-spacing:-.01em; margin:6px 0 var(--space-md); }
+.achado-chevron{ color:var(--faint); font-family:"Schibsted Grotesk", sans-serif; font-size:22px; font-weight:400; margin-left:auto; transition:transform .18s var(--ease); }
+.achado.open .achado-chevron{ transform:rotate(45deg); color:var(--amber) }
+.achado-title{ font:600 18px/1.3 "Schibsted Grotesk", sans-serif; color:var(--text); letter-spacing:-.01em; margin:6px 0 0; }
+.achado.open .achado-title{ margin-bottom:var(--space-md) }
+.achado-grid, .achado-quem{ display:none }
+.achado.open .achado-grid{ display:grid }
+.achado.open .achado-quem{ display:block }
 .achado-grid{ display:grid; grid-template-columns:1fr 1fr; gap:var(--space-lg); }
 .achado-grid .col h5{ font:600 10.5px "Schibsted Grotesk", sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); margin:0 0 6px; }
 .achado-grid .col ul{ margin:0; padding:0 0 0 14px; }
@@ -364,6 +371,8 @@ table.t2 td.why{ font-size:12.5px; color:var(--muted); max-width:360px; }
 .case{ border:1px solid var(--line-soft); border-radius:6px; margin-top:var(--space-md); background:var(--surface); overflow:hidden; }
 .case-toggle{ width:100%; display:grid; grid-template-columns:1fr auto auto; gap:var(--space-md); align-items:center; padding:14px 18px; background:transparent; border:none; color:var(--text); font:600 14.5px "Figtree", sans-serif; cursor:pointer; text-align:left; transition:background .18s var(--ease); }
 .case-toggle:hover{ background:var(--surface-2) }
+.case-code{ display:inline-block; font:600 11px "Schibsted Grotesk", sans-serif; letter-spacing:.06em; color:var(--blue); padding:2px 7px; border-radius:3px; background:oklch(70% .17 260 / .1); margin-right:8px; vertical-align:1px; }
+.case-code.wa{ color:var(--muted); background:var(--surface-2) }
 .case-tag{ display:inline-flex; align-items:center; gap:6px; font-size:11.5px; color:var(--muted); font-weight:500; text-transform:uppercase; letter-spacing:.08em; font-family:"Schibsted Grotesk", sans-serif; }
 .case-chevron{ color:var(--faint); font-family:"Schibsted Grotesk", sans-serif; font-size:18px; font-weight:400; width:16px; text-align:center; transition:transform .18s var(--ease); }
 .case.open .case-chevron{ transform:rotate(45deg); color:var(--blue) }
@@ -375,21 +384,7 @@ table.t2 td.why{ font-size:12.5px; color:var(--muted); max-width:360px; }
 .source{ margin-top:12px; font-family:"Schibsted Grotesk", sans-serif; font-size:11.5px; letter-spacing:.04em; color:var(--faint); line-height:1.5 }
 .source strong{ color:var(--muted); font-weight:600 }
 
-/* PROBLEMÁTICAS (canais dedicados) */
-.front-panel{ display:none; margin-top:var(--space-xl); padding-top:var(--space-lg); border-top:1px solid var(--line-soft); }
-.front-panel.active{ display:block }
-.front-lede{ color:var(--muted); font-size:14.5px; line-height:1.55; margin-bottom:var(--space-lg); max-width:70ch; }
-.front-lede em{ color:var(--text); font-style:italic }
-.prob{ border:1px solid var(--line-soft); border-radius:6px; margin-top:var(--space-sm); background:var(--surface); overflow:hidden; }
-.prob-toggle{ width:100%; display:grid; grid-template-columns:60px 1fr auto; gap:var(--space-md); align-items:center; padding:14px 18px; background:transparent; border:none; color:var(--text); font:600 14px "Figtree", sans-serif; cursor:pointer; text-align:left; transition:background .18s var(--ease); }
-.prob-toggle:hover{ background:var(--surface-2) }
-.prob-num{ font:600 12px "Schibsted Grotesk", sans-serif; letter-spacing:.08em; color:var(--blue); }
-.prob-chevron{ color:var(--faint); font-size:18px; font-family:"Schibsted Grotesk", sans-serif; width:16px; text-align:center; transition:transform .18s var(--ease); }
-.prob.open .prob-chevron{ transform:rotate(45deg); color:var(--blue) }
-.prob-body{ display:none; padding:0 18px 18px; border-top:1px solid var(--line-soft); }
-.prob.open .prob-body{ display:block }
-.prob-body p{ margin:14px 0 12px; color:var(--muted); font-size:13.5px; line-height:1.55 }
-.prob-body code{ font-family:"Figtree", monospace; font-size:12.5px; padding:2px 6px; background:var(--bg); border:1px solid var(--line-soft); border-radius:3px; color:var(--amber); }
+.case-body code{ font-family:"Figtree", monospace; font-size:12.5px; padding:2px 6px; background:var(--bg); border:1px solid var(--line-soft); border-radius:3px; color:var(--amber); }
 
 /* SIA THEMES */
 .themes{ list-style:none; padding:0; margin:var(--space-lg) 0; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:var(--space-md); }
@@ -836,7 +831,7 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
     <!-- Divider para as tabs detalhadas -->
     <div class="ops-divider">
       <div class="eyebrow">Detalhamento · escolha um elo</div>
-      <p>Abaixo, as 31 manifestações estão organizadas por elo (franquia, proprietário, Seazone) com evidência textual completa e fonte de cada item.</p>
+      <p>Abaixo, as 31 manifestações estão organizadas em 9 temas transversais, com evidência textual completa e fonte de cada item. Use as abas para filtrar por elo (franquia, proprietário, Seazone) — cada tema mostra apenas os itens que impactam o elo selecionado.</p>
     </div>
 
     <div class="front-tabs" role="tablist">
@@ -845,17 +840,17 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
       <button class="front-tab" data-front="seazone" role="tab"><span class="front-tab-lbl">Seazone</span><span class="front-tab-val">10 · <span class="dot s"></span></span></button>
     </div>
 
-    <!-- Temas WhatsApp Geral Franquias -->
+    <!-- Temas unificados: WhatsApp Geral + canais dedicados EasyCover, agrupados por assunto e filtrados por elo (JS applyFront) -->
     <article class="theme">
       <div class="theme-num">01</div>
       <div class="theme-body">
         <div class="theme-head">
           <div class="theme-title">Escopo da cobertura</div>
-          <div class="theme-meta">2 casos · 6 mensagens</div>
+          <div class="theme-meta">6 itens · matriz cobre / não cobre · expectativa desalinhada</div>
         </div>
         <div class="case" data-impact="p">
           <button class="case-toggle" type="button">
-            <span class="case-title">Ar-condicionado / manutenção de desgaste — proprietário paga, franqueada acha que é seguro</span>
+            <span class="case-title"><span class="case-code wa">WA.1</span>Ar-condicionado / manutenção de desgaste — proprietário paga, franqueada acha que é seguro</span>
             <span class="case-tag"><span class="dot p"></span> Proprietário</span>
             <span class="case-chevron">+</span>
           </button>
@@ -869,17 +864,66 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
         </div>
         <div class="case" data-impact="f">
           <button class="case-toggle" type="button">
-            <span class="case-title">Franquia mínima por cobertura desmotiva acionamento em dano pequeno</span>
+            <span class="case-title"><span class="case-code wa">WA.2</span>Franquia mínima por cobertura desmotiva acionamento em dano pequeno</span>
             <span class="case-tag"><span class="dot f"></span> Franquia</span>
             <span class="case-chevron">+</span>
           </button>
           <div class="case-body">
             <p>Regra do EasyCover: a franquia é de <b>10% do prejuízo</b>, com um valor mínimo que depende da cobertura: <b>R$ 150</b> em danos gerais, <b>R$ 300</b> em vendaval/granizo e <b>R$ 500</b> em danos elétricos e em roubo/furto. <b>Queda de raio não tem franquia.</b> Na prática, muitos danos pequenos ficam abaixo do mínimo. Ex.: um micro-ondas queimado com conserto de R$ 450 não é indenizado, porque a franquia de danos elétricos é de R$ 500.</p>
-            <p style="margin-top:12px;padding:10px 12px;background:#fff8e6;border-left:3px solid #f0b429;border-radius:4px;font-size:14px;color:#5a4200"><b>Não confundir</b> — o "R$ 150" que aparece no T4 (Reembolso R$ 150 / política de assistência) é outra coisa: é o <b>teto de reembolso da assistência 24h</b>, não a franquia do sinistro.</p>
+            <p style="margin-top:12px;padding:10px 12px;background:#fff8e6;border-left:3px solid #f0b429;border-radius:4px;font-size:14px;color:#5a4200"><b>Não confundir</b> — o "R$ 150" que aparece no tema Reembolso R$ 150 / política de assistência é outra coisa: é o <b>teto de reembolso da assistência 24h</b>, não a franquia do sinistro.</p>
             <span class="lbl">Evidência</span>
             <div class="quote">"Se o dano for maior que a franquia acho que sim. Senão não vale a pena acionar."</div>
             <div class="quote">"Tem a franquia de 150,00" — em resposta a dúvida sobre acionar por lixeira quebrada</div>
             <div class="source"><strong>Fonte:</strong> Geral Franquias · Franqueada · SC (28/07/2026, L4715) · Franqueada · PR (10/08/2026, L6168)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="f">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">FR.9</span>Escopo confuso: dedetização, manutenção, porta de vidro, encanador — cada dúvida é caso novo</span>
+            <span class="case-tag"><span class="dot f"></span> Franquia</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>No grupo oficial, entre 05/08 e 18/09, franqueadas perguntaram individualmente sobre: dedetização (não cobre), encanador (cobre como assistência), sofá manchado (cobre como sinistro), ar-condicionado sem gás (não cobre — é desgaste), porta de armário caindo (cobre se for dano), porta de vidro com roldana travando (não cobre — manutenção), ferro de passar sujo (não cobre — dano no item do hóspede). Padrão claro: <em>não há matriz "cobre / não cobre" acessível</em>.</p>
+            <div class="quote">"Boa tarde gente, o seguro cobre dedetização?"</div>
+            <div class="quote">"Primeira vez solicitando serviço, cobre encanador?"</div>
+            <div class="quote">"Boa tarde, o EasyCover cobre manutenção de porta de vidro? No caso aparentemente precisa trocar as roldanas."</div>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · várias franqueadas (07/08 → 01/09/2026, L7, L77, L78, L373)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="p">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">PR.3</span>Franquia mínima de R$ 150 não foi comunicada com clareza na venda</span>
+            <span class="case-tag"><span class="dot p"></span> Proprietário</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Colaboradora Seazone com imóvel próprio reclamou publicamente que nunca ouviu falar da franquia de R$ 150 antes de precisar acionar. Se uma pessoa da própria rede não sabia, é razoável assumir que boa parte dos proprietários também não.</p>
+            <div class="quote">"Só que o proprietário vai falar que já paga o seguro mensal para cobrir isso. Esse é o problema, nunca ouvi falar que pagaria R$ 150 mínimo."</div>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Colaboradora · Seazone (17/08/2026, L167–L168)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="p">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">PR.4</span>Proprietário acha que paga a Seazone "para resolver tudo" — inclui manutenção que não é escopo</span>
+            <span class="case-tag"><span class="dot p"></span> Proprietário</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Caso do ar-condicionado (WA.1 acima): proprietário argumentou pra franqueada que já paga a Seazone "para resolver todos os problemas do imóvel" — logo o seguro deveria cobrir. Descolamento clássico entre a expectativa do proprietário e o escopo real do produto.</p>
+            <div class="quote">"O proprietário disse que paga a seazone para resolver todos os problemas do imovel. Eu desconheço isto mas sei do seguro."</div>
+            <div class="source"><strong>Fonte:</strong> Geral Franquias · Franqueada · SP (02/08/2026, L5400) — cruz-referência com FR.9</div>
+          </div>
+        </div>
+        <div class="case" data-impact="p">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">PR.7</span>Sem apólice, o proprietário assume todo o risco patrimonial — via franqueada</span>
+            <span class="case-tag"><span class="dot p"></span> Proprietário</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Do lado do proprietário: quando ele opta por não contratar, o dano é cobrado direto do hóspede pela franqueada. Se o hóspede não pagar, o proprietário absorve. Sem visibilidade do padrão da rede pra decidir se compensa ou não contratar.</p>
+            <div class="source"><strong>Fonte:</strong> Geral Franquias · Franqueada · RJ (19/09/2026, L10815)</div>
           </div>
         </div>
       </div>
@@ -889,12 +933,273 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
       <div class="theme-num">02</div>
       <div class="theme-body">
         <div class="theme-head">
-          <div class="theme-title">Como acionar (processo)</div>
-          <div class="theme-meta">1 caso · 7 mensagens</div>
+          <div class="theme-title">SLA e canais de emergência</div>
+          <div class="theme-meta">7 itens · 0800 · prestadores · retorno de sinistro</div>
         </div>
         <div class="case" data-impact="s">
           <button class="case-toggle" type="button">
-            <span class="case-title">Franqueadas nunca acionaram e não sabem o caminho</span>
+            <span class="case-title"><span class="case-code wa">WA.3</span>3 ligações no 0800 sem protocolo, com hóspede sem chuveiro esperando</span>
+            <span class="case-tag"><span class="dot s"></span> Seazone</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Emergência real com hóspede sem chuveiro esperando pra ir a uma reunião. A franqueada ligou 3 vezes no 0800, foi pedida a informar o CNPJ, deixada esperando, e não recebeu protocolo em nenhuma das tentativas. Marcou a Líder de Franquias, o BackOffice e o Suporte no grupo pedindo ajuda.</p>
+            <span class="lbl">Evidência</span>
+            <div class="quote">"@Líder Franquias, @BackOffice, @Suporte, alguém por favor me ajudar. Estou com uma hóspede sem chuveiro, quer tomar banho para ir a um reunião. E já liguei 3 vezes no 0800 da easy cover, me pedem o CNPJ e me deixam esperando na linha, por alguns minutos, e ninguém volta a falar comigo e já entra a solicitação dele avaliação e não me dão nenhum protocolo."</div>
+            <div class="source"><strong>Fonte:</strong> Geral Franquias · Franqueada · SC (20/08/2026, L7043)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="f">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">FR.1</span>Central 0800 não localiza CNPJ da Seazone ou não sabe o que é EasyCover</span>
+            <span class="case-tag"><span class="dot f"></span> Franquia</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Em 15/09, franqueado de SP passou 2 horas na ligação com a central da Now Seguros — que dizia que "o CNPJ da Seazone não tem contrato" e "não sabem o que é EasyCover". Só localizaram na terceira ligação. Situação: apto sem energia, hóspede prestes a chegar.</p>
+            <div class="quote">"Estou ligando em um número e dizem que é da Now Seguros. Que o CNPJ da Seazone não tem contrato. Não conseguem localizar. Nem sabem o que é EasyCover. Estou há 2h na ligação com eles."</div>
+            <div class="quote">"A central fica bem confusa pra localizar. Semana passada tive pane elétrica no mesmo apto."</div>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · SP (15/09/2026, L458–L481)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="f">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">FR.4</span>Prestador não aparece na hora marcada</span>
+            <span class="case-tag"><span class="dot f"></span> Franquia</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Franqueada de MT relatou 27/08: prestador da assistência tinha data e hora marcada e não apareceu. Foi resolvido só no dia seguinte, com nova ligação. Outra franqueada (MT/Madego) reforçou publicamente: "acionar o seguro nas urgências da nossa região realmente está inviável. Isso quando os prestadores realmente comparecem".</p>
+            <div class="quote">"Esse problema foi que estava marcado o dia e horário e ele não apareceu."</div>
+            <div class="quote">"Acionar o seguro nas urgências da nossa região realmente está inviável. Isso quando os prestadores realmente comparecem." — Franqueada · MT (Madego)</div>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · MT + Madego · MT (27/08/2026, L326–L336)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="f">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">FR.5</span>Prestador vai, identifica problema, sai sem trocar peça — franqueada aciona 2×</span>
+            <span class="case-tag"><span class="dot f"></span> Franquia</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Regra da EasyCover: a assistência cobre a mão de obra, não a peça. Se o prestador chega e a peça precisa ser comprada, ele vai embora. Franqueada compra, marca segunda visita, reagenda a operação. "Isso é demais, pq vc vai ter que acionar 2x" — e é considerado padrão pelo lado EasyCover.</p>
+            <div class="quote">"Sinceramente isso é demais, pq vc vai ter que acionar 2x. O rapaz foi no apartamento falou que precisa comprar o material. Não pode esperar e vai voltar outro dia."</div>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · MT (27/08/2026, L320)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="f">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">FR.6</span>Franqueada · SC: 3 ligações no 0800, 30 minutos, sem protocolo</span>
+            <span class="case-tag"><span class="dot f"></span> Franquia</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Caso já registrado no tema SLA do 0800. Aqui aparece a resposta pública da franqueada dando feedback sobre o modelo: <strong>"é muito burocrático para atendimento emergencial. Vai gerar muito desconforto com os hóspedes"</strong>. Representante EasyCover reconheceu ("é um desafio que só a EasyCover tem"), mas defendeu o modelo. A conclusão explícita da franqueada: <em>"pra gente emergência é o hóspede ligar e tudo se resolve em 40 minutos máximo. Imagina, passei 2 horas para conseguir uma autorização para resolver um chuveiro que sempre resolvia em 30 minutos."</em></p>
+            <div class="quote">"Um feedback, isso em alta temporada vai dá panos pra manga. É muito burocrático para atendimento emergencial."</div>
+            <div class="quote">"Isso é um desafio que só a EasyCover tem. Tínhamos duas opções: oferecer e ter a possibilidade de reembolso, ou não oferecer." — Repr. EasyCover</div>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · SC (20/08/2026, L193–L260)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="f">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">FR.7</span>Sinistro aberto, orçamento pedido, sem retorno em serviço emergencial</span>
+            <span class="case-tag"><span class="dot f"></span> Franquia</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Colaboradora da Seazone que também opera imóvel, no mesmo dia do caso da SC (20/08), relatou publicamente: sinistro aberto, foi solicitado orçamento pela EasyCover e não obteve retorno — mesmo sendo serviço emergencial.</p>
+            <div class="quote">"Sandra, precisei usar aqui e ainda não recebi retorno! E era serviço emergencial. Foi pra um orçamento e nada até agora."</div>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Colaboradora · Seazone (20/08/2026, L261)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="f">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">FR.8</span>CPF do proprietário exigido pela central — franqueada não tem acesso</span>
+            <span class="case-tag"><span class="dot f"></span> Franquia</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Franqueada de SP em 07/09: ligou pra assistência 24h e a central pediu CPF do proprietário. Ela não tem. Respondeu ao grupo — só depois o representante da EasyCover confirmou que o correto é passar o CNPJ da Seazone. Contradição direta com o que a central estava exigindo.</p>
+            <div class="quote">"Porém entrei em contato e solicitam o CPF do Proprietário. Não temos acesso a esse documento, infelizmente. Então como devemos proceder?"</div>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · SP (07/09/2026, L392–L397)</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="theme">
+      <div class="theme-num">03</div>
+      <div class="theme-body">
+        <div class="theme-head">
+          <div class="theme-title">Integração técnica</div>
+          <div class="theme-meta">5 itens · API Now · autenticação · endpoints</div>
+        </div>
+        <div class="case" data-impact="s">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">SZ.2</span>API de cancelamento retornou 403 Forbidden por semanas</span>
+            <span class="case-tag"><span class="dot s"></span> Seazone</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>De 16/07 até 20/07, o endpoint <code>DELETE /proposta/{id}</code> devolvia 403 usando o mesmo token da emissão que funcionava. Vários imóveis ficaram presos — cancelamento manual pela Now foi paliativo. Causa raiz nunca foi documentada no grupo.</p>
+            <div class="quote">"Todo cancelamento que a gente tenta está dando erro — a API de vocês devolve 403 Forbidden no DELETE /proposta/{id}. Já tem vários imóveis presos por causa disso."</div>
+            <div class="source"><strong>Fonte:</strong> Seazone × EasyCover Tech · Tech · Seazone (16/07/2026, L25); EasyCover × Seazone · Coord. · Seazone (22/07/2026, L16)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="s">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">SZ.3</span>Deploy da nova API quebrou autenticação em produção</span>
+            <span class="case-tag"><span class="dot s"></span> Seazone</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Em 03/08 a Now migrou pra nova URL de produção. Seazone atualizou e o <code>/login</code> voltou 403 Forbidden (IP não liberado). Após ajuste, virou 401 Unauthorized (credenciais). Precisou de intervenção manual pra estabilizar em 04/08 — dois dias com a integração parada.</p>
+            <div class="quote">"Atualizamos pra API nova de produção e o request já está indo pra lá, mas está voltando 403 Forbidden no /login. As credenciais são as mesmas de antes. Tem alguma restrição de IP/allowlist?"</div>
+            <div class="quote">"Ontem estava dando 403 Forbidden no /login, agora veio com 401 Unauthorized. A mudança indica que o IP foi liberado, mas agora a API nova está recusando login/senha."</div>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Seazone · Tech · Seazone (03–04/08/2026, L117–L148)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="s">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">SZ.4</span>Migração assíncrona sem comunicação prévia</span>
+            <span class="case-tag"><span class="dot s"></span> Seazone</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Na nova API, o <code>POST /proposta</code> passou a retornar <code>{status:"QUEUED", jobId}</code> em vez do número da apólice. Seazone não foi avisada — descobriu na prática que precisaria consultar <code>/job/{jobId}</code> depois. A integração precisou ser reescrita em campo.</p>
+            <div class="quote">"Pelo que vi, na API nova a emissão é assíncrona (antes, era síncrona) — o POST /proposta retorna QUEUED sem o número da apólice na hora. Como a gente obtém o número depois?"</div>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Seazone · Tech · Seazone (10/08/2026, L178)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="s">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">SZ.5</span>GET /proposta/imovel retornando 500 por 6 dias</span>
+            <span class="case-tag"><span class="dot s"></span> Seazone</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>De 11/08 a 17/08, o endpoint de consulta por código de imóvel devolvia 500 Internal Server Error em todos os códigos — inclusive nos que emitiram com sucesso. Backfill de dados no lado Seazone ficou impossível nesse período.</p>
+            <div class="quote">"O endpoint GET /proposta/imovel/{codigo} está retornando 500 Internal Server Error pra todos os códigos que tento — inclusive pra imóveis que emitiram com sucesso. É consistente (todos falham)."</div>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Seazone · Tech · Seazone (11/08 e 17/08/2026, L203–L208)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="s">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">SZ.6</span>Emissão duplicada e emissão perdida na correção manual</span>
+            <span class="case-tag"><span class="dot s"></span> Seazone</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Nos 7 imóveis subidos manualmente pela Now pra fechar julho: <strong>CAO0305 saiu duplicada</strong> (duas apólices — 53408 e 53409 — pro mesmo imóvel/período) e <strong>SAA0615 sumiu</strong> (nenhum dos 7 era dela). Cada divergência gera reconciliação manual do lado Seazone.</p>
+            <div class="quote">"1. CAO0305 saiu duplicada — vieram duas apólices pro mesmo imóvel/período: 53408 e 53409. Conseguem cancelar uma delas? 2. SAA0615 não veio — nenhum dos 7 é dela."</div>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Seazone · Tech · Seazone (04/08/2026, L170)</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="theme">
+      <div class="theme-num">04</div>
+      <div class="theme-body">
+        <div class="theme-head">
+          <div class="theme-title">Reembolso R$ 150 / política de assistência</div>
+          <div class="theme-meta">4 itens · teto de reembolso · percepção de valor</div>
+        </div>
+        <div class="case" data-impact="f">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">FR.2</span>Reembolso máximo de R$ 150 é insuficiente para emergência real</span>
+            <span class="case-tag"><span class="dot f"></span> Franquia</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Quando a central não tem prestador, EasyCover reembolsa até R$ 150 pela mão de obra (R$ 200 pra vidraceiro). Em capital, à noite, esse valor não paga um eletricista. Franqueado de SP: "eletricista mais barato uma hora dessa vai cobrar 500. Nem Uber sai por 150. Não serve de nada". Proprietário ameaçou cancelar a apólice depois desse episódio.</p>
+            <div class="quote">"Estão me dizendo que reembolsam 150 reais. O eletricista mais barato que tem uma hora dessa vai cobrar 500. Desculpa, mas isso não é assistência 24hs. Ou seja, não tem o que fazer."</div>
+            <div class="quote">"Preciso de apoio, o proprietário falou que vai cancelar o seguro. Paga 2% ao mês e quando precisa, não consegue usar."</div>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · SP (15/09/2026, L501–L530)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="p">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">PR.1</span>"Paga 2% ao mês e quando precisa, não consegue usar"</span>
+            <span class="case-tag"><span class="dot p"></span> Proprietário</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Frase literal do proprietário de SP transmitida pela franqueada em 15/09 (caso do disjuntor). É a formulação mais crua do problema: valor recorrente cobrado, valor entregue percebido como próximo de zero em emergência.</p>
+            <div class="quote">"Preciso de apoio, o proprietário falou que vai cancelar o seguro. Paga 2% ao mês e quando precisa, não consegue usar."</div>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · SP citando proprietário (15/09/2026, L501–L502)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="p">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">PR.2</span>Ameaça direta de cancelamento após incidente</span>
+            <span class="case-tag"><span class="dot p"></span> Proprietário</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Consequência prática de PR.1. Cada incidente mal resolvido no 0800 acende um risco de churn de proprietário — que é o segurado, o pagador e o cliente da gestão Seazone.</p>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · SP (15/09/2026, L501)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="p">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">PR.6</span>Reembolso de R$ 150 pra mão de obra em capital não cobre o custo real</span>
+            <span class="case-tag"><span class="dot p"></span> Proprietário</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Ver FR.2. Do lado do proprietário: a promessa é assistência emergencial 24h. Quando ela falha e cai em reembolso limitado, o gap entre o custo real (R$ 500 em SP) e o teto do reembolso (R$ 150) sai do bolso — do proprietário ou da franqueada.</p>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · SP (15/09/2026, L516–L530)</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="theme">
+      <div class="theme-num">05</div>
+      <div class="theme-body">
+        <div class="theme-head">
+          <div class="theme-title">Divergência de informação</div>
+          <div class="theme-meta">2 itens · FAQ público × central × manual</div>
+        </div>
+        <div class="case" data-impact="f">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">FR.3</span>Divergência entre o manual público e o que a central atende</span>
+            <span class="case-tag"><span class="dot f"></span> Franquia</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Mesmo caso do disjuntor: eletricista foi ao apto e disse que "o seguro não cobre disjuntor". O proprietário mandou pra franqueada a cláusula do FAQ oficial da EasyCover dizendo que <em>cobre sim</em>. O representante da EasyCover confirmou no grupo: "tem a troca do disjuntor sim" — e prometeu tratar internamente. Ou seja, o profissional em campo está negando cobertura que existe.</p>
+            <div class="quote">"O eletricista foi lá, disse que era o disjuntor, mas que não poderia trocar pq o seguro não cobre."</div>
+            <div class="quote">"Agora o proprietário me mandou a cláusula do seguro que diz que sim, ele deveria ter trocado o disjuntor."</div>
+            <div class="quote">"Tem a troca do disjuntor sim. Lucas, estou aqui pra brigar pelo segurado. Já passei o seu caso e vou tratar isso aqui internamente." — Repr. EasyCover</div>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · SP + Repr. EasyCover (15/09/2026, L484–L494)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="p">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">PR.5</span>Divergência FAQ público × central da EasyCover erode confiança</span>
+            <span class="case-tag"><span class="dot p"></span> Proprietário</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Ver FR.3. Do lado do proprietário: ele lê no FAQ oficial que a troca do disjuntor está coberta, o prestador vai lá e nega — proprietário conclui que o produto <em>não faz o que promete</em>. Erosão direta da confiança na apólice.</p>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · SP citando proprietário (15/09/2026, L486)</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="theme">
+      <div class="theme-num">06</div>
+      <div class="theme-body">
+        <div class="theme-head">
+          <div class="theme-title">Onboarding do fluxo de acionamento</div>
+          <div class="theme-meta">1 item · franqueada não sabe o caminho</div>
+        </div>
+        <div class="case" data-impact="s">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code wa">WA.4</span>Franqueadas nunca acionaram e não sabem o caminho</span>
             <span class="case-tag"><span class="dot s"></span> Seazone</span>
             <span class="case-chevron">+</span>
           </button>
@@ -911,15 +1216,15 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
     </article>
 
     <article class="theme">
-      <div class="theme-num">04</div>
+      <div class="theme-num">07</div>
       <div class="theme-body">
         <div class="theme-head">
-          <div class="theme-title">Laudo / prova de dano</div>
-          <div class="theme-meta">1 caso · 1 mensagem</div>
+          <div class="theme-title">Laudo e custos absorvidos pela franqueada</div>
+          <div class="theme-meta">2 itens · prova de dano · manutenção fora do escopo</div>
         </div>
         <div class="case" data-impact="f">
           <button class="case-toggle" type="button">
-            <span class="case-title">Laudo de técnico custa a partir de R$ 300 em SP e inibe o acionamento</span>
+            <span class="case-title"><span class="case-code wa">WA.5</span>Laudo de técnico custa a partir de R$ 300 em SP e inibe o acionamento</span>
             <span class="case-tag"><span class="dot f"></span> Franquia</span>
             <span class="case-chevron">+</span>
           </button>
@@ -931,42 +1236,9 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
             <div class="source"><strong>Fonte:</strong> Geral Franquias · Franqueada · SP (19/06/2026, L638) · E-mail Jorge Moura / EasyCover (26/06/2026)</div>
           </div>
         </div>
-      </div>
-    </article>
-
-    <article class="theme">
-      <div class="theme-num">06</div>
-      <div class="theme-body">
-        <div class="theme-head">
-          <div class="theme-title">SLA do 0800</div>
-          <div class="theme-meta">1 caso · 1 mensagem</div>
-        </div>
-        <div class="case" data-impact="s">
-          <button class="case-toggle" type="button">
-            <span class="case-title">3 ligações no 0800 sem protocolo, com hóspede sem chuveiro esperando</span>
-            <span class="case-tag"><span class="dot s"></span> Seazone</span>
-            <span class="case-chevron">+</span>
-          </button>
-          <div class="case-body">
-            <p>Emergência real com hóspede sem chuveiro esperando pra ir a uma reunião. A franqueada ligou 3 vezes no 0800, foi pedida a informar o CNPJ, deixada esperando, e não recebeu protocolo em nenhuma das tentativas. Marcou a Líder de Franquias, o BackOffice e o Suporte no grupo pedindo ajuda.</p>
-            <span class="lbl">Evidência</span>
-            <div class="quote">"@Líder Franquias, @BackOffice, @Suporte, alguém por favor me ajudar. Estou com uma hóspede sem chuveiro, quer tomar banho para ir a um reunião. E já liguei 3 vezes no 0800 da easy cover, me pedem o CNPJ e me deixam esperando na linha, por alguns minutos, e ninguém volta a falar comigo e já entra a solicitação dele avaliação e não me dão nenhum protocolo."</div>
-            <div class="source"><strong>Fonte:</strong> Geral Franquias · Franqueada · SC (20/08/2026, L7043)</div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="theme">
-      <div class="theme-num">07</div>
-      <div class="theme-body">
-        <div class="theme-head">
-          <div class="theme-title">Custo absorvido pela franqueada</div>
-          <div class="theme-meta">1 caso · 1 mensagem</div>
-        </div>
         <div class="case" data-impact="f">
           <button class="case-toggle" type="button">
-            <span class="case-title">Franqueada pagou do próprio bolso manutenção que era coberta</span>
+            <span class="case-title"><span class="case-code wa">WA.6</span>Franqueada pagou do próprio bolso manutenção que era coberta</span>
             <span class="case-tag"><span class="dot f"></span> Franquia</span>
             <span class="case-chevron">+</span>
           </button>
@@ -980,149 +1252,72 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
       </div>
     </article>
 
-    <!-- ==== PAINEL FRANQUIA ==== -->
-    <div class="front-panel" id="front-franquias">
-      <p class="front-lede">A franquia é onde a parceria fura em campo. É ela que enfrenta central que não localiza CNPJ, prestador que não aparece, reembolso de R$ 150 que não cobre um eletricista de emergência — e no meio disso, precisa manter a experiência do hóspede.</p>
+    <article class="theme">
+      <div class="theme-num">08</div>
+      <div class="theme-body">
+        <div class="theme-head">
+          <div class="theme-title">Fechamento mensal</div>
+          <div class="theme-meta">2 itens · atraso recorrente · bypass manual</div>
+        </div>
+        <div class="case" data-impact="s">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">SZ.1</span>Fechamento mensal atrasa recorrentemente</span>
+            <span class="case-tag"><span class="dot s"></span> Seazone</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Em três meses seguidos (jul, ago, set/2026), o coordenador de franquias cobrou repetidamente previsão de fechamento com a EasyCover. Em julho foram 6+ cobranças em uma semana antes de sair prazo. Em agosto, 4 cobranças até virem prazo pra "amanhã". Em setembro (21/09), volta a cobrar ajustes.</p>
+            <div class="quote">"Bom dia pessoal, alguma previsão do fechamento?" — repetido 03/07, 06/07, 08/07, 09/07, 10/08, 11/08, 12/08, 21/09</div>
+            <div class="source"><strong>Fonte:</strong> Seazone × EasyCover Tech · Coord. Franquias · Seazone (L3–L84, jul/ago/set 2026)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="s">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">SZ.7</span>Now sobe emissões "forçadamente" no sistema para fechar o mês</span>
+            <span class="case-tag"><span class="dot s"></span> Seazone</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Em 29/07 a Head de Operações da Now confirmou: "encontramos uma forma de subir essas 7 emissões no sistema da Seguradora. Será mais uma ação paliativa para encerrarmos julho sem diferenças." Ou seja, o fechamento do mês depende de bypass manual — não do fluxo automatizado. Os números da apólice tiveram que ser passados por PDFs individuais depois.</p>
+            <div class="quote">"Conforme conversamos, encontramos uma forma de subir essas 7 emissões no sistema da Seguradora. Será mais uma ação paliativa para encerrarmos julho sem diferenças." — Head de Operações · Now</div>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Seazone · Head Ops · Now (29/07/2026, L81)</div>
+          </div>
+        </div>
+      </div>
+    </article>
 
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">FR.1</span><span>Central 0800 não localiza CNPJ da Seazone ou não sabe o que é EasyCover</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Em 15/09, franqueado de SP passou 2 horas na ligação com a central da Now Seguros — que dizia que "o CNPJ da Seazone não tem contrato" e "não sabem o que é EasyCover". Só localizaram na terceira ligação. Situação: apto sem energia, hóspede prestes a chegar.</p>
-          <div class="quote">"Estou ligando em um número e dizem que é da Now Seguros. Que o CNPJ da Seazone não tem contrato. Não conseguem localizar. Nem sabem o que é EasyCover. Estou há 2h na ligação com eles."</div>
-          <div class="quote">"A central fica bem confusa pra localizar. Semana passada tive pane elétrica no mesmo apto."</div>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · SP (15/09/2026, L458–L481)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">FR.2</span><span>Reembolso máximo de R$ 150 é insuficiente para emergência real</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Quando a central não tem prestador, EasyCover reembolsa até R$ 150 pela mão de obra (R$ 200 pra vidraceiro). Em capital, à noite, esse valor não paga um eletricista. Franqueado de SP: "eletricista mais barato uma hora dessa vai cobrar 500. Nem Uber sai por 150. Não serve de nada". Proprietário ameaçou cancelar a apólice depois desse episódio.</p>
-          <div class="quote">"Estão me dizendo que reembolsam 150 reais. O eletricista mais barato que tem uma hora dessa vai cobrar 500. Desculpa, mas isso não é assistência 24hs. Ou seja, não tem o que fazer."</div>
-          <div class="quote">"Preciso de apoio, o proprietário falou que vai cancelar o seguro. Paga 2% ao mês e quando precisa, não consegue usar."</div>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · SP (15/09/2026, L501–L530)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">FR.3</span><span>Divergência entre o manual público e o que a central atende</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Mesmo caso do disjuntor: eletricista foi ao apto e disse que "o seguro não cobre disjuntor". O proprietário mandou pra franqueada a cláusula do FAQ oficial da EasyCover dizendo que <em>cobre sim</em>. O representante da EasyCover confirmou no grupo: "tem a troca do disjuntor sim" — e prometeu tratar internamente. Ou seja, o profissional em campo está negando cobertura que existe.</p>
-          <div class="quote">"O eletricista foi lá, disse que era o disjuntor, mas que não poderia trocar pq o seguro não cobre."</div>
-          <div class="quote">"Agora o proprietário me mandou a cláusula do seguro que diz que sim, ele deveria ter trocado o disjuntor."</div>
-          <div class="quote">"Tem a troca do disjuntor sim. Lucas, estou aqui pra brigar pelo segurado. Já passei o seu caso e vou tratar isso aqui internamente." — Repr. EasyCover</div>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · SP + Repr. EasyCover (15/09/2026, L484–L494)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">FR.4</span><span>Prestador não aparece na hora marcada</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Franqueada de MT relatou 27/08: prestador da assistência tinha data e hora marcada e não apareceu. Foi resolvido só no dia seguinte, com nova ligação. Outra franqueada (MT/Madego) reforçou publicamente: "acionar o seguro nas urgências da nossa região realmente está inviável. Isso quando os prestadores realmente comparecem".</p>
-          <div class="quote">"Esse problema foi que estava marcado o dia e horário e ele não apareceu."</div>
-          <div class="quote">"Acionar o seguro nas urgências da nossa região realmente está inviável. Isso quando os prestadores realmente comparecem." — Franqueada · MT (Madego)</div>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · MT + Madego · MT (27/08/2026, L326–L336)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">FR.5</span><span>Prestador vai, identifica problema, sai sem trocar peça — franqueada aciona 2×</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Regra da EasyCover: a assistência cobre a mão de obra, não a peça. Se o prestador chega e a peça precisa ser comprada, ele vai embora. Franqueada compra, marca segunda visita, reagenda a operação. "Isso é demais, pq vc vai ter que acionar 2x" — e é considerado padrão pelo lado EasyCover.</p>
-          <div class="quote">"Sinceramente isso é demais, pq vc vai ter que acionar 2x. O rapaz foi no apartamento falou que precisa comprar o material. Não pode esperar e vai voltar outro dia."</div>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · MT (27/08/2026, L320)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">FR.6</span><span>Franqueada · SC: 3 ligações no 0800, 30 minutos, sem protocolo</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Caso já registrado em §06 (SLA do 0800). Aqui aparece a resposta pública da franqueada dando feedback sobre o modelo: <strong>"é muito burocrático para atendimento emergencial. Vai gerar muito desconforto com os hóspedes"</strong>. Representante EasyCover reconheceu ("é um desafio que só a EasyCover tem"), mas defendeu o modelo. A conclusão explícita da franqueada: <em>"pra gente emergência é o hóspede ligar e tudo se resolve em 40 minutos máximo. Imagina, passei 2 horas para conseguir uma autorização para resolver um chuveiro que sempre resolvia em 30 minutos."</em></p>
-          <div class="quote">"Um feedback, isso em alta temporada vai dá panos pra manga. É muito burocrático para atendimento emergencial."</div>
-          <div class="quote">"Isso é um desafio que só a EasyCover tem. Tínhamos duas opções: oferecer e ter a possibilidade de reembolso, ou não oferecer." — Repr. EasyCover</div>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · SC (20/08/2026, L193–L260)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">FR.7</span><span>Sinistro aberto, orçamento pedido, sem retorno em serviço emergencial</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Colaboradora da Seazone que também opera imóvel, no mesmo dia do caso da SC (20/08), relatou publicamente: sinistro aberto, foi solicitado orçamento pela EasyCover e não obteve retorno — mesmo sendo serviço emergencial.</p>
-          <div class="quote">"Sandra, precisei usar aqui e ainda não recebi retorno! E era serviço emergencial. Foi pra um orçamento e nada até agora."</div>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Colaboradora · Seazone (20/08/2026, L261)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">FR.8</span><span>CPF do proprietário exigido pela central — franqueada não tem acesso</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Franqueada de SP em 07/09: ligou pra assistência 24h e a central pediu CPF do proprietário. Ela não tem. Respondeu ao grupo — só depois o representante da EasyCover confirmou que o correto é passar o CNPJ da Seazone. Contradição direta com o que a central estava exigindo.</p>
-          <div class="quote">"Porém entrei em contato e solicitam o CPF do Proprietário. Não temos acesso a esse documento, infelizmente. Então como devemos proceder?"</div>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · SP (07/09/2026, L392–L397)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">FR.9</span><span>Escopo confuso: dedetização, manutenção, porta de vidro, encanador — cada dúvida é caso novo</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>No grupo oficial, entre 05/08 e 18/09, franqueadas perguntaram individualmente sobre: dedetização (não cobre), encanador (cobre como assistência), sofá manchado (cobre como sinistro), ar-condicionado sem gás (não cobre — é desgaste), porta de armário caindo (cobre se for dano), porta de vidro com roldana travando (não cobre — manutenção), ferro de passar sujo (não cobre — dano no item do hóspede). Padrão claro: <em>não há matriz "cobre / não cobre" acessível</em>.</p>
-          <div class="quote">"Boa tarde gente, o seguro cobre dedetização?"</div>
-          <div class="quote">"Primeira vez solicitando serviço, cobre encanador?"</div>
-          <div class="quote">"Boa tarde, o EasyCover cobre manutenção de porta de vidro? No caso aparentemente precisa trocar as roldanas."</div>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · várias franqueadas (07/08 → 01/09/2026, L7, L77, L78, L373)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">FR.10</span><span>Grupo oficial de suporte foi encerrado — franqueadas perderam o canal</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Ver SZ.8. Do ponto de vista da franqueada, a implicação prática: o único canal <em>direto e público</em> com a EasyCover deixou de existir. Suporte agora depende de reuniões periódicas — franqueada com problema urgente hoje precisa acionar Seazone, que aciona EasyCover, que responde. Latência maior, contexto perdido.</p>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Repr. EasyCover (18/09/2026, L549)</div></div></div>
-    </div>
-
-    <!-- ==== PAINEL PROPRIETÁRIO ==== -->
-    <div class="front-panel" id="front-proprietarios">
-      <p class="front-lede">O proprietário paga o prêmio mensal (2%) e é quem carrega o custo final quando o produto não entrega. Os problemas aqui costumam chegar via franqueada — mas o descontentamento é dele, e vira churn.</p>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">PR.1</span><span>"Paga 2% ao mês e quando precisa, não consegue usar"</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Frase literal do proprietário de SP transmitida pela franqueada em 15/09 (caso do disjuntor). É a formulação mais crua do problema: valor recorrente cobrado, valor entregue percebido como próximo de zero em emergência.</p>
-          <div class="quote">"Preciso de apoio, o proprietário falou que vai cancelar o seguro. Paga 2% ao mês e quando precisa, não consegue usar."</div>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · SP citando proprietário (15/09/2026, L501–L502)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">PR.2</span><span>Ameaça direta de cancelamento após incidente</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Consequência prática de PR.1. Cada incidente mal resolvido no 0800 acende um risco de churn de proprietário — que é o segurado, o pagador e o cliente da gestão Seazone.</p>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · SP (15/09/2026, L501)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">PR.3</span><span>Franquia mínima de R$ 150 não foi comunicada com clareza na venda</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Colaboradora Seazone com imóvel próprio reclamou publicamente que nunca ouviu falar da franquia de R$ 150 antes de precisar acionar. Se uma pessoa da própria rede não sabia, é razoável assumir que boa parte dos proprietários também não.</p>
-          <div class="quote">"Só que o proprietário vai falar que já paga o seguro mensal para cobrir isso. Esse é o problema, nunca ouvi falar que pagaria R$ 150 mínimo."</div>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Colaboradora · Seazone (17/08/2026, L167–L168)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">PR.4</span><span>Proprietário acha que paga a Seazone "para resolver tudo" — inclui manutenção que não é escopo</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Caso do ar-condicionado (E.2 em §06): proprietário argumentou pra franqueada que já paga a Seazone "para resolver todos os problemas do imóvel" — logo o seguro deveria cobrir. Descolamento clássico entre a expectativa do proprietário e o escopo real do produto.</p>
-          <div class="quote">"O proprietário disse que paga a seazone para resolver todos os problemas do imovel. Eu desconheço isto mas sei do seguro."</div>
-          <div class="source"><strong>Fonte:</strong> Geral Franquias · Franqueada · SP (02/08/2026, L5400) — cruz-referência com FR.9</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">PR.5</span><span>Divergência FAQ público × central da EasyCover erode confiança</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Ver FR.3. Do lado do proprietário: ele lê no FAQ oficial que a troca do disjuntor está coberta, o prestador vai lá e nega — proprietário conclui que o produto <em>não faz o que promete</em>. Erosão direta da confiança na apólice.</p>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · SP citando proprietário (15/09/2026, L486)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">PR.6</span><span>Reembolso de R$ 150 pra mão de obra em capital não cobre o custo real</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Ver FR.2. Do lado do proprietário: a promessa é assistência emergencial 24h. Quando ela falha e cai em reembolso limitado, o gap entre o custo real (R$ 500 em SP) e o teto do reembolso (R$ 150) sai do bolso — do proprietário ou da franqueada.</p>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Franqueada · SP (15/09/2026, L516–L530)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">PR.7</span><span>Sem apólice, o proprietário assume todo o risco patrimonial — via franqueada</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Do lado do proprietário: quando ele opta por não contratar, o dano é cobrado direto do hóspede pela franqueada. Se o hóspede não pagar, o proprietário absorve. Sem visibilidade do padrão da rede pra decidir se compensa ou não contratar.</p>
-          <div class="source"><strong>Fonte:</strong> Geral Franquias · Franqueada · RJ (19/09/2026, L10815)</div></div></div>
-    </div>
-
-    <!-- ==== PAINEL SEAZONE ==== -->
-    <div class="front-panel" id="front-seazone">
-      <p class="front-lede">A Seazone opera a integração técnica e o fechamento mensal com a EasyCover. É onde a falha aparece antes da franqueada perceber — API instável, releases sem comunicação, apólices subidas manualmente pra fechar o mês.</p>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">SZ.1</span><span>Fechamento mensal atrasa recorrentemente</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Em três meses seguidos (jul, ago, set/2026), o coordenador de franquias cobrou repetidamente previsão de fechamento com a EasyCover. Em julho foram 6+ cobranças em uma semana antes de sair prazo. Em agosto, 4 cobranças até virem prazo pra "amanhã". Em setembro (21/09), volta a cobrar ajustes.</p>
-          <div class="quote">"Bom dia pessoal, alguma previsão do fechamento?" — repetido 03/07, 06/07, 08/07, 09/07, 10/08, 11/08, 12/08, 21/09</div>
-          <div class="source"><strong>Fonte:</strong> Seazone × EasyCover Tech · Coord. Franquias · Seazone (L3–L84, jul/ago/set 2026)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">SZ.2</span><span>API de cancelamento retornou 403 Forbidden por semanas</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>De 16/07 até 20/07, o endpoint <code>DELETE /proposta/{id}</code> devolvia 403 usando o mesmo token da emissão que funcionava. Vários imóveis ficaram presos — cancelamento manual pela Now foi paliativo. Causa raiz nunca foi documentada no grupo.</p>
-          <div class="quote">"Todo cancelamento que a gente tenta está dando erro — a API de vocês devolve 403 Forbidden no DELETE /proposta/{id}. Já tem vários imóveis presos por causa disso."</div>
-          <div class="source"><strong>Fonte:</strong> Seazone × EasyCover Tech · Tech · Seazone (16/07/2026, L25); EasyCover × Seazone · Coord. · Seazone (22/07/2026, L16)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">SZ.3</span><span>Deploy da nova API quebrou autenticação em produção</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Em 03/08 a Now migrou pra nova URL de produção. Seazone atualizou e o <code>/login</code> voltou 403 Forbidden (IP não liberado). Após ajuste, virou 401 Unauthorized (credenciais). Precisou de intervenção manual pra estabilizar em 04/08 — dois dias com a integração parada.</p>
-          <div class="quote">"Atualizamos pra API nova de produção e o request já está indo pra lá, mas está voltando 403 Forbidden no /login. As credenciais são as mesmas de antes. Tem alguma restrição de IP/allowlist?"</div>
-          <div class="quote">"Ontem estava dando 403 Forbidden no /login, agora veio com 401 Unauthorized. A mudança indica que o IP foi liberado, mas agora a API nova está recusando login/senha."</div>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Seazone · Tech · Seazone (03–04/08/2026, L117–L148)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">SZ.4</span><span>Migração assíncrona sem comunicação prévia</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Na nova API, o <code>POST /proposta</code> passou a retornar <code>{status:"QUEUED", jobId}</code> em vez do número da apólice. Seazone não foi avisada — descobriu na prática que precisaria consultar <code>/job/{jobId}</code> depois. A integração precisou ser reescrita em campo.</p>
-          <div class="quote">"Pelo que vi, na API nova a emissão é assíncrona (antes, era síncrona) — o POST /proposta retorna QUEUED sem o número da apólice na hora. Como a gente obtém o número depois?"</div>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Seazone · Tech · Seazone (10/08/2026, L178)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">SZ.5</span><span>GET /proposta/imovel retornando 500 por 6 dias</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>De 11/08 a 17/08, o endpoint de consulta por código de imóvel devolvia 500 Internal Server Error em todos os códigos — inclusive nos que emitiram com sucesso. Backfill de dados no lado Seazone ficou impossível nesse período.</p>
-          <div class="quote">"O endpoint GET /proposta/imovel/{codigo} está retornando 500 Internal Server Error pra todos os códigos que tento — inclusive pra imóveis que emitiram com sucesso. É consistente (todos falham)."</div>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Seazone · Tech · Seazone (11/08 e 17/08/2026, L203–L208)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">SZ.6</span><span>Emissão duplicada e emissão perdida na correção manual</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Nos 7 imóveis subidos manualmente pela Now pra fechar julho: <strong>CAO0305 saiu duplicada</strong> (duas apólices — 53408 e 53409 — pro mesmo imóvel/período) e <strong>SAA0615 sumiu</strong> (nenhum dos 7 era dela). Cada divergência gera reconciliação manual do lado Seazone.</p>
-          <div class="quote">"1. CAO0305 saiu duplicada — vieram duas apólices pro mesmo imóvel/período: 53408 e 53409. Conseguem cancelar uma delas? 2. SAA0615 não veio — nenhum dos 7 é dela."</div>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Seazone · Tech · Seazone (04/08/2026, L170)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">SZ.7</span><span>Now sobe emissões "forçadamente" no sistema para fechar o mês</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Em 29/07 a Head de Operações da Now confirmou: "encontramos uma forma de subir essas 7 emissões no sistema da Seguradora. Será mais uma ação paliativa para encerrarmos julho sem diferenças." Ou seja, o fechamento do mês depende de bypass manual — não do fluxo automatizado. Os números da apólice tiveram que ser passados por PDFs individuais depois.</p>
-          <div class="quote">"Conforme conversamos, encontramos uma forma de subir essas 7 emissões no sistema da Seguradora. Será mais uma ação paliativa para encerrarmos julho sem diferenças." — Head de Operações · Now</div>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Seazone · Head Ops · Now (29/07/2026, L81)</div></div></div>
-
-      <div class="prob"><button class="prob-toggle" type="button"><span class="prob-num">SZ.8</span><span>EasyCover encerrou unilateralmente o grupo de suporte às franquias</span><span class="prob-chevron">+</span></button>
-        <div class="prob-body"><p>Em 18/09/2026 às 18h, a EasyCover encerrou o grupo oficial de WhatsApp <em>EasyCover × Franqueados Seazone</em> — criado apenas em 05/08 (6 semanas antes). Anúncio veio três dias após um episódio duro com franqueado de SP (disjuntor, apto sem luz, reembolso de R$ 150 vs. eletricista de R$ 500). A justificativa oficial foi "mudança de estratégia" para reuniões periódicas, mas o timing e o contexto sugerem reação ao atrito público. A rede perdeu o canal direto de tira-dúvidas com o parceiro.</p>
-          <div class="quote">"Passando para avisar que, a partir das 18h de hoje, este grupo será encerrado. Essa decisão faz parte de uma mudança na nossa estratégia de apoio aos franqueados: a partir de agora, vamos concentrar nosso suporte em reuniões periódicas."</div>
-          <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados Seazone · Repr. EasyCover (18/09/2026, L549); episódio anterior em L487–L545 (15/09)</div></div></div>
-    </div>
+    <article class="theme">
+      <div class="theme-num">09</div>
+      <div class="theme-body">
+        <div class="theme-head">
+          <div class="theme-title">Governança do relacionamento</div>
+          <div class="theme-meta">2 itens · canal direto encerrado</div>
+        </div>
+        <div class="case" data-impact="f">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">FR.10</span>Grupo oficial de suporte foi encerrado — franqueadas perderam o canal</span>
+            <span class="case-tag"><span class="dot f"></span> Franquia</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Ver SZ.8. Do ponto de vista da franqueada, a implicação prática: o único canal <em>direto e público</em> com a EasyCover deixou de existir. Suporte agora depende de reuniões periódicas — franqueada com problema urgente hoje precisa acionar Seazone, que aciona EasyCover, que responde. Latência maior, contexto perdido.</p>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados · Repr. EasyCover (18/09/2026, L549)</div>
+          </div>
+        </div>
+        <div class="case" data-impact="s">
+          <button class="case-toggle" type="button">
+            <span class="case-title"><span class="case-code ">SZ.8</span>EasyCover encerrou unilateralmente o grupo de suporte às franquias</span>
+            <span class="case-tag"><span class="dot s"></span> Seazone</span>
+            <span class="case-chevron">+</span>
+          </button>
+          <div class="case-body">
+            <p>Em 18/09/2026 às 18h, a EasyCover encerrou o grupo oficial de WhatsApp <em>EasyCover × Franqueados Seazone</em> — criado apenas em 05/08 (6 semanas antes). Anúncio veio três dias após um episódio duro com franqueado de SP (disjuntor, apto sem luz, reembolso de R$ 150 vs. eletricista de R$ 500). A justificativa oficial foi "mudança de estratégia" para reuniões periódicas, mas o timing e o contexto sugerem reação ao atrito público. A rede perdeu o canal direto de tira-dúvidas com o parceiro.</p>
+            <div class="quote">"Passando para avisar que, a partir das 18h de hoje, este grupo será encerrado. Essa decisão faz parte de uma mudança na nossa estratégia de apoio aos franqueados: a partir de agora, vamos concentrar nosso suporte em reuniões periódicas."</div>
+            <div class="source"><strong>Fonte:</strong> EasyCover × Franqueados Seazone · Repr. EasyCover (18/09/2026, L549); episódio anterior em L487–L545 (15/09)</div>
+          </div>
+        </div>
+      </div>
+    </article>
   </section>
 
   <!-- §07 · VOZ DO PROPRIETÁRIO SIA -->
@@ -1287,10 +1482,9 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
     <div class="achados">
 
       <article class="achado">
-        <div class="achado-head">
+        <button class="achado-toggle" type="button"><div class="achado-head">
           <span class="achado-num">Achado 01 · Financeiro</span>
-        </div>
-        <div class="achado-title">O saldo acumulado da parceria no período fecha em − R$ 15.007,77.</div>
+        <span class="achado-chevron">+</span></div><div class="achado-title">O saldo acumulado da parceria no período fecha em − R$ 15.007,77.</div></button>
         <div class="achado-grid">
           <div class="col">
             <h5>Evidência</h5>
@@ -1315,10 +1509,9 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
       </article>
 
       <article class="achado">
-        <div class="achado-head">
+        <button class="achado-toggle" type="button"><div class="achado-head">
           <span class="achado-num">Achado 02 · Diagnóstico operacional</span>
-        </div>
-        <div class="achado-title">Escopo de cobertura e SLA de emergência concentram 45% das 31 manifestações identificadas.</div>
+        <span class="achado-chevron">+</span></div><div class="achado-title">Escopo de cobertura e SLA de emergência concentram 45% das 31 manifestações identificadas.</div></button>
         <div class="achado-grid">
           <div class="col">
             <h5>Evidência</h5>
@@ -1342,10 +1535,9 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
       </article>
 
       <article class="achado">
-        <div class="achado-head">
+        <button class="achado-toggle" type="button"><div class="achado-head">
           <span class="achado-num">Achado 03 · Processo</span>
-        </div>
-        <div class="achado-title">O fechamento mensal excedeu o prazo interno em 8 de 10 meses.</div>
+        <span class="achado-chevron">+</span></div><div class="achado-title">O fechamento mensal excedeu o prazo interno em 8 de 10 meses.</div></button>
         <div class="achado-grid">
           <div class="col">
             <h5>Evidência</h5>
@@ -1370,10 +1562,9 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
       </article>
 
       <article class="achado">
-        <div class="achado-head">
+        <button class="achado-toggle" type="button"><div class="achado-head">
           <span class="achado-num">Achado 04 · Voz do proprietário</span>
-        </div>
-        <div class="achado-title">16 reclamações de proprietários na SIA, com 2 pedidos explícitos de cancelamento.</div>
+        <span class="achado-chevron">+</span></div><div class="achado-title">16 reclamações de proprietários na SIA, com 2 pedidos explícitos de cancelamento.</div></button>
         <div class="achado-grid">
           <div class="col">
             <h5>Evidência</h5>
@@ -1397,10 +1588,9 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
       </article>
 
       <article class="achado">
-        <div class="achado-head">
+        <button class="achado-toggle" type="button"><div class="achado-head">
           <span class="achado-num">Achado 05 · Governança</span>
-        </div>
-        <div class="achado-title">O canal direto de suporte às franquias foi encerrado unilateralmente em 18/09/26.</div>
+        <span class="achado-chevron">+</span></div><div class="achado-title">O canal direto de suporte às franquias foi encerrado unilateralmente em 18/09/26.</div></button>
         <div class="achado-grid">
           <div class="col">
             <h5>Evidência</h5>
@@ -1423,10 +1613,9 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
       </article>
 
       <article class="achado">
-        <div class="achado-head">
+        <button class="achado-toggle" type="button"><div class="achado-head">
           <span class="achado-num">Achado 06 · Cobrança</span>
-        </div>
-        <div class="achado-title">R$ 21.003,21 cobrados em jan → ago/26 por imóveis que já operavam mas ficaram sem reserva no mês.</div>
+        <span class="achado-chevron">+</span></div><div class="achado-title">R$ 21.003,21 cobrados em jan → ago/26 por imóveis que já operavam mas ficaram sem reserva no mês.</div></button>
         <div class="achado-grid">
           <div class="col">
             <h5>Evidência</h5>
@@ -1573,15 +1762,19 @@ months.forEach((r, i) => {
   tr.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
 });
 
-// Case + prob toggles
-document.querySelectorAll('.case-toggle, .prob-toggle').forEach(btn => {
+// Case toggles
+document.querySelectorAll('.case-toggle').forEach(btn => {
   btn.addEventListener('click', () => btn.parentElement.classList.toggle('open'));
 });
 
-// Front-tabs (elo)
+// Achado toggles (fechados por padrão — mostra só o título; expande evidência + impacto + quem)
+document.querySelectorAll('.achado-toggle').forEach(btn => {
+  btn.addEventListener('click', () => btn.parentElement.classList.toggle('open'));
+});
+
+// Front-tabs (elo) — filtra cases por data-impact e esconde temas vazios
 const FRONT_TO_IMPACT = { franquias: 'f', proprietarios: 'p', seazone: 's' };
 const frontTabs = document.querySelectorAll('.front-tab');
-const frontPanels = document.querySelectorAll('.front-panel');
 function applyFront(key) {
   frontTabs.forEach(t => t.classList.toggle('active', t.dataset.front === key));
   const impact = FRONT_TO_IMPACT[key];
@@ -1592,7 +1785,6 @@ function applyFront(key) {
     const visible = Array.from(t.querySelectorAll('.case')).some(c => c.style.display !== 'none');
     t.style.display = visible ? '' : 'none';
   });
-  frontPanels.forEach(p => p.classList.toggle('active', p.id === 'front-' + key));
 }
 frontTabs.forEach(tab => tab.addEventListener('click', () => applyFront(tab.dataset.front)));
 applyFront('franquias');
