@@ -613,6 +613,21 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
       <p class="wf-note"><b>Base das %</b> Todos os percentuais têm como referência o custo total do período (R$ 388.806,06 = 100%). Coerente com o indicador "96,1% do custo coberto" já apresentado acima. Faturamento total no período: R$ 18.003.371,61 — comissão 2% ≈ R$ 360.067,43 (bate à precisão de centavo).</p>
     </div>
 
+    <div class="waterfall" aria-label="Custo de imóveis parados na cobrança">
+      <div class="wf-head">
+        <h3>Custo de imóveis parados na cobrança · jan → ago/26</h3>
+        <div class="wf-formula">O boleto da Now cobra <b>R$ 64,23 por imóvel da lista</b>, tenha ele reserva no mês ou não. Cruzamento entre as listas de fechamento Now e o Sapron.</div>
+      </div>
+
+      <section class="strip">
+        <div><div class="n neg">R$ 21.003<small>,21</small></div><div class="l">Cobrado por imóveis que já operavam e ficaram sem nenhuma reserva no mês</div></div>
+        <div><div class="n pay">327</div><div class="l">Cobranças "parado" em 8 meses de fechamento (jan → ago/26)</div></div>
+        <div><div class="n pay">R$ 64,23</div><div class="l">Custo por imóvel na lista, independentemente de reserva</div></div>
+      </section>
+
+      <p class="wf-note"><b>Recorte metodológico</b> Cruzamento das listas de fechamento Now com o Sapron (reservas por competência), janela jan → ago/26. Entraram como "parado" apenas os imóveis que <b>já operavam</b> na base e passaram o mês sem reserva — concentração observada na baixa temporada. Ficaram de fora imóveis em onboarding e imóveis inativos/inexistentes na base, que dependem de tratativa interna. Saldo da parceria na mesma janela (jan → ago/26): <b>+ R$ 5.341,11</b>.</p>
+    </div>
+
     <div class="table-scroll">
     <table class="t3">
       <thead>
@@ -1270,7 +1285,7 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
   <section class="section" id="conclusao" aria-label="Fechamento — diagnóstico factual">
     <div class="eyebrow">§ 08 · Fechamento · diagnóstico factual</div>
     <h2>O que o consolidado mostra</h2>
-    <p class="lede">Cinco achados objetivos, cada um lastreado em evidência já apresentada nas seções §02 → §07. A leitura é factual: descrição do que os dados mostram, o impacto observado no período analisado e a quem afeta. Não contém recomendação estratégica.</p>
+    <p class="lede">Seis achados objetivos, cada um lastreado em evidência já apresentada nas seções §02 → §07. A leitura é factual: descrição do que os dados mostram, o impacto observado no período analisado e a quem afeta. Não contém recomendação estratégica.</p>
 
     <div class="achados">
 
@@ -1410,6 +1425,33 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
         <div class="achado-quem"><b>Quem é afetado</b> <span class="t-tag f">Franquia</span> (toda a rede) <span class="t-tag s">Seazone</span> (BackOffice como intermediário)</div>
       </article>
 
+      <article class="achado">
+        <div class="achado-head">
+          <span class="achado-num">Achado 06 · Cobrança</span>
+        </div>
+        <div class="achado-title">R$ 21.003,21 cobrados em jan → ago/26 por imóveis que já operavam mas ficaram sem reserva no mês.</div>
+        <div class="achado-grid">
+          <div class="col">
+            <h5>Evidência</h5>
+            <ul>
+              <li>Custo unitário do boleto Now: <b>R$ 64,23 por imóvel da lista</b>, independentemente de haver reserva no mês.</li>
+              <li>Cruzamento entre listas de fechamento Now e reservas Sapron (jan → ago/26): <b>327 cobranças</b> caíram sobre imóveis ativos sem reserva no mês.</li>
+              <li>Total: <b>R$ 21.003,21</b> — 5,4% do custo total do período nov/25 → ago/26 (R$ 388.806,06).</li>
+              <li>Concentração observada em meses de baixa temporada.</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h5>Impacto observado</h5>
+            <ul>
+              <li>Custo fixo por imóvel da lista amplifica o resultado negativo em meses sem reserva.</li>
+              <li>Saldo da parceria em jan → ago/26 = <b>+ R$ 5.341,11</b>; sem esse custo "parado", ficaria em ~R$ 26 mil positivo na mesma janela.</li>
+              <li>Recorte considera apenas imóveis já operantes (baixa temporada); onboarding e inativos ficam de fora — tratativa interna.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="achado-quem"><b>Quem é afetado</b> <span class="t-tag s">Seazone</span> (custo por imóvel sem contrapartida de comissão) <span class="t-tag ec">EasyCover / Now</span> (modelo de cobrança)</div>
+      </article>
+
     </div>
 
     <h3 style="font-size:20px;font-weight:600;font-family:'Schibsted Grotesk',sans-serif;letter-spacing:-.015em;color:var(--text);margin:var(--space-2xl) 0 var(--space-md)">Principais pontos de atenção</h3>
@@ -1455,6 +1497,12 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
             <td class="a-evid">Grupo com 6 semanas, encerrado 3 dias após incidente SP · justificativa: mudança de estratégia</td>
             <td class="a-imp">Rede perde canal direto · suporte migra para reuniões periódicas + intermediação BackOffice</td>
             <td class="a-trat"><span class="t-tag sz">Seazone</span> definir canal alternativo</td>
+          </tr>
+          <tr>
+            <td class="a-achado">R$ 21.003,21 em cobrança de imóveis "parados" (jan → ago/26)</td>
+            <td class="a-evid">327 cobranças de R$ 64,23 em imóveis ativos sem reserva no mês · concentração na baixa</td>
+            <td class="a-imp">5,4% do custo total do período · sem esse custo, saldo jan-ago/26 seria ~R$ 26 mil positivo</td>
+            <td class="a-trat"><span class="t-tag sh">Compartilhado</span> EasyCover (modelo) + Seazone (negociação)</td>
           </tr>
         </tbody>
       </table>
