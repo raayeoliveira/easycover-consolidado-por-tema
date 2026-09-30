@@ -536,6 +536,13 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
       </tfoot>
     </table>
     </div>
+
+    <p class="method-note"><b>Limitações da lista de reembolsos</b> A lista trazida ao clicar em cada mês vem do fechamento Now e mostra apenas <b>código do imóvel + valor</b>, sem o número do caso no Sapron — o que dificulta a validação um-a-um (ex.: PMC0400 tem 4 casos diferentes registrados no Sapron). Dois pontos identificados na validação:</p>
+    <ul class="method-note" style="margin-top:-8px;padding-left:20px">
+      <li><b>CIS0033 · mai/26 · R$ 1.360</b> — passou pela fase EasyCover no Sapron, mas o histórico não traz anotação de "pago pelo EasyCover". Precisa confirmar o pagador. Precedente: <b>VAC0704</b> passou pela mesma fase, mas quem pagou foi o Airbnb.</li>
+      <li><b>AUG0002 · set/26 · R$ 150</b> — é reembolso da <b>assistência 24h</b> (chuveiro), não indenização de dano. Está contabilizado no total do mês, mas é natureza distinta.</li>
+    </ul>
+    <p class="method-note"><b>Sinistros em análise</b> Além dos reembolsos já pagos, há <b>13 sinistros em análise na EasyCover</b>, somando <b>R$ 26.520,50</b> em itens de dano — <b>9 deles abertos em setembro/26</b>. Os 3,5% de retorno reportados <b>não incluem esses casos</b>; se aprovados, entram nos meses seguintes.</p>
   </section>
 
   <!-- §03 · SEM RETORNO -->
@@ -874,12 +881,13 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
         </div>
         <div class="case" data-impact="f">
           <button class="case-toggle" type="button">
-            <span class="case-title">Franquia de R$ 150 desmotiva acionamento em dano pequeno</span>
+            <span class="case-title">Franquia mínima por cobertura desmotiva acionamento em dano pequeno</span>
             <span class="case-tag"><span class="dot f"></span> Franquia</span>
             <span class="case-chevron">+</span>
           </button>
           <div class="case-body">
-            <p>Regra do EasyCover: qualquer sinistro tem franquia de R$ 150. Danos pequenos (maioria) ficam abaixo desse valor — franqueadas concluem que "não vale acionar", cai em cima de quem?</p>
+            <p>Regra do EasyCover: a franquia é de <b>10% do prejuízo</b>, com um valor mínimo que depende da cobertura: <b>R$ 150</b> em danos gerais, <b>R$ 300</b> em vendaval/granizo e <b>R$ 500</b> em danos elétricos e em roubo/furto. <b>Queda de raio não tem franquia.</b> Na prática, muitos danos pequenos ficam abaixo do mínimo. Ex.: um micro-ondas queimado com conserto de R$ 450 não é indenizado, porque a franquia de danos elétricos é de R$ 500.</p>
+            <p style="margin-top:12px;padding:10px 12px;background:#fff8e6;border-left:3px solid #f0b429;border-radius:4px;font-size:14px;color:#5a4200"><b>Não confundir</b> — o "R$ 150" que aparece no T4 (Reembolso R$ 150 / política de assistência) é outra coisa: é o <b>teto de reembolso da assistência 24h</b>, não a franquia do sinistro.</p>
             <span class="lbl">Evidência</span>
             <div class="quote">"Se o dano for maior que a franquia acho que sim. Senão não vale a pena acionar."</div>
             <div class="quote">"Tem a franquia de 150,00" — em resposta a dúvida sobre acionar por lixeira quebrada</div>
@@ -929,9 +937,10 @@ footer{ margin-top:var(--space-2xl); padding:var(--space-xl) var(--space-lg); bo
           </button>
           <div class="case-body">
             <p>Pra acionar o EasyCover, precisa de laudo. Em SP, laudo custa mínimo R$ 300. Se o dano é pequeno, o laudo custa mais que o próprio dano — franqueada evita acionar. Sem fluxo de reembolso do laudo, o seguro perde utilidade prática.</p>
+            <p style="margin-top:12px;padding:10px 12px;background:#eef4fb;border-left:3px solid #2f6bd0;border-radius:4px;font-size:14px;color:#1a3a70"><b>Posição oficial EasyCover</b> — E-mail de Jorge Moura (26/06/2026) confirma que <b>o seguro não paga o custo do laudo, só o item danificado</b>. No AirCover é diferente: o valor do laudo entra na solicitação e é reembolsado. Como o EasyCover não cobre, esse custo fica com o proprietário. No mesmo e-mail, a EasyCover informou que, <b>no lugar do laudo de dano elétrico, aceita orçamento de empresa</b> informando o custo do reparo ou a perda total.</p>
             <span class="lbl">Evidência</span>
             <div class="quote">"Como ficou resolvido aquela questão de ter que chamar um técnico para dar um laudo, esse valor será reembolsado pelo seguro? Os técnicos em SP para dar laudo e sair de casa não cobram menos de 300 reais."</div>
-            <div class="source"><strong>Fonte:</strong> Geral Franquias · Franqueada · SP (19/06/2026, L638)</div>
+            <div class="source"><strong>Fonte:</strong> Geral Franquias · Franqueada · SP (19/06/2026, L638) · E-mail Jorge Moura / EasyCover (26/06/2026)</div>
           </div>
         </div>
       </div>
@@ -1530,14 +1539,14 @@ const months = [
   { m: 'Mar/26', qty: 547, unit: 64.23, paid: 35133.81, back: 0, cases: [] },
   { m: 'Abr/26', qty: 607, unit: 64.23, paid: 38987.61, back: 0, cases: [] },
   { m: 'Mai/26', qty: 639, unit: 64.23, paid: 41042.97, back: 3753.00,
-    cases: [['CIS0033', 1360], ['PMC0400', 1237], ['EJO0305', 795], ['PSL0002', 295], ['IFT0903', 66]] },
+    cases: [['CIS0033', 1360, 'pagador em confirmação'], ['PMC0400', 1237], ['EJO0305', 795], ['PSL0002', 295], ['IFT0903', 66]] },
   { m: 'Jun/26', qty: 727, unit: 64.23, paid: 46695.21, back: 0, cases: [] },
   { m: 'Jul/26', qty: 776, unit: 64.23, paid: 49842.48, back: 1540.00,
     cases: [['VPD0701', 910], ['PZIA0304', 630]] },
   { m: 'Ago/26', qty: 830, unit: 64.23, paid: 53310.90, tag: 'vence 28/09', tagBlue: true, back: 4542.15,
     cases: [['GBA1104', 2001.56], ['CRT0032', 753.20], ['ESA0304', 706.02], ['RSO0017', 516.56], ['SKL0505', 373], ['ODI0487', 191.81]] },
   { m: 'Set/26', paid: null, note: 'fechamento em out', back: 2948.48,
-    cases: [['CVB0110', 2798.48], ['AUG0002', 150]] },
+    cases: [['CVB0110', 2798.48], ['AUG0002', 150, 'assistência 24h (chuveiro), não indenização']] },
 ];
 
 const tbody = document.getElementById('rows');
@@ -1562,7 +1571,7 @@ months.forEach((r, i) => {
   const d = document.createElement('tr');
   d.className = 'd';
   d.innerHTML = `<td colspan="7"><div class="inner"><div class="cases">${
-    r.cases.map(c => `<span class="case"><b>${c[0]}</b><span>${brl(c[1])}</span></span>`).join('')
+    r.cases.map(c => `<span class="case"><b>${c[0]}</b><span>${brl(c[1])}</span>${c[2] ? `<small style="display:block;margin-top:2px;color:#a15c00;font-size:11px;font-style:italic">${c[2]}</small>` : ''}</span>`).join('')
   }</div></div></td>`;
   tbody.appendChild(d);
   tr.setAttribute('tabindex', '0');
