@@ -108,16 +108,15 @@ h3{ font-size:18px; font-weight:600; line-height:1.25 }
 .achado.open .achado-chevron{ transform:rotate(45deg); color:var(--amber) }
 .achado-title{ font:600 18px/1.3 "Schibsted Grotesk", sans-serif; color:var(--text); letter-spacing:-.01em; margin:6px 0 0; }
 .achado.open .achado-title{ margin-bottom:var(--space-md) }
-.achado-grid, .achado-quem{ display:none }
+.achado-grid{ display:none; grid-template-columns:1fr 1fr; gap:var(--space-lg); }
 .achado.open .achado-grid{ display:grid }
-.achado.open .achado-quem{ display:block }
-.achado-grid{ display:grid; grid-template-columns:1fr 1fr; gap:var(--space-lg); }
 .achado-grid .col h5{ font:600 10.5px "Schibsted Grotesk", sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); margin:0 0 6px; }
 .achado-grid .col ul{ margin:0; padding:0 0 0 14px; }
 .achado-grid .col ul li{ font-size:13px; line-height:1.55; color:var(--muted); margin-bottom:4px; }
 .achado-grid .col ul li b{ color:var(--text); font-weight:600 }
 .achado-grid .col p{ font-size:13px; line-height:1.55; color:var(--muted); margin:0; }
-.achado-quem{ margin-top:var(--space-md); padding-top:var(--space-md); border-top:1px solid var(--line-soft); font-size:12.5px; color:var(--muted); }
+.achado-quem{ display:none; margin-top:var(--space-md); padding-top:var(--space-md); border-top:1px solid var(--line-soft); font-size:12.5px; color:var(--muted); }
+.achado.open .achado-quem{ display:block }
 .achado-quem b{ font:600 10.5px "Schibsted Grotesk", sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); margin-right:8px; }
 .achado-quem .t-tag{ display:inline-block; padding:2px 7px; margin:1px 2px 1px 0; border-radius:3px; font:500 11px "Figtree", sans-serif; }
 .achado-quem .t-tag.f{ background:oklch(78% .14 155 / .12); color:var(--green) }
